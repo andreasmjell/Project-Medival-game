@@ -1,0 +1,4 @@
+UI:
+oppstart()
+    Starter hele interfacet. Kalles på når game starter. Kaller på funksjoner for hente hovedmeny.
+
