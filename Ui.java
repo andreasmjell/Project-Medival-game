@@ -18,7 +18,7 @@ public class Ui {
     }
 
     public void mainMenu(){
-        ImageIcon backgroundImage = new ImageIcon("assets/Mainmenu.png"); // banen til bildet
+        ImageIcon backgroundImage = new ImageIcon("assets/Mainmenu.png");
         JLabel background = new JLabel(backgroundImage);
         background.setBounds(0, 0, 1920, 1080);
         frame.setContentPane(background);
