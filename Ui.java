@@ -151,11 +151,13 @@ try {
         g2.setColor(new Color(70, 70, 70));
         g2.drawRoundRect(0, 0, w - 1, h - 1, 20, 20);
 
+
         // 🔩 5. Nagler (med liten highlight)
         drawBolt(g2, 12, 12);
         drawBolt(g2, w - 20, 12);
         drawBolt(g2, 12, h - 20);
         drawBolt(g2, w - 20, h - 20);
+
 
         // ✨ 6. Hover effekt (svak lysning)
         if (hovered) {
