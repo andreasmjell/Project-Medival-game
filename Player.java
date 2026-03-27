@@ -4,9 +4,9 @@ public class Player {
     int y;
     
     public Player(int x, int y, int troops){
-        this.troops = troops;
         this.x = x;
         this.y = y;
+        this.troops = troops;
     }
 
     public int getX(){

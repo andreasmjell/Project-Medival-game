@@ -1,4 +1,5 @@
 public class Npc {
+    String navn = "Enemy Army";
     int x;
     int y;
     int troops;
@@ -22,7 +23,7 @@ public class Npc {
         }
     }
 
-    public void engadeCombat(){
+    public void engadeCombat(Player player){
         int diffX = this.x - player.getX();
         int diffY = this.y - player.getY();
         if(diffX * 2 < 20 && diffY * 2 < 20){
