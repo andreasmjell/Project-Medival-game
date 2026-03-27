@@ -1,9 +1,24 @@
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 import org.w3c.dom.events.MouseEvent;
 
 public class MapController {
+    Player player = new Player(500, 500, 1);
+    Ui ui = new Ui(this);
+    Camera camera = new Camera(500, 500, 1920, 1080, player);
+
+    public void start(){
+        ui.start();
+    }
+
+
+    public void startGame(){
+        ui.drawMap(player, camera);
+    }
+
+
    public class SmoothMoveCharacter extends JPanel {
     private int charX = 50; // startposisjon
     private int charY = 50;
@@ -16,6 +31,7 @@ public class MapController {
     private Image mapImage = new ImageIcon("map.png").getImage();
     private Image charImage = new ImageIcon("ridderhjelm.png").getImage();
 
+    /*
     public SmoothMoveCharacter() {
         // Lytter til museklikk
         this.addMouseListener(new MouseAdapter() {
@@ -25,17 +41,19 @@ public class MapController {
                 targetY = e.getY() - CHAR_SIZE / 2;
             }
         });
+        */
 
         // Timer som oppdaterer posisjon hvert 20 ms (~50 FPS)
         Timer timer = new Timer(20, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                moveCharacter();
+                //moveCharacter();
                 repaint();
             }
-        });
-        timer.start();
-
+        });{
+        
+        
+            timer.start();
         //this.setPreferredSize(new Dimension(1920, 1080));
         this.setPreferredSize(new Dimension(mapImage.getWidth(null), mapImage.getHeight(null)));
     }

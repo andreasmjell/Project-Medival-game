@@ -7,6 +7,12 @@ import java.awt.event.MouseEvent;
 
 public class Ui {
     JFrame frame = null;
+
+    MapController mapController;
+
+    public Ui(MapController mapController){
+        this.mapController = mapController;
+    }
     
     
     public void start(){
@@ -23,6 +29,15 @@ public class Ui {
         frame.setVisible(false);
     }
 
+    public void drawMap(Player player, Camera camera){
+        GamePanel gamePanel = new GamePanel(player, camera);
+        frame.getContentPane().removeAll();
+        frame.setContentPane(gamePanel);
+        frame.revalidate();
+        frame.repaint();
+        gamePanel.requestFocusInWindow();
+    }   
+
     public void mainMenu(){
         //Setting background
         ImageIcon backgroundImage = new ImageIcon("assets/Mainmenu.png");
@@ -35,6 +50,7 @@ public class Ui {
         startGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("The game is starting!"); // HER SKAL VI STARTE SELVE SPILLET!
+                mapController.startGame();
             }
         });
         startGame.setBounds(600, 200, 320, 80);
@@ -45,6 +61,7 @@ public class Ui {
         saveAndExit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 System.out.println("Game Saved!");
+                System.exit(0);   // Lage og avslutt spillet
             }
         });
 
@@ -127,10 +144,10 @@ try {
         int offset = pressed ? 3 : 0;
         g2.translate(0, offset);
 
-        // 🪵 1. Tegn ekte tretekstur
+
         g2.drawImage(woodTexture, 0, 0, w, h, null);
 
-        // 🌑 2. Legg på skygge (gir dybde)
+
         GradientPaint shadow = new GradientPaint(
                 0, h / 2, new Color(0, 0, 0, 0),
                 0, h, new Color(0, 0, 0, 120)
@@ -138,7 +155,7 @@ try {
         g2.setPaint(shadow);
         g2.fillRect(0, 0, w, h);
 
-        // ✨ 3. Highlight (lys ovenfra)
+
         GradientPaint highlight = new GradientPaint(
                 0, 0, new Color(255, 255, 255, 80),
                 0, h / 2, new Color(255, 255, 255, 0)
@@ -146,26 +163,26 @@ try {
         g2.setPaint(highlight);
         g2.fillRect(0, 0, w, h);
 
-        // 🧱 4. Metallramme
+
         g2.setStroke(new BasicStroke(4));
         g2.setColor(new Color(70, 70, 70));
         g2.drawRoundRect(0, 0, w - 1, h - 1, 20, 20);
 
 
-        // 🔩 5. Nagler (med liten highlight)
+
         drawBolt(g2, 12, 12);
         drawBolt(g2, w - 20, 12);
         drawBolt(g2, 12, h - 20);
         drawBolt(g2, w - 20, h - 20);
 
 
-        // ✨ 6. Hover effekt (svak lysning)
+
         if (hovered) {
             g2.setColor(new Color(255, 255, 255, 40));
             g2.fillRoundRect(0, 0, w, h, 20, 20);
         }
 
-        // ✍️ 7. Tekst med realistisk skygge
+
         g2.setFont(getFont());
         FontMetrics fm = g2.getFontMetrics();
 
@@ -175,16 +192,16 @@ try {
         int y = (h + fm.getAscent()) / 2 - 6;
         y += (int)(Math.random() * 2);
 
-        // 🔥 Dyp skygge (gir gravert effekt)
+
         g2.setColor(new Color(0, 0, 0, 180));
         g2.drawString(text, x + 3, y + 3);
 
-        // ✨ Lys kant (slitt metall/gull effekt)
+
         g2.setColor(new Color(255, 240, 180, 120));
         g2.drawString(text, x - 1, y - 1);
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.9f));
 
-        // 🎯 Hovedtekst (gull-ish)
+
         g2.setColor(new Color(220, 200, 140));
         g2.drawString(text, x, y);
 

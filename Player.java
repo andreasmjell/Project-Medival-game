@@ -1,7 +1,7 @@
 public class Player {
     int troops;
-    int x;
-    int y;
+    double x;
+    double y;
     
     public Player(int x, int y, int troops){
         this.x = x;
@@ -9,10 +9,10 @@ public class Player {
         this.troops = troops;
     }
 
-    public int getX(){
+    public double getX(){
         return x;
     }
-    public int getY(){
+    public double getY(){
         return y;
     }
 }
