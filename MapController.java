@@ -5,20 +5,24 @@ import java.awt.event.*;
 import org.w3c.dom.events.MouseEvent;
 
 public class MapController {
-    Player player = new Player(500, 500, 1);
+    Player player = new Player(1500, 900, 1);
     Ui ui = new Ui(this);
     Camera camera = new Camera(500, 500, 1920, 1080, player);
 
+    //Første oppstart, åpner main menu.
     public void start(){
         ui.start();
     }
 
-
+    //Starter det faktiske spillet
     public void startGame(){
         ui.drawMap(player, camera);
     }
 
 
+
+
+    //Skrot under her
    public class SmoothMoveCharacter extends JPanel {
     private int charX = 50; // startposisjon
     private int charY = 50;

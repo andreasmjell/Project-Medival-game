@@ -15,4 +15,8 @@ public class Player {
     public double getY(){
         return y;
     }
+
+    public void moveTo(){ //Lager en ny path til player til en desitnasjon. Denne destinasjonen må havne hos MapController
+
+    }
 }

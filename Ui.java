@@ -14,13 +14,13 @@ public class Ui {
         this.mapController = mapController;
     }
     
-    
+
     public void start(){
         createWindow();
         mainMenu();
     }
 
-    public void createWindow(){
+    public void createWindow(){ //Oppretter vinduet alt skjer i.
         frame = new JFrame("Medieval");
         frame.setBackground(Color.BLACK);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,7 +29,7 @@ public class Ui {
         frame.setVisible(false);
     }
 
-    public void drawMap(Player player, Camera camera){
+    public void drawMap(Player player, Camera camera){ //Fjerner alt fra vinduet og fyller med spillet.
         GamePanel gamePanel = new GamePanel(player, camera);
         frame.getContentPane().removeAll();
         frame.setContentPane(gamePanel);
@@ -38,7 +38,7 @@ public class Ui {
         gamePanel.requestFocusInWindow();
     }   
 
-    public void mainMenu(){
+    public void mainMenu(){ //Lager hovedmenyen som skal åpnes når spillet starter.
         //Setting background
         ImageIcon backgroundImage = new ImageIcon("assets/Mainmenu.png");
         JLabel background = new JLabel(backgroundImage);

@@ -7,7 +7,9 @@ public class GamePanel extends JPanel {
 
     Double cameraX, cameraY, playerX, playerY;
 
+    //Map and Player icon
      Image mapImage = new ImageIcon("assets/map.png").getImage();
+     Image playerImage = new ImageIcon("assets/ridderhjelm.png").getImage();
 
 
     public GamePanel(Player player, Camera camera){
@@ -27,6 +29,7 @@ public class GamePanel extends JPanel {
         timer.start();
     }
 
+    //oppdaterer kamera og player posisjon
     private void update(){
         playerX = player.getX();
         playerY = player.getY();
@@ -35,11 +38,14 @@ public class GamePanel extends JPanel {
         cameraY = camera.getY();
     }
 
+
+    //Viser oppdatert bilde av map basert på kamera posisjon og player icon
         @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // tegn kart
+
+        //Bilde av kartet som vises
         g.drawImage(mapImage,
                 (int)(-cameraX),
                 (int)(-cameraY),
@@ -48,11 +54,11 @@ public class GamePanel extends JPanel {
                 null
         );
 
-        // tegn player
+
         int px = (int)(playerX - cameraX);
         int py = (int)(playerY - cameraY);
 
-        g.setColor(Color.RED);
-        g.fillOval(px, py, 20, 20);
+        //Bilde av player icon
+        g.drawImage(playerImage, px, py, 40, 40, null);
     }
 }

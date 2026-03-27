@@ -1,8 +1,10 @@
 public class Camera {
-    double x,y;
-    int width, height;
+    double x,y;  //Kordinater til kameraet (top left)
+    int width, height;  //Skjermstørrelse
     double zoom = 1.0;
     Player player;
+
+
 
     public Camera(double x, double y, int width, int height, Player player){
         this.x = x;
@@ -21,7 +23,7 @@ public class Camera {
     }
 
     public void focusPlayer(){
-        x = player.getX();
-        y = player.getY();
+        x = player.getX() - width / 2;
+        y = player.getY() - height / 2;
     }
 }
