@@ -11,6 +11,7 @@ public class GamePanel extends JPanel {
     //Map and Player icon
      Image mapImage = new ImageIcon("assets/map.png").getImage();
      Image playerImage = new ImageIcon("assets/ridderhjelm.png").getImage();
+     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
 
     public GamePanel(Player player, Camera camera){
@@ -19,8 +20,8 @@ public class GamePanel extends JPanel {
             @Override
             public void mousePressed(MouseEvent e){
                 System.out.println("MusBleTrykketPå X: " + e.getX() + "Y: " + e.getY());
-                player.x = e.getX();
-                player.y = e.getY();
+                player.x += (e.getX() - (int)size.getWidth() / 2);
+                player.y += e.getY() - (int)size.getHeight() / 2;
             }
         });
 
