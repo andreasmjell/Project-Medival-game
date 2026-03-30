@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class GamePanel extends JPanel {
     Player player;
@@ -14,6 +15,14 @@ public class GamePanel extends JPanel {
 
     public GamePanel(Player player, Camera camera){
         setFocusable(true);
+        this.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mousePressed(MouseEvent e){
+                System.out.println("MusBleTrykketPå X: " + e.getX() + "Y: " + e.getY());
+                player.x = e.getX();
+                player.y = e.getY();
+            }
+        });
 
         this.player = player;
         this.camera = camera;
