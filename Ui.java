@@ -24,7 +24,7 @@ public class Ui {
         frame = new JFrame("Medieval");
         frame.setBackground(Color.BLACK);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1920, 1200);
+        frame.setSize(2560, 1440);
         frame.setLayout(null);
         frame.setVisible(false);
     }
