@@ -1,4 +1,3 @@
-import java.awt.*;
 
 public class Camera {
     double x,y;  //Kordinater til kameraet (top left)
