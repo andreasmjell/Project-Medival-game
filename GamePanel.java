@@ -33,9 +33,10 @@ public class GamePanel extends JPanel {
     private void update(){
         playerX = player.getX();
         playerY = player.getY();
-        camera.focusPlayer();
         cameraX = camera.getX(); 
         cameraY = camera.getY();
+        camera.focusPlayer();
+
     }
 
 

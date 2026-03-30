@@ -5,17 +5,21 @@ import java.awt.event.*;
 import org.w3c.dom.events.MouseEvent;
 
 public class MapController {
-    Player player = new Player(2000, 1900, 1);
+    Player player = new Player(2000, 1500, 1);
     Ui ui = new Ui(this);
-    Camera camera = new Camera(500, 500, 1920, 1080, player);
+    Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+
+    Camera camera = new Camera(500, 500, (int)size.getWidth(), (int)size.getHeight(), player);
 
     //Første oppstart, åpner main menu.
     public void start(){
+
         ui.start();
     }
 
     //Starter det faktiske spillet
     public void startGame(){
+
         ui.drawMap(player, camera);
     }
 
