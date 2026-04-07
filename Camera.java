@@ -4,6 +4,7 @@ public class Camera {
     int width, height;  //Skjermstørrelse
     double zoom = 1.0;
     Player player;
+    boolean focusPlayer = true;
 
 
 
@@ -15,7 +16,7 @@ public class Camera {
         this.player = player;
     }
 
-    public double getX(){
+    public double getX(){ 
         return x;
     }
 
@@ -23,8 +24,19 @@ public class Camera {
         return y;
     }
 
+    public void switchFocusPlayer(){
+            if (focusPlayer){
+                focusPlayer = false;
+            }
+            else{
+                focusPlayer = true;
+            }
+        }
+
     public void focusPlayer(){
-        x = player.getX() - (width/2) +20 ; // +20 for størrelsen på bildet til karakteren
-        y = player.getY() - (height/2) +20;
+        if (focusPlayer){
+            x = player.getX() - (width/2) +20 ; // +20 for størrelsen på bildet til karakteren
+            y = player.getY() - (height/2) +20;
+        }
     }
 }

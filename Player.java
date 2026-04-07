@@ -3,6 +3,7 @@ public class Player {
     double x;
     double y;
     
+    
     public Player(int x, int y, int troops){
         this.x = x;
         this.y = y;

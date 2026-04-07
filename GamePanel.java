@@ -5,6 +5,7 @@ import java.awt.event.*;
 public class GamePanel extends JPanel {
     Player player;
     Camera camera;
+    MapController mapController;
 
     Double cameraX, cameraY, playerX, playerY;
 
@@ -14,39 +15,39 @@ public class GamePanel extends JPanel {
      Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
 
-    public GamePanel(Player player, Camera camera){
+    public GamePanel(Player player, Camera camera, MapController mapController){
         setFocusable(true);
         this.addMouseListener(new MouseAdapter(){
             @Override
             public void mousePressed(MouseEvent e){
+                if (SwingUtilities.isRightMouseButton(e)){
+                    camera.switchFocusPlayer();
+                }
+                else{
                 System.out.println("MusBleTrykketPå X: " + e.getX() + "Y: " + e.getY());
-                player.x += (e.getX() - (int)size.getWidth() / 2);
-                player.y += e.getY() - (int)size.getHeight() / 2;
+                mapController.newPlayerPath(e.getX() - (int)size.getWidth() / 2, e.getY() - (int)size.getHeight() / 2);
+                }
             }
         });
 
         this.player = player;
         this.camera = camera;
+        this.mapController = mapController;
+
         playerX = player.getX();
         playerY = player.getY();
         cameraX = playerX;
         cameraY = playerY;
         
-        Timer timer = new Timer(16, e -> {
-            update();
-            repaint();
-        });
-        timer.start();
     }
 
     //oppdaterer kamera og player posisjon
-    private void update(){
+    protected void update(){
         playerX = player.getX();
         playerY = player.getY();
+        camera.focusPlayer();
         cameraX = camera.getX(); 
         cameraY = camera.getY();
-        camera.focusPlayer();
-
     }
 
 
