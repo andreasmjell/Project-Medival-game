@@ -29,13 +29,14 @@ public class Ui {
         frame.setVisible(false);
     }
 
-    public void drawMap(Player player, Camera camera){ //Fjerner alt fra vinduet og fyller med spillet.
-        GamePanel gamePanel = new GamePanel(player, camera);
+    public GamePanel drawMap(Player player, Camera camera, MapController mc){ //Fjerner alt fra vinduet og fyller med spillet.
+        GamePanel gamePanel = new GamePanel(player, camera, mc);
         frame.getContentPane().removeAll();
         frame.setContentPane(gamePanel);
         frame.revalidate();
         frame.repaint();
         gamePanel.requestFocusInWindow();
+        return gamePanel;
     }   
 
     public void mainMenu(){ //Lager hovedmenyen som skal åpnes når spillet starter.

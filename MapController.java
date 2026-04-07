@@ -8,6 +8,7 @@ public class MapController {
     Player player = new Player(2000, 1500, 1);
     Ui ui = new Ui(this);
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+    GamePanel gamePanel;
 
     Camera camera = new Camera(500, 500, (int)size.getWidth(), (int)size.getHeight(), player);
 
@@ -20,7 +21,20 @@ public class MapController {
     //Starter det faktiske spillet
     public void startGame(){
 
-        ui.drawMap(player, camera);
+        gamePanel = ui.drawMap(player, camera, this);
+        Timer timer = new Timer(16, e -> {
+            gamePanel.update();
+            gamePanel.repaint();
+        });
+        timer.start();
+    }
+
+    public void update(){
+    }
+
+    public void newPlayerPath(int x, int y){
+        player.x += x;
+        player.y += y;
     }
 
 
