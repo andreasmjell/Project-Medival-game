@@ -63,6 +63,15 @@ public class InputManager{
         //esc
         this.bindKey(27, () -> ui.mainMenu());
 
+        //pil opp
+        this.bindKey(38, () -> camera.y -= 10);
+        //pil ned
+        this.bindKey(40, () -> camera.y += 10);
+        //pil venste
+        this.bindKey(37, () -> camera.x -= 10);
+        //pil høyre
+        this.bindKey(39, () -> camera.x += 10);
+
 
     }
 
