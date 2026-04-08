@@ -9,8 +9,8 @@ public class MapController {
     Ui ui = new Ui(this);
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
     GamePanel gamePanel;
-
     Camera camera = new Camera(500, 500, (int)size.getWidth(), (int)size.getHeight(), player);
+    InputManager inputManager = new InputManager(ui, this, camera, player);
 
     //Første oppstart, åpner main menu.
     public void start(){
@@ -23,6 +23,7 @@ public class MapController {
 
         gamePanel = ui.drawMap(player, camera, this);
         Timer timer = new Timer(16, e -> {
+            inputManager.update();
             gamePanel.update();
             gamePanel.repaint();
         });
@@ -35,6 +36,10 @@ public class MapController {
     public void newPlayerPath(int x, int y){
         player.x = x;
         player.y = y;
+    }
+
+    public void keyPressed(int keycode, boolean pressed){
+        inputManager.keyPressed(keycode, pressed);
     }
 
 

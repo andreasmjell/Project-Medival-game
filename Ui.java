@@ -41,6 +41,7 @@ public class Ui {
 
     public void mainMenu(){ //Lager hovedmenyen som skal åpnes når spillet starter.
         //Setting background
+        System.out.println("MAINMENU!!!!");
         ImageIcon backgroundImage = new ImageIcon("assets/Mainmenu.png");
         JLabel background = new JLabel(backgroundImage);
         background.setBounds(0, 0, 1920, 1080);

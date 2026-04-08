@@ -36,6 +36,13 @@ public class GamePanel extends JPanel {
             public void keyPressed(KeyEvent e){
                 Integer keycode = e.getKeyCode();
                 System.out.println(KeyEvent.getKeyText(keycode) + "KeyCode: " + keycode);
+                mapController.keyPressed(keycode, true);
+            }
+            @Override
+            public void keyReleased(KeyEvent e){
+                Integer keycode = e.getKeyCode();
+                System.out.println(KeyEvent.getKeyText(keycode) + "KeyCode: " + keycode);
+                mapController.keyPressed(keycode, false);
             }
         });
         this.player = player;
