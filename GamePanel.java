@@ -17,19 +17,27 @@ public class GamePanel extends JPanel {
 
     public GamePanel(Player player, Camera camera, MapController mapController){
         setFocusable(true);
-        this.addMouseListener(new MouseAdapter(){
+        this.addMouseListener(new MouseAdapter(){ //Mouse LISTNER
             @Override
             public void mousePressed(MouseEvent e){
-                if (SwingUtilities.isRightMouseButton(e)){
+                if (SwingUtilities.isRightMouseButton(e)){ //Midlertidig for å teste. Løsner kameraet fra spiller
                     camera.switchFocusPlayer();
                 }
                 else{
                 System.out.println("MusBleTrykketPå X: " + e.getX() + "Y: " + e.getY());
-                mapController.newPlayerPath(e.getX() - (int)size.getWidth() / 2, e.getY() - (int)size.getHeight() / 2);
+                //mapController.newPlayerPath(e.getX() - (int)size.getWidth() / 2, e.getY() - (int)size.getHeight() / 2); Funker bare om spiller er i senter
+                mapController.newPlayerPath((int)camera.getX() + e.getX() ,(int)camera.getY() + e.getY()); //Funker unasett om kameraet er løst
                 }
             }
-        });
 
+        });
+        this.addKeyListener(new KeyAdapter(){ // Keyboard LISTNER
+            @Override
+            public void keyPressed(KeyEvent e){
+                Integer keycode = e.getKeyCode();
+                System.out.println(KeyEvent.getKeyText(keycode) + "KeyCode: " + keycode);
+            }
+        });
         this.player = player;
         this.camera = camera;
         this.mapController = mapController;

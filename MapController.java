@@ -33,8 +33,8 @@ public class MapController {
     }
 
     public void newPlayerPath(int x, int y){
-        player.x += x;
-        player.y += y;
+        player.x = x;
+        player.y = y;
     }
 
 
