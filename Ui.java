@@ -7,8 +7,8 @@ import java.awt.event.MouseEvent;
 
 public class Ui {
     JFrame frame = null;
-
     MapController mapController;
+    Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
     public Ui(MapController mapController){
         this.mapController = mapController;
@@ -24,7 +24,7 @@ public class Ui {
         frame = new JFrame("Medieval");
         frame.setBackground(Color.BLACK);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1920, 1080);
+        frame.setSize((int)size.getWidth(), (int)size.getHeight());
         frame.setLayout(null);
         frame.setVisible(false);
     }
@@ -44,7 +44,7 @@ public class Ui {
         System.out.println("MAINMENU!!!!");
         ImageIcon backgroundImage = new ImageIcon("assets/Mainmenu.png");
         JLabel background = new JLabel(backgroundImage);
-        background.setBounds(0, 0, 1920, 1080);
+        background.setBounds(0, 0, (int)size.getWidth(), (int)size.getHeight());
         frame.setContentPane(background);
 
         //Start game button

@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-
-import org.w3c.dom.events.MouseEvent;
+import java.util.ArrayList;
 
 public class MapController {
     Player player = new Player(2000, 1500, 1);
@@ -11,6 +9,7 @@ public class MapController {
     GamePanel gamePanel;
     Camera camera = new Camera(500, 500, (int)size.getWidth(), (int)size.getHeight(), player);
     InputManager inputManager = new InputManager(ui, this, camera, player);
+    Pathfinder pathfinder = new Pathfinder();
 
     //Første oppstart, åpner main menu.
     public void start(){
@@ -23,67 +22,27 @@ public class MapController {
 
         gamePanel = ui.drawMap(player, camera, this);
         Timer timer = new Timer(16, e -> {
-            inputManager.update();
-            gamePanel.update();
-            gamePanel.repaint();
+            update();
         });
         timer.start();
     }
 
     public void update(){
+        inputManager.update();
+        player.updatePos();
+        gamePanel.update();
+        gamePanel.repaint();
     }
 
     public void newPlayerPath(int x, int y){
-        player.x = x;
-        player.y = y;
+        new Thread (() -> {
+        ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y);
+
+        player.setPath(new Path(points));
+        }).start();
     }
 
     public void keyPressed(int keycode, boolean pressed){
         inputManager.keyPressed(keycode, pressed);
     }
-
-
-
-
-    //Skrot under her
-   public class SmoothMoveCharacter extends JPanel {
-    private int charX = 50; // startposisjon
-    private int charY = 50;
-    private final int CHAR_SIZE = 20;
-
-    private int targetX = charX;
-    private int targetY = charY;
-    private final int SPEED = 5; // hvor mange piksler karakteren beveger seg per steg
-
-    private Image mapImage = new ImageIcon("map.png").getImage();
-    private Image charImage = new ImageIcon("ridderhjelm.png").getImage();
-
-    /*
-    public SmoothMoveCharacter() {
-        // Lytter til museklikk
-        this.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                targetX = e.getX() - CHAR_SIZE / 2;
-                targetY = e.getY() - CHAR_SIZE / 2;
-            }
-        });
-        */
-
-        // Timer som oppdaterer posisjon hvert 20 ms (~50 FPS)
-        Timer timer = new Timer(20, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //moveCharacter();
-                repaint();
-            }
-        });{
-        
-        
-            timer.start();
-        //this.setPreferredSize(new Dimension(1920, 1080));
-        this.setPreferredSize(new Dimension(mapImage.getWidth(null), mapImage.getHeight(null)));
-    }
-
-}
 }
