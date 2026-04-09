@@ -35,12 +35,22 @@ public class MapController {
     }
 
     public void newPlayerPath(int x, int y){
-        new Thread (() -> {
-        ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y);
+        if(player.addToPath()){
+            new Thread (() -> {
+            ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y);
 
-        player.setPath(new Path(points));
-        }).start();
+            player.getPath().addPoints(points);
+            }).start();
+        }
+        else{
+            new Thread (() -> {
+            ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y);
+
+            player.setPath(new Path(points));
+            }).start();
+        }
     }
+
 
     public void keyPressed(int keycode, boolean pressed){
         inputManager.keyPressed(keycode, pressed);

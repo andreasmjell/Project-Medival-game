@@ -1,7 +1,7 @@
 
 public class Camera {
     double x,y;  //Kordinater til kameraet (top left)
-    int width, height;  //Skjermstørrelse
+    double width, height;  //Skjermstørrelse
     double zoom = 1.0;
     Player player;
     boolean focusPlayer = true;
@@ -22,6 +22,18 @@ public class Camera {
 
     public double getY(){
         return y;
+    }
+
+    public double getZoom(){
+        return zoom;
+    }
+
+    public void zoomIn(){
+        zoom += 0.2;
+    }
+    
+    public void zoomOut(){
+        zoom -= 0.2;
     }
 
     public void switchFocusPlayer(){

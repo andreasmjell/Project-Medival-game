@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class InputManager{
     HashMap<Integer, Runnable> keyBindings;
-    HashSet<Integer> keyPressed;
-    ArrayList<Integer> canHold;
+    HashSet<Integer> keyPressed, keyToggled;
+    ArrayList<Integer> canHold, toggleWhileHold;
 
     Ui ui;
     MapController mapController;
@@ -15,7 +15,9 @@ public class InputManager{
     public InputManager(Ui ui, MapController mapController, Camera camera, Player player){
         keyBindings = new HashMap<Integer, Runnable>();
         keyPressed = new HashSet<Integer>();
+        keyToggled = new HashSet<Integer>();
         canHold = new ArrayList<Integer>();
+        toggleWhileHold = new ArrayList<Integer>();
 
         this.ui = ui;
         this.mapController = mapController;
@@ -35,20 +37,39 @@ public class InputManager{
     }
 
     public void keyPressed(int keycode, boolean pressed){
-        if(canHold.contains(keycode)){
-            if (pressed){
-                keyPressed.add(keycode);
+        if (toggleWhileHold.contains(keycode)){
+            if(!pressed && keyToggled.contains(keycode)){
+                keyToggled.remove(keycode);
+                Runnable action = keyBindings.get(keycode);
+                if (action != null){
+                    action.run();
+                }
             }
             else{
-                if (keyPressed.contains(keycode)){
-                    keyPressed.remove(keycode);
+                keyToggled.add(keycode);
+                Runnable action = keyBindings.get(keycode);
+                if (action != null){
+                    action.run();
                 }
             }
         }
+
         else{
-            Runnable action = keyBindings.get(keycode);
-            if (action != null){
-                action.run();
+            if(canHold.contains(keycode)){
+                if (pressed && !keyPressed.contains(keycode)){
+                    keyPressed.add(keycode);
+                }
+                else if (!pressed){
+                    if (keyPressed.contains(keycode)){
+                        keyPressed.remove(keycode);
+                    }
+                }
+            }
+            else{
+                Runnable action = keyBindings.get(keycode);
+                if (action != null){
+                    action.run();
+                }
             }
         }
     }
@@ -61,7 +82,7 @@ public class InputManager{
     public void bindDefault(){
 
         //esc
-        this.bindKey(27, () -> ui.mainMenu());
+        this.bindKey(27, () -> ui.mainMenu()); //Åpner main menu. !! Må byttes til pause overlay. Starter flere game loops!
 
         //Movement----------------------
         //pil opp
@@ -72,7 +93,18 @@ public class InputManager{
         this.bindKey(37, () -> camera.x -= 15);
         //pil høyre
         this.bindKey(39, () -> camera.x += 15);
-        canHold.add(37); canHold.add(38); canHold.add(39); canHold.add(40);
+        //venstre control hold for å legge til destinasjon på path
+        this.bindKey(17, () -> player.setAddToPath());
+        canHold.add(37); canHold.add(38); canHold.add(39); canHold.add(40); toggleWhileHold.add(17);
+        
+
+
+
+        //Camera------------------------ FUNKER IKKE! AVENTER
+        //Komma (zoom in)
+        this.bindKey(44, () ->  camera.zoomIn());
+        //Punktum (zoom ut)
+        this.bindKey(46, () -> camera.zoomOut());
 
 
     }

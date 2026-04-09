@@ -23,6 +23,10 @@ public class Path {
         }
     }
 
+    public void addPoints(ArrayList<Point> newpoints){
+        points.addAll(newpoints);
+    }
+
     public boolean isDone(){
         return points.isEmpty();
     }

@@ -1,10 +1,11 @@
 public class Player {
     int troops;
-    int speed = 5;
+    int speed = 3;
     double x;
     double y;
 
     Path path;
+    boolean addToPath = false;
 
     
     
@@ -52,5 +53,22 @@ public class Player {
     public void setPath(Path newPath) {
         this.path = newPath;
         System.out.println(path);
+    }
+
+    public Path getPath(){
+        return path;
+    }
+
+    public void setAddToPath(){
+        if (!addToPath){
+            addToPath = true;
+        }
+        else{
+            addToPath = false;
+        }
+    }
+
+    public boolean addToPath(){
+        return addToPath;
     }
 }

@@ -11,12 +11,15 @@ public class GamePanel extends JPanel {
 
     //Map and Player icon
      Image mapImage = new ImageIcon("assets/map.png").getImage();
-     Image playerImage = new ImageIcon("assets/ridderhjelm.png").getImage();
+     Image playerImage = new ImageIcon("assets/playericon.png").getImage();
      Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
 
     public GamePanel(Player player, Camera camera, MapController mapController){
+
         setFocusable(true);
+
+
         this.addMouseListener(new MouseAdapter(){ //Mouse LISTNER
             @Override
             public void mousePressed(MouseEvent e){
@@ -45,6 +48,7 @@ public class GamePanel extends JPanel {
                 mapController.keyPressed(keycode, false);
             }
         });
+        
         this.player = player;
         this.camera = camera;
         this.mapController = mapController;
@@ -82,10 +86,10 @@ public class GamePanel extends JPanel {
         );
 
 
-        int px = (int)(playerX - cameraX);
-        int py = (int)(playerY - cameraY);
+        int px = (int)(playerX - cameraX - 40);
+        int py = (int)(playerY - cameraY -40);
 
         //Bilde av player icon
-        g.drawImage(playerImage, px, py, 40, 40, null);
+        g.drawImage(playerImage, px, py, 80, 80, null);
     }
 }
