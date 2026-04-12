@@ -12,7 +12,7 @@ public class MapController {
     Pathfinder pathfinder = new Pathfinder();
     CollisionManager collisionManager= new CollisionManager();
 
-    ArrayList<GameObject> settlementsGO = new ArrayList<>();
+    ArrayList<GameObject> gameObjects = new ArrayList<>();
     ArrayList<Settlement> settlements = new ArrayList<>();
     ArrayList<GameObject> npcs = new ArrayList<>();
 
@@ -40,8 +40,7 @@ public class MapController {
         player.updatePos();
         gamePanel.update();
         gamePanel.repaint();
-        collisionManager.checkCollision(player, settlementsGO);
-        collisionManager.checkCollision(player, npcs);
+        collisionManager.checkCollision(player, gameObjects);
 
     }
 
@@ -49,7 +48,7 @@ public class MapController {
     private void createSettlements(){
         Settlement by1 = new Settlement("By 1", 1230, 1162, 10, 10);
         settlements.add(by1);
-        settlementsGO.add(by1);
+        gameObjects.add(by1);
     }
 
 

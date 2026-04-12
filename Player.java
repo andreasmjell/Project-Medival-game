@@ -1,12 +1,19 @@
 import java.awt.Rectangle;
+import java.util.HashSet;
 
 public class Player {
+    //stats
     int troops;
     int speed = 3;
+
+    //Position
     double x;
     double y;
     Rectangle bounds;
+    HashSet<Integer> insideObjects = new HashSet<>();
+    
 
+    // Movement
     Path path;
     boolean addToPath = false;
 

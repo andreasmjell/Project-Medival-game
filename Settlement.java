@@ -22,7 +22,7 @@ public class Settlement extends GameObject{
         return y;
     }
 
-    public void onCollision(Player player){   // Dette vil skje hver gang game loopen går 50/60 ganger i sekundet. Må fikses!!!!
+    public void onCollision(Player player){  
         System.out.println("Player gikk i byen: " + name);
     }
 }
