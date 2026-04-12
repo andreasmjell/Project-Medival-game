@@ -10,6 +10,11 @@ public class MapController {
     Camera camera = new Camera(500, 500, (int)size.getWidth(), (int)size.getHeight(), player);
     InputManager inputManager = new InputManager(ui, this, camera, player);
     Pathfinder pathfinder = new Pathfinder();
+    CollisionManager collisionManager= new CollisionManager();
+
+    ArrayList<GameObject> settlementsGO = new ArrayList<>();
+    ArrayList<Settlement> settlements = new ArrayList<>();
+    ArrayList<GameObject> npcs = new ArrayList<>();
 
     //Første oppstart, åpner main menu.
     public void start(){
@@ -21,6 +26,9 @@ public class MapController {
     public void startGame(){
 
         gamePanel = ui.drawMap(player, camera, this);
+
+        createSettlements();
+
         Timer timer = new Timer(16, e -> {
             update();
         });
@@ -32,6 +40,21 @@ public class MapController {
         player.updatePos();
         gamePanel.update();
         gamePanel.repaint();
+        collisionManager.checkCollision(player, settlementsGO);
+        collisionManager.checkCollision(player, npcs);
+
+    }
+
+
+    private void createSettlements(){
+        Settlement by1 = new Settlement("By 1", 1230, 1162, 10, 10);
+        settlements.add(by1);
+        settlementsGO.add(by1);
+    }
+
+
+    public ArrayList<Settlement> getSettlements(){
+        return settlements;
     }
 
     public void newPlayerPath(int x, int y){

@@ -1,8 +1,11 @@
+import java.awt.Rectangle;
+
 public class Player {
     int troops;
     int speed = 3;
     double x;
     double y;
+    Rectangle bounds;
 
     Path path;
     boolean addToPath = false;
@@ -13,6 +16,7 @@ public class Player {
         this.x = x;
         this.y = y;
         this.troops = troops;
+        bounds = new Rectangle((int)x, (int)y, 80, 80);
     }
 
     public double getX(){
@@ -20,6 +24,13 @@ public class Player {
     }
     public double getY(){
         return y;
+    }
+    public Rectangle getBounds(){
+        return bounds;
+    }
+
+    private void updateBounds(){
+        bounds.setLocation((int)x, (int)y);
     }
 
     public void updatePos(){
@@ -48,6 +59,8 @@ public class Player {
             x += dirX * speed;
             y += dirY * speed;
         }
+
+        updateBounds();
     }
 
     public void setPath(Path newPath) {

@@ -1,10 +1,11 @@
-public class Npc {
-    String navn = "Enemy Army";
+public class Npc extends GameObject{
+    String name = "Enemy Army";
     double x;
     double y;
     int troops;
 
     public Npc(double x, double y, int troops){
+        super((int)x, (int)y, 80, 80);
         this.x = x;
         this.y = y;
         this.troops = troops;
@@ -23,13 +24,11 @@ public class Npc {
         }
     }
 
-    public void engadeCombat(Player player){
-        double diffX = this.x - player.getX();
-        double diffY = this.y - player.getY();
-        if(diffX * 2 < 20 && diffY * 2 < 20){
-            //Start combat
-        }
+    public void onCollision(Player player){
+        System.out.println("Spiller traff" + name);
     }
+
+
     public void newRoute(double x, double y){
         //Map move to x,y
     }

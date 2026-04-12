@@ -12,6 +12,7 @@ public class GamePanel extends JPanel {
     //Map and Player icon
      Image mapImage = new ImageIcon("assets/map.png").getImage();
      Image playerImage = new ImageIcon("assets/playericon.png").getImage();
+     Image settlementImage = new ImageIcon("assets/by.png").getImage();
      Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
 
@@ -86,8 +87,15 @@ public class GamePanel extends JPanel {
         );
 
 
-        int px = (int)(playerX - cameraX - 40);
-        int py = (int)(playerY - cameraY -40);
+        int px = (int)(playerX - cameraX - 40); // Player X
+        int py = (int)(playerY - cameraY -40); // Player Y
+        
+        for (Settlement s: mapController.getSettlements()){
+            int sx = (int)(s.getX() - cameraX - 50); //Settlement X
+            int sy = (int)(s.getY() - cameraY - 50); //Settlement Y
+
+            g.drawImage(settlementImage, sx, sy, 100, 100, null);
+        }
 
         //Bilde av player icon
         g.drawImage(playerImage, px, py, 80, 80, null);
