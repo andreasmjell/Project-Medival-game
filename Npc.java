@@ -53,8 +53,10 @@ public class Npc extends GameObject{
         System.out.println(path);
     }
     public void updatePos(){
-        if (path == null || path.isDone()) return;
-
+        if (path == null || path.isDone()){
+            newPath(player);
+        }
+        
         Point target = path.getCurrent();
 
         double dx = target.x - x;
