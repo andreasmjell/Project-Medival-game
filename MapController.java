@@ -78,7 +78,7 @@ public class MapController {
     public void newNpcPath(int x, int y){
         new Thread (() -> {
             ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y);    
-            player.setPath(new Path(points));
+            npc.setPath(new Path(points));
             }).start();
     }
 
