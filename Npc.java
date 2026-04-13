@@ -37,7 +37,7 @@ public class Npc extends GameObject{
     public boolean chase(Player player){
         double diffX = this.x - player.getX();
         double diffY = this.y - player.getY();
-        if(diffX * 2 < 40 && diffY * 2 < 40){
+        if(Math.abs(diffX) < 200 && Math.abs(diffY) < 200){
             return true;
         }
         return false;
@@ -47,15 +47,19 @@ public class Npc extends GameObject{
             this.newRoute(player.getX(), player.getY());
         }
         else {
-            double newX = Math.random() * 100 - 50;
-            double newY = Math.random() * 100 - 50;
+            System.out.println("Ny random path");
+            /*
+            double newX = Math.random() * 1000 - 500;
+            double newY = Math.random() * 1000 - 500;
             this.newRoute((int)(x + newX), (int)(y + newY));
+            */
         }
+        
         
     }
     public void setPath(Path newPath) {
         this.path = newPath;
-        System.out.println(path);
+        //System.out.println(path);
     }
     public void updatePos(){
         if (path == null || path.isDone())return;
@@ -67,8 +71,8 @@ public class Npc extends GameObject{
         double dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist <= 5) {
-            x = target.x;
-            y = target.y;
+            //x = target.x;
+            //y = target.y;
                 
             path.advance();
                 
