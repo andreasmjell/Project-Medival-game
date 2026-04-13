@@ -40,7 +40,7 @@ public class MapController {
     public void update(){
         inputManager.update();
         player.updatePos();
-        npc.updatePos();
+        npc.update();
         gamePanel.update();
         gamePanel.repaint();
         collisionManager.checkCollision(player, gameObjects);
@@ -52,6 +52,7 @@ public class MapController {
         Settlement by1 = new Settlement("By 1", 1230, 1162, 10, 10);
         settlements.add(by1);
         gameObjects.add(by1);
+        gameObjects.add(npc);
         npcs.add(npc); //TEMP!
     }
 
