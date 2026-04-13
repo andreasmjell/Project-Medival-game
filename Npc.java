@@ -25,6 +25,11 @@ public class Npc extends GameObject{
     public double getY(){
         return y;
     }
+    public void update(){
+        newPath(player);
+        updatePos();
+    }
+
     private void updateBounds(){
         Rectangle bounds = super.getBounds();
         bounds.setLocation((int)x, (int)y);
@@ -53,9 +58,7 @@ public class Npc extends GameObject{
         System.out.println(path);
     }
     public void updatePos(){
-        if (path == null || path.isDone()){
-            newPath(player);
-        }
+        if (path == null || path.isDone())return;
         
         Point target = path.getCurrent();
 
