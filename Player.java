@@ -86,6 +86,7 @@ public class Player {
         else{
             addToPath = false;
         }
+        System.out.println(addToPath);
     }
 
     public boolean addToPath(){

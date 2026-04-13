@@ -94,7 +94,7 @@ public class InputManager{
         //pil høyre
         this.bindKey(39, () -> camera.x += 15);
         //venstre control hold for å legge til destinasjon på path
-        this.bindKey(17, () -> player.setAddToPath());
+        this.bindKey(17, () -> player.setAddToPath()); //Funkgerer dårlig!!
         canHold.add(37); canHold.add(38); canHold.add(39); canHold.add(40); toggleWhileHold.add(17);
         
 
