@@ -48,13 +48,12 @@ public class Npc extends GameObject{
         }
         else {
             System.out.println("Ny random path");
-            /*
-            double newX = Math.random() * 1000 - 500;
-            double newY = Math.random() * 1000 - 500;
-            this.newRoute((int)(x + newX), (int)(y + newY));
-            */
+            if (path == null || path.isDone()){
+                double newX = Math.random() * 1000 - 500;
+                double newY = Math.random() * 1000 - 500;
+                this.newRoute((int)(x + newX), (int)(y + newY));
+            }
         }
-        
         
     }
     public void setPath(Path newPath) {
