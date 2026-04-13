@@ -7,6 +7,7 @@ public class Pathfinder {
 
         Point point = new Point(targetX, targetY);
 
+
         path.add(point);
 
         return path;
