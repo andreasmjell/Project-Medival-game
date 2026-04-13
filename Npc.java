@@ -3,12 +3,18 @@ public class Npc extends GameObject{
     double x;
     double y;
     int troops;
+    Player player;
+    MapController mapController;
 
-    public Npc(double x, double y, int troops){
+    Path path;
+
+    public Npc(double x, double y, int troops, Player player, MapController mapController){
         super((int)x, (int)y, 80, 80);
         this.x = x;
         this.y = y;
         this.troops = troops;
+        this.player = player;
+        this.mapController = mapController;
     }
     public double getX(){
         return x;
@@ -16,11 +22,19 @@ public class Npc extends GameObject{
     public double getY(){
         return y;
     }
-    public void chase(Player player){
+    public boolean chase(Player player, Point chase){
         double diffX = this.x - player.getX();
         double diffY = this.y - player.getY();
         if(diffX * 2 < 40 && diffY * 2 < 40){
             this.newRoute(player.getX(), player.getY());
+            return true;
+        }
+        return false;
+    }
+    public void updatePos(){
+        if (!chase(player)){
+            int newX;
+            int newY;
         }
     }
 
@@ -30,6 +44,6 @@ public class Npc extends GameObject{
 
 
     public void newRoute(double x, double y){
-        //Map move to x,y
+        mapController.newNpcPath(x, y);
     }
 }

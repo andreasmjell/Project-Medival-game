@@ -3,7 +3,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class MapController {
-    Player player = new Player(2000, 1500, 1);
+    Player player = new Player(2000, 1500, 69);
+    Npc npc = new Npc(2100, 1400, 10, player, this);
     Ui ui = new Ui(this);
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
     GamePanel gamePanel;
@@ -38,6 +39,7 @@ public class MapController {
     public void update(){
         inputManager.update();
         player.updatePos();
+        npc.updatePos();
         gamePanel.update();
         gamePanel.repaint();
         collisionManager.checkCollision(player, gameObjects);
