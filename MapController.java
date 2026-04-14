@@ -33,17 +33,10 @@ public class MapController {
 
     //Starter det faktiske spillet
     public void startGame(){
-<<<<<<< HEAD
         System.out.println("Spillet Starter!!!");
         gamePanel = new GamePanel(player, camera, this);
         uiHandler.setGamePanel(gamePanel);
-        createSettlements();
-=======
-
-        gamePanel = ui.drawMap(player, camera, this);
-
         createGameObject();
->>>>>>> d245e6254f0ec570bd27ccf9c7ec87d9eb83d861
 
         Timer timer = new Timer(16, e -> {
             update();
