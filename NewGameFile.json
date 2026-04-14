@@ -2,8 +2,8 @@
   {
     "type": "Settlement",
     "navn": "Lovianda",
-    "x": 1230,
-    "y": 1162,
+    "x": 1900,
+    "y": 1500,
     "troops" : 10,
     "timer" : 10
   },
@@ -20,20 +20,20 @@
   {
     "type": "Npc",
     "navn": "Bandits",
-    "x": 2100,
-    "y": 1400,
+    "x": 2000,
+    "y": 1600,
     "troops" : 10
   },
   {
     "type": "Npc",
-    "navn": "Bandits",
+    "navn": "Tore",
     "x": 1900,
     "y": 1700,
     "troops" : 10
   },
   {
     "type": "Npc",
-    "navn": "Bandits",
+    "navn": "KNUT!!!",
     "x": 2200,
     "y": 1400,
     "troops" : 10
