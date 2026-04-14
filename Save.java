@@ -10,7 +10,8 @@ public class Save {
     ArrayList<Npc> npc = new ArrayList<>();
     String filename;
 
-    public ArrayList<Settlement> getSettlement(String filnavn) throws IOException{
+    public ArrayList<Settlement> getSettlement(String filnavn){
+        try {
         String innhold = new String(Files.readAllBytes(Paths.get(filnavn)));
         JSONArray jsonArray = new JSONArray(innhold);
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -24,9 +25,13 @@ public class Save {
                 settlement.add(new Settlement(navn, x, y, troops, timer));
             }
         }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
         return settlement;
     }
     public ArrayList<Npc> getNpc(String filnavn, MapController mapController, Player player) throws IOException{
+        try {
         String innhold = new String(Files.readAllBytes(Paths.get(filnavn)));
         JSONArray jsonArray = new JSONArray(innhold);
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -39,5 +44,9 @@ public class Save {
                 npc.add(new Npc(navn, x, y, troops, player, mapController));
             }
         }
+    } catch (IOException e){
+        e.printStackTrace();
+    }
+        return npc;
     }
 }

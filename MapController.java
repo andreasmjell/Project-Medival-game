@@ -5,8 +5,6 @@ import java.util.ArrayList;
 public class MapController {
     Player player = new Player(2000, 1500, 69);
     Save save = new Save();
-    ArrayList<Settlement> settlement = save.getSettlement("NewGameFile.json");
-    ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
     Ui ui = new Ui(this);
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
     GamePanel gamePanel;
@@ -28,7 +26,8 @@ public class MapController {
 
     //Starter det faktiske spillet
     public void startGame(){
-
+        ArrayList<Settlement> settlement = save.getSettlement("NewGameFile.json");
+        ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
         gamePanel = ui.drawMap(player, camera, this);
 
         createGameObject();
