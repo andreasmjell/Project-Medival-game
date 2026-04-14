@@ -1,6 +1,0 @@
-Tar seg av alt logikk bak kulissene. Beregner og oppdaterer posisjoner blant annet posisjon til spiller, npc og kamera
-
-Oppretter alle Objekter som trengs: Ui, Camera, Player osv.
-
-Tar seg av første kallet til UI
-
