@@ -19,7 +19,7 @@ public class MenuButton extends JButton {
         super(text);
 
         // Last tretekstur (legg bilde i assets)
-        java.net.URL imgURL = getClass().getResource("/assets/skilt.jpeg");
+        java.net.URL imgURL = getClass().getResource("assets/skilt.png");
     if (imgURL != null) {
         woodTexture = new ImageIcon(imgURL).getImage();
     } else {
@@ -28,7 +28,7 @@ public class MenuButton extends JButton {
     }
 
 try {
-        java.io.InputStream is = getClass().getResourceAsStream("/assets/fonts/Cinzel-Bold.ttf");
+        java.io.InputStream is = getClass().getResourceAsStream("assets/fonts/Cinzel-Bold.ttf");
         if (is != null) {
             Font medievalFont = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(42f);
             setFont(medievalFont);
