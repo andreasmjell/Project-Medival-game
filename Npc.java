@@ -96,6 +96,6 @@ public class Npc extends GameObject{
 
 
     public void newRoute(double x, double y){
-        mapController.newNpcPath((int)x, (int)y);
+        mapController.newNpcPath((int)x, (int)y, this);
     }
 }

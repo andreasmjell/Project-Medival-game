@@ -88,12 +88,10 @@ public class MapController {
         }
     }
 
-    public void newNpcPath(int x, int y){
+    public void newNpcPath(int x, int y, Npc npc){
         new Thread (() -> {
-            for (Npc z : npc){
-                            ArrayList<Point> points = pathfinder.findPath(z.x, z.y, x, y);    
-            z.setPath(new Path(points));
-            }
+            ArrayList<Point> points = pathfinder.findPath(npc.x, npc.y, x, y);    
+            npc.setPath(new Path(points));
         }).start();
     }
 
