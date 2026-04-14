@@ -1,7 +1,7 @@
 import java.util.ArrayList;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -10,12 +10,12 @@ public class Save {
     ArrayList<Npc> npc = new ArrayList<>();
     String filename;
 
-    public ArrayList<Settlement> getSettlement(String filnavn){
+    public ArrayList<Settlement> getSettlement(String filnavn) throws IOException{
         String innhold = new String(Files.readAllBytes(Paths.get(filnavn)));
         JSONArray jsonArray = new JSONArray(innhold);
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            if (obj.getString("type") == "Settlement"){
+            if (obj.getString("type").equals("Settlement")){
                 String navn = obj.getString("navn");
                 int x = obj.getInt("x");
                 int y = obj.getInt("y");
@@ -26,12 +26,12 @@ public class Save {
         }
         return settlement;
     }
-    public ArrayList<Npc> getNpc(String filnavn, MapController mapController, Player player){
+    public ArrayList<Npc> getNpc(String filnavn, MapController mapController, Player player) throws IOException{
         String innhold = new String(Files.readAllBytes(Paths.get(filnavn)));
         JSONArray jsonArray = new JSONArray(innhold);
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            if (obj.getString("type") == "Npc"){
+            if (obj.getString("type").equals("Npc")){
                 String navn = obj.getString("navn");
                 double x = obj.getDouble("x");
                 double y = obj.getDouble("y");
