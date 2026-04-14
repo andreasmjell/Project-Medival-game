@@ -1,7 +1,7 @@
 import java.awt.Rectangle;
 
 public class Npc extends GameObject{
-    String name = "Enemy Army";
+    String name;
     double x;
     double y;
     int speed = 2;
@@ -11,8 +11,9 @@ public class Npc extends GameObject{
 
     Path path;
 
-    public Npc(double x, double y, int troops, Player player, MapController mapController){
+    public Npc(String name, double x, double y, int troops, Player player, MapController mapController){
         super((int)x, (int)y, 80, 80);
+        this.name = name;
         this.x = x;
         this.y = y;
         this.troops = troops;

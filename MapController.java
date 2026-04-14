@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class MapController {
     Player player = new Player(2000, 1500, 69);
-    Npc npc = new Npc(2100, 1400, 10, player, this); //TEMP!!!
+    Save save = new Save();
+    ArrayList<Settlement> settlement = save.getSettlement("NewGameFile.json");
+    ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
     Ui ui = new Ui(this);
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
     GamePanel gamePanel;
@@ -29,7 +31,7 @@ public class MapController {
 
         gamePanel = ui.drawMap(player, camera, this);
 
-        createSettlements();
+        createGameObject();
 
         Timer timer = new Timer(16, e -> {
             update();
@@ -40,7 +42,9 @@ public class MapController {
     public void update(){
         inputManager.update();
         player.updatePos();
-        npc.update();
+        for (Npc x : npc){
+            x.update();
+        }
         gamePanel.update();
         gamePanel.repaint();
         collisionManager.checkCollision(player, gameObjects);
@@ -48,12 +52,9 @@ public class MapController {
     }
 
 
-    private void createSettlements(){
-        Settlement by1 = new Settlement("By 1", 1230, 1162, 10, 10);
-        settlements.add(by1);
-        gameObjects.add(by1);
-        gameObjects.add(npc);
-        npcs.add(npc); //TEMP!
+    private void createGameObject(){
+        gameObjects.addAll(settlement);
+        gameObjects.addAll(npc);
     }
 
 
