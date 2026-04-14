@@ -1,0 +1,5 @@
+UI: Lager designet, tar seg av menyer og knappet
+
+MapController: Hjernen til spillet. Tar seg av all logikk og beregninger.
+
+GamePanel: Tar input og Viser det spilleren ser.
