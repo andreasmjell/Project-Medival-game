@@ -30,7 +30,7 @@ public class Save {
         }
         return settlement;
     }
-    public ArrayList<Npc> getNpc(String filnavn, MapController mapController, Player player) throws IOException{
+    public ArrayList<Npc> getNpc(String filnavn, MapController mapController, Player player){
         try {
         String innhold = new String(Files.readAllBytes(Paths.get(filnavn)));
         JSONArray jsonArray = new JSONArray(innhold);

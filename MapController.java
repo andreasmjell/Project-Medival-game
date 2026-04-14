@@ -12,6 +12,8 @@ public class MapController {
     InputManager inputManager = new InputManager(ui, this, camera, player);
     Pathfinder pathfinder = new Pathfinder();
     CollisionManager collisionManager= new CollisionManager();
+    ArrayList<Settlement> settlement;
+    ArrayList<Npc> npc;
 
     ArrayList<GameObject> gameObjects = new ArrayList<>();
     ArrayList<Settlement> settlements = new ArrayList<>();
@@ -26,8 +28,8 @@ public class MapController {
 
     //Starter det faktiske spillet
     public void startGame(){
-        ArrayList<Settlement> settlement = save.getSettlement("NewGameFile.json");
-        ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
+        settlement = save.getSettlement("NewGameFile.json");
+        npc = save.getNpc("NewGameFile.json", this, player);
         gamePanel = ui.drawMap(player, camera, this);
 
         createGameObject();
