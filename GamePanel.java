@@ -91,7 +91,7 @@ public class GamePanel extends JPanel {
         int px = (int)(playerX - cameraX - 40); // Player X
         int py = (int)(playerY - cameraY -40); // Player Y
         
-        for (Settlement s: mapController.getSettlements()){
+        for (Settlement s: mapController.getSettlement()){
             int sx = (int)(s.getX() - cameraX - 50); //Settlement X
             int sy = (int)(s.getY() - cameraY - 50); //Settlement Y
 

@@ -16,8 +16,7 @@ public class MapController {
     ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
 
     ArrayList<GameObject> gameObjects = new ArrayList<>();
-    ArrayList<Settlement> settlements = new ArrayList<>();
-    ArrayList<Npc> npcs = new ArrayList<>();
+
 
 
     //Første oppstart, åpner main menu.
@@ -28,7 +27,7 @@ public class MapController {
 
     //Starter det faktiske spillet
     public void startGame(){
-        
+
         gamePanel = ui.drawMap(player, camera, this);
 
         createGameObject();
@@ -58,12 +57,12 @@ public class MapController {
     }
 
 
-    public ArrayList<Settlement> getSettlements(){
-        return settlements;
+    public ArrayList<Settlement> getSettlement(){
+        return settlement;
     }
 
     public ArrayList<Npc> getNpcs(){
-        return npcs;
+        return npc;
     }
 
     public void newPlayerPath(int x, int y){
