@@ -47,7 +47,6 @@ public class Npc extends GameObject{
             this.newRoute(player.getX(), player.getY());
         }
         else {
-            System.out.println("Ny random path");
             if (path == null || path.isDone()){
                 double newX = Math.random() * 1000 - 500;
                 double newY = Math.random() * 1000 - 500;

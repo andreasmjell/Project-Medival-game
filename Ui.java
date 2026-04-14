@@ -6,20 +6,25 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Ui {
-    JFrame frame = null;
     MapController mapController;
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+    private UiHandler uiHandler;
 
     public Ui(MapController mapController){
         this.mapController = mapController;
+        this.uiHandler = mapController.getUiHandler();
+
     }
     
-
+    public void setUiHandler(UiHandler uiHandler){
+        this.uiHandler = uiHandler;
+    }
     public void start(){
-        createWindow();
+        //createWindow();
         mainMenu();
     }
 
+    /*.  FLYTTET TIL UIHANDLER
     public void createWindow(){ //Oppretter vinduet alt skjer i.
         frame = new JFrame("Medieval");
         frame.setBackground(Color.BLACK);
@@ -28,7 +33,10 @@ public class Ui {
         frame.setLayout(null);
         frame.setVisible(false);
     }
+        */
 
+    // SKAL FLYTTES 
+    /*
     public GamePanel drawMap(Player player, Camera camera, MapController mc){ //Fjerner alt fra vinduet og fyller med spillet.
         GamePanel gamePanel = new GamePanel(player, camera, mc);
         frame.getContentPane().removeAll();
@@ -37,45 +45,49 @@ public class Ui {
         frame.repaint();
         gamePanel.requestFocusInWindow();
         return gamePanel;
-    }   
-
-    public void mainMenu(){ //Lager hovedmenyen som skal åpnes når spillet starter.
-        //Setting background
-        System.out.println("MAINMENU!!!!");
-        ImageIcon backgroundImage = new ImageIcon("assets/Mainmenu.png");
-        JLabel background = new JLabel(backgroundImage);
-        background.setBounds(0, 0, (int)size.getWidth(), (int)size.getHeight());
-        frame.setContentPane(background);
-
-        //Start game button
-        MenuButton startGame = new MenuButton("Start Game");
-        startGame.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("The game is starting!"); // HER SKAL VI STARTE SELVE SPILLET!
-                mapController.startGame();
-            }
-        });
-        startGame.setBounds(600, 200, 320, 80);
-        background.add(startGame);
-
-        //Save and Exit button
-        MenuButton saveAndExit = new MenuButton("Save and Exit");
-        saveAndExit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                System.out.println("Game Saved!");
-                System.exit(0);   // Lage og avslutt spillet
-            }
-        });
-
-        saveAndExit.setBounds(600, 600, 320, 80);
-        background.add(saveAndExit);
-
-        //Setting the window visible
-        frame.setVisible(true);
-        
     }
-}
+        */
 
+    public void settlementMenu(Settlement settlement){
+
+    }
+
+    public void mainMenu() {
+    System.out.println("MAINMENU!!!!");
+    Dimension size = uiHandler.getScreenSize();
+
+    // Bruk en vanlig JPanel, men pass på rekkefølgen
+    JPanel root = new JPanel(null);
+    root.setBounds(0, 0, size.width, size.height);
+
+    // 1. Lag knappene først
+    MenuButton startGame = new MenuButton("Start Game");
+    startGame.setBounds(600, 200, 320, 80);
+
+    startGame.addActionListener(e -> {
+        System.out.println("START GAME trykket");
+        mapController.startGame();
+    });
+
+    MenuButton exit = new MenuButton("Save and Exit");
+    exit.setBounds(600, 400, 320, 80); // Endret Y fra 600 til 400 for synlighet
+    exit.addActionListener(e -> System.exit(0));
+
+    // 2. Lag bakgrunnen
+    JLabel bg = new JLabel(new ImageIcon("assets/Mainmenu.png"));
+    bg.setBounds(0, 0, size.width, size.height);
+
+    // 3. VIKTIG: Legg til knapper FØRST, bakgrunn SIST (i null-layout)
+    // Eller bruk setComponentZOrder
+    root.add(startGame);
+    root.add(exit);
+    root.add(bg); 
+
+    // Fortell UiHandler at dette er den aktive menyen
+    uiHandler.getFrame().setContentPane(root);
+    uiHandler.getFrame().revalidate();
+    uiHandler.getFrame().repaint();
+}
 
 
 
@@ -233,4 +245,4 @@ try {
     g2.setColor(new Color(0, 0, 0, 80));
     g2.drawArc(x + 2, y + 2, size - 4, size - 4, 200, 140);
 }
-}
+}}

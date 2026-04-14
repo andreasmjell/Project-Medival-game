@@ -6,10 +6,12 @@ public class MapController {
     Player player = new Player(2000, 1500, 69);
     Npc npc = new Npc(2100, 1400, 10, player, this); //TEMP!!!
     Ui ui = new Ui(this);
+    UiHandler uiHandler = new UiHandler(ui);
+
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
     GamePanel gamePanel;
     Camera camera = new Camera(500, 500, (int)size.getWidth(), (int)size.getHeight(), player);
-    InputManager inputManager = new InputManager(ui, this, camera, player);
+    InputManager inputManager = new InputManager(uiHandler, this, camera, player);
     Pathfinder pathfinder = new Pathfinder();
     CollisionManager collisionManager= new CollisionManager();
 
@@ -17,18 +19,22 @@ public class MapController {
     ArrayList<Settlement> settlements = new ArrayList<>();
     ArrayList<Npc> npcs = new ArrayList<>();
 
+    public MapController(){
+        ui.setUiHandler(uiHandler);
+    }
+
 
     //Første oppstart, åpner main menu.
     public void start(){
 
-        ui.start();
+        uiHandler.start();
     }
 
     //Starter det faktiske spillet
     public void startGame(){
-
-        gamePanel = ui.drawMap(player, camera, this);
-
+        System.out.println("Spillet Starter!!!");
+        gamePanel = new GamePanel(player, camera, this);
+        uiHandler.setGamePanel(gamePanel);
         createSettlements();
 
         Timer timer = new Timer(16, e -> {
@@ -91,5 +97,9 @@ public class MapController {
 
     public void keyPressed(int keycode, boolean pressed){
         inputManager.keyPressed(keycode, pressed);
+    }
+
+    public UiHandler getUiHandler(){
+        return uiHandler;
     }
 }
