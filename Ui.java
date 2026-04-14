@@ -24,33 +24,8 @@ public class Ui {
         mainMenu();
     }
 
-    /*.  FLYTTET TIL UIHANDLER
-    public void createWindow(){ //Oppretter vinduet alt skjer i.
-        frame = new JFrame("Medieval");
-        frame.setBackground(Color.BLACK);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize((int)size.getWidth(), (int)size.getHeight());
-        frame.setLayout(null);
-        frame.setVisible(false);
-    }
-        */
 
-    // SKAL FLYTTES 
-    /*
-    public GamePanel drawMap(Player player, Camera camera, MapController mc){ //Fjerner alt fra vinduet og fyller med spillet.
-        GamePanel gamePanel = new GamePanel(player, camera, mc);
-        frame.getContentPane().removeAll();
-        frame.setContentPane(gamePanel);
-        frame.revalidate();
-        frame.repaint();
-        gamePanel.requestFocusInWindow();
-        return gamePanel;
-    }
-        */
 
-    public void settlementMenu(Settlement settlement){
-
-    }
 
     public void mainMenu() {
     System.out.println("MAINMENU!!!!");
@@ -88,6 +63,15 @@ public class Ui {
     uiHandler.getFrame().revalidate();
     uiHandler.getFrame().repaint();
 }
+
+
+
+
+
+// MENYER!===========================================
+
+
+
 
 
 

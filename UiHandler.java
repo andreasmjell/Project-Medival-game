@@ -10,6 +10,10 @@ public class UiHandler {
     private GamePanel gamePanel;
     private Ui ui;
 
+    public static final Integer MAP_LAYER = 0;
+    public static final Integer HUD_LAYER = 100;
+    public static final Integer MENU_LAYER = 200;
+
     public UiHandler(Ui ui){
         this.ui = ui;
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -18,7 +22,7 @@ public class UiHandler {
 
     public void createWindow(){ //Oppretter vinduet alt skjer i.
         frame = new JFrame("Medieval Game");
-        //frame.setBackground(Color.BLACK);
+        frame.setBackground(Color.BLACK);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(screenSize);
         frame.setLayout(null);
@@ -35,24 +39,41 @@ public class UiHandler {
     }
 
     public void setGamePanel(GamePanel panel){
-    this.gamePanel = panel;
-    panel.setBounds(0, 0, screenSize.width, screenSize.height);
-    
-    // Fjern menyen og sett GamePanel som det aktive innholdet
-    frame.getContentPane().removeAll();
-    frame.setContentPane(panel); 
-    
-    panel.setFocusable(true);
-    panel.requestFocusInWindow();
-    
-    frame.revalidate();
-    frame.repaint();
-}
+        frame.setContentPane(layeredPane);
+
+        layeredPane.removeAll();
+
+        panel.setBounds(0, 0, screenSize.width, screenSize.height);
+        layeredPane.add(panel, Integer.valueOf(0));
+        
+        
+        panel.setFocusable(true);
+        panel.requestFocusInWindow();
+        
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    public void openMenu(JPanel menu, Integer layer){
+        menu.setBounds(menu.getX(), menu.getY(), menu.getWidth(), menu.getHeight());
+        layeredPane.add(menu, layer);
+
+        layeredPane.revalidate();
+        layeredPane.repaint();
+        menu.requestFocusInWindow();
+    }
+
+    public void closeMenu(JPanel menu){
+        layeredPane.remove(menu);
+        layeredPane.revalidate();
+        layeredPane.repaint();
+
+        gamePanel.requestFocusInWindow();
+    }
 
     public JFrame getFrame(){
         return frame;
     }
-
     public Dimension getScreenSize() {
         return screenSize;
     }

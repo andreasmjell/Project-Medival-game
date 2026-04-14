@@ -5,7 +5,9 @@ public class Settlement extends GameObject{
     int troops;
     int timer;
 
-    public Settlement(String name, int x, int y, int troops, int timer){
+    MapController mapController;
+
+    public Settlement(String name, int x, int y, int troops, int timer, MapController mapController){
         super((int)x, (int)y, 50, 50);
         this.name = name;
         this.x = x;
@@ -20,6 +22,10 @@ public class Settlement extends GameObject{
 
     public int getY(){
         return y;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public void onCollision(Player player){  

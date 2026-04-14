@@ -10,7 +10,7 @@ public class Save {
     ArrayList<Npc> npc = new ArrayList<>();
     String filename;
 
-    public ArrayList<Settlement> getSettlement(String filnavn){
+    public ArrayList<Settlement> getSettlement(String filnavn, MapController mapController){
         try {
         String innhold = new String(Files.readAllBytes(Paths.get(filnavn)));
         JSONArray jsonArray = new JSONArray(innhold);
@@ -22,7 +22,7 @@ public class Save {
                 int y = obj.getInt("y");
                 int troops = obj.getInt("troops");
                 int timer = obj.getInt("timer");
-                settlement.add(new Settlement(navn, x, y, troops, timer));
+                settlement.add(new Settlement(navn, x, y, troops, timer, mapController));
             }
         }
         }catch (IOException e){

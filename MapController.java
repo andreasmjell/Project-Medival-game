@@ -14,7 +14,7 @@ public class MapController {
     InputManager inputManager = new InputManager(uiHandler, this, camera, player);
     Pathfinder pathfinder = new Pathfinder();
     CollisionManager collisionManager= new CollisionManager();
-    ArrayList<Settlement> settlement = save.getSettlement("NewGameFile.json");
+    ArrayList<Settlement> settlement = save.getSettlement("NewGameFile.json", this);
     ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
 
     ArrayList<GameObject> gameObjects = new ArrayList<>();
