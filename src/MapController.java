@@ -123,4 +123,7 @@ public class MapController {
         }
         System.out.println(player.getTroops());
     }
+    public Player getPlayer(){
+        return player;
+    }
 }
