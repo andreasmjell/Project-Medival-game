@@ -8,8 +8,10 @@ public class HudPanel extends JPanel {
     private JLabel goldLabel;
     private JLabel staminaLabel;
     private JProgressBar healthBar;
+    private MapController mapController;
 
-    public HudPanel(int width) {
+    public HudPanel(int width, MapController mapController) {
+        this.mapController = mapController;
         // Oppsett av panelet: mørk, gjennomsiktig bakgrunn
         this.setBounds(0, 0, width, 60);
         this.setBackground(new Color(0, 0, 0, 150)); // 150 er alpha (gjennomsiktighet)
@@ -36,7 +38,7 @@ public class HudPanel extends JPanel {
         goldLabel.setFont(hudFont);
 
         // Stamina/Energi
-        staminaLabel = new JLabel("Stamina: 100%");
+        staminaLabel = new JLabel("Troops: " + mapController.getPlayer().getTroops());
         staminaLabel.setForeground(new Color(50, 200, 50));
         staminaLabel.setFont(hudFont);
 

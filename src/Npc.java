@@ -61,7 +61,6 @@ public class Npc extends GameObject{
                 this.newRoute((int)(x + newX), (int)(y + newY));
             }
         }
-        
     }
     public void setPath(Path newPath) {
         this.path = newPath;

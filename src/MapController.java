@@ -8,7 +8,7 @@ public class MapController {
     Player player = new Player(2000, 1500, 69);
     Save save = new Save();
     Ui ui = new Ui(this);
-    UiHandler uiHandler = new UiHandler(ui);
+    UiHandler uiHandler = new UiHandler(ui, this);
 
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
     GamePanel gamePanel;

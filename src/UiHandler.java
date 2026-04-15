@@ -11,12 +11,13 @@ public class UiHandler {
     private GamePanel gamePanel;
     private Ui ui;
     private HudPanel hud;
+    private MapController mapController;
 
     public static final Integer MAP_LAYER = 0;
     public static final Integer HUD_LAYER = 100;
     public static final Integer MENU_LAYER = 200;
 
-    public UiHandler(Ui ui){
+    public UiHandler(Ui ui, MapController mapController){
         this.ui = ui;
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         createWindow();
@@ -58,7 +59,7 @@ public class UiHandler {
 
     public void showHud(){
         if (hud == null){
-        hud = new HudPanel(screenSize.width);
+        hud = new HudPanel(screenSize.width, mapController);
         }
         layeredPane.add(hud, HUD_LAYER);
         layeredPane.revalidate();
