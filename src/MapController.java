@@ -109,8 +109,8 @@ public class MapController {
         String name = npc.getName();
         double defeatedX = npc.getX();
         double defeatedY = npc.getY();
-        double respawnX = deaftedX + 50;
-        double respawnY = deaftedY + 50;
+        double respawnX = defeatedX + 50;
+        double respawnY = defeatedY + 50;
         Npc respawn = new Npc(name, respawnX, respawnY, player, this);
         this.npc.remove(npc);
 
@@ -119,7 +119,7 @@ public class MapController {
         //Sender inn NPC troops som negativ
         if (player.getTroops() > troops){
             player.updateTroops(troops*-1);
-            npcDefeated(npc)
+            npcDefeated(npc);
         }
         System.out.println(player.getTroops());
     }

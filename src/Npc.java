@@ -97,7 +97,7 @@ public class Npc extends GameObject{
         updateBounds();
     }
 
-    public void onCollision(){
+    public void onCollision(Player player){
         System.out.println("Spiller traff" + name);
 
         mapController.npcFight(this.troops, this);
