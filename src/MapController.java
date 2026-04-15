@@ -111,7 +111,9 @@ public class MapController {
         double defeatedY = npc.getY();
         double respawnX = defeatedX + 50;
         double respawnY = defeatedY + 50;
-        Npc respawn = new Npc(name, respawnX, respawnY, player, this);
+        Npc respawn = new Npc(name, respawnX, respawnY, 10, player, this);
+        this.npc.add(respawn);
+        gameObjects.add(respawn);
         this.npc.remove(npc);
 
     }

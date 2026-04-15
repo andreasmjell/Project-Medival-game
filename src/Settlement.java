@@ -5,7 +5,6 @@ public class Settlement extends GameObject{
     int y;
     int troops;
     int timer;
-
     MapController mapController;
 
     public Settlement(String name, int x, int y, int troops, int timer, MapController mapController){
@@ -15,6 +14,7 @@ public class Settlement extends GameObject{
         this.y = y;
         this.troops = troops;
         this.timer = timer;
+        this.mapController = mapController;
     }
 
     public int getX(){
