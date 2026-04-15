@@ -132,7 +132,10 @@ public class MapController {
         this.respawnNpc.add(respawn);
     }
     public void npcFight(int troops, Npc npc){
+        if (player.getTroops() > troops){
+            player.updateTroops(troops*-1);
             npcDefeated(npc);
+        }
         System.out.println(player.getTroops());
     }
     public Player getPlayer(){
