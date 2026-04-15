@@ -83,7 +83,7 @@ public class InputManager{
     public void bindDefault(){
 
         //esc
-        //this.bindKey(27, () -> ui.mainMenu()); //Åpner main menu. !! Må byttes til pause overlay. Starter flere game loops!
+        //this.bindKey(27, () -> ui.openSettlementMenu()); //Åpner main menu. !! Må byttes til pause overlay. Starter flere game loops!
 
         //Movement----------------------
         //pil opp

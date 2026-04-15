@@ -65,18 +65,3 @@ public class Ui {
     uiHandler.getFrame().revalidate();
     uiHandler.getFrame().repaint();
 }}
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Ja AI har skrevet dette:
-

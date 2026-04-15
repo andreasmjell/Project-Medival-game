@@ -1,4 +1,6 @@
 package src;
+
+import src.menu.SettlementMenu;
 import javax.swing.*;
 import java.awt.*;
 
@@ -92,6 +94,11 @@ public class UiHandler {
     }
     public Dimension getScreenSize() {
         return screenSize;
+    }
+
+    public void openSettlementMenu(Settlement settlement){
+        SettlementMenu settlementMenu = new SettlementMenu(settlement, mapController); 
+        openMenu(settlementMenu, MENU_LAYER);
     }
 
 }
