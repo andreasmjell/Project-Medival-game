@@ -59,7 +59,7 @@ public class UiHandler {
 
     public void showHud(){
         if (hud == null){
-        hud = new HudPanel(screenSize.width, mapController);
+        hud = new HudPanel(screenSize.width);
         }
         layeredPane.add(hud, HUD_LAYER);
         layeredPane.revalidate();

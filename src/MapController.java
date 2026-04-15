@@ -9,6 +9,7 @@ public class MapController {
     Save save = new Save();
     Ui ui = new Ui(this);
     UiHandler uiHandler = new UiHandler(ui, this);
+    HudPanel hud;
 
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
     GamePanel gamePanel;
@@ -20,6 +21,7 @@ public class MapController {
     ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
     HashSet<Npc> deleteNpc = new HashSet<>();
     HashSet<Npc> respawnNpc = new HashSet<>();
+
 
     ArrayList<GameObject> gameObjects = new ArrayList<>();
 
@@ -41,6 +43,7 @@ public class MapController {
         gamePanel = new GamePanel(player, camera, this);
         uiHandler.setGamePanel(gamePanel);
         uiHandler.showHud();
+        hud = uiHandler.getHud();
         createGameObject();
 
         Timer timer = new Timer(16, e -> {
@@ -56,6 +59,7 @@ public class MapController {
         gamePanel.repaint();
         collisionManager.checkCollision(player, gameObjects);
         npcUpdate();
+        hud.updatePlayerTroops(player.getTroops());
     }
 
     public void npcUpdate(){

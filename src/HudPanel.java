@@ -6,12 +6,11 @@ import java.awt.*;
 public class HudPanel extends JPanel {
     private JLabel healthLabel;
     private JLabel goldLabel;
-    private JLabel staminaLabel;
+    private JLabel troopLabel;
     private JProgressBar healthBar;
-    private MapController mapController;
+    private int playerTroops;
 
-    public HudPanel(int width, MapController mapController) {
-        this.mapController = mapController;
+    public HudPanel(int width) {
         // Oppsett av panelet: mørk, gjennomsiktig bakgrunn
         this.setBounds(0, 0, width, 60);
         this.setBackground(new Color(0, 0, 0, 150)); // 150 er alpha (gjennomsiktighet)
@@ -38,20 +37,26 @@ public class HudPanel extends JPanel {
         goldLabel.setFont(hudFont);
 
         // Stamina/Energi
-        staminaLabel = new JLabel("Troops: " + mapController.getPlayer().getTroops());
-        staminaLabel.setForeground(new Color(50, 200, 50));
-        staminaLabel.setFont(hudFont);
+        troopLabel = new JLabel("Troops: " + playerTroops);
+        troopLabel.setForeground(new Color(50, 200, 50));
+        troopLabel.setFont(hudFont);
 
         // Legg til komponenter
         this.add(healthLabel);
         this.add(healthBar);
         this.add(goldLabel);
-        this.add(staminaLabel);
+        this.add(troopLabel);
     }
 
     // Metoder for å oppdatere stats dynamisk
     public void updateHealth(int hp) {
         healthBar.setValue(hp);
+    }
+
+    public void updatePlayerTroops(int troops){
+        playerTroops = troops;
+        troopLabel.setText("Troops: " + playerTroops);
+
     }
 
     public void updateGold(int gold) {
