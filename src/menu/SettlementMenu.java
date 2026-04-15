@@ -5,9 +5,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SettlementMenu extends GameMenu{
+
+    UiHandler uiHandler;
     
 
-    public SettlementMenu(Settlement settlement){
+    public SettlementMenu(Settlement settlement, MapController mapController){
+        mapController.getUiHandler();
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         int menuWidth = (int) (size.getWidth() * 0.8);
         int menuHeight = (int) (size.getHeight() * 0.8);
@@ -26,7 +29,7 @@ public class SettlementMenu extends GameMenu{
         // Eksempel på lukk-knapp nederst i midten av menyen
         MenuButton closeBtn = new MenuButton("Forlat byen");
         closeBtn.setBounds((menuWidth - 250) / 2, menuHeight - 80, 250, 60);
-        //closeBtn.addActionListener(e -> uiHandler.closeMenu(this));
+        closeBtn.addActionListener(e -> uiHandler.closeMenu(this));
         add(closeBtn);
     }
 }
