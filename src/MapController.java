@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class MapController {
-    Player player = new Player(2000, 1500, 8000);
+    Player player = new Player(2000, 1500, 80000);
     Save save = new Save();
     Ui ui = new Ui(this);
     UiHandler uiHandler = new UiHandler(ui, this);
@@ -126,8 +126,8 @@ public class MapController {
         String name = npc.getName();
         double defeatedX = npc.getX();
         double defeatedY = npc.getY();
-        double respawnX = defeatedX + 200;
-        double respawnY = defeatedY + 200;
+        double respawnX = defeatedX + (Math.random() * 300 -300);
+        double respawnY = defeatedY + (Math.random() * 300 -300);
         Npc respawn = new Npc(name, respawnX, respawnY, 10, player, this);
         this.deleteNpc.add(npc);
         this.respawnNpc.add(respawn);
