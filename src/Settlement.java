@@ -31,5 +31,6 @@ public class Settlement extends GameObject{
 
     public void onCollision(Player player){  
         System.out.println("Player gikk i byen: " + name);
+        mapController.getPlayer().updateTroops(troops);
     }
 }

@@ -37,6 +37,7 @@ public class MapController {
         System.out.println("Spillet Starter!!!");
         gamePanel = new GamePanel(player, camera, this);
         uiHandler.setGamePanel(gamePanel);
+        uiHandler.showHud();
         createGameObject();
 
         Timer timer = new Timer(16, e -> {
@@ -67,6 +68,7 @@ public class MapController {
     public ArrayList<Settlement> getSettlement(){
         return settlement;
     }
+
 
     public ArrayList<Npc> getNpcs(){
         return npc;

@@ -10,6 +10,7 @@ public class UiHandler {
 
     private GamePanel gamePanel;
     private Ui ui;
+    private HudPanel hud;
 
     public static final Integer MAP_LAYER = 0;
     public static final Integer HUD_LAYER = 100;
@@ -54,6 +55,19 @@ public class UiHandler {
         frame.revalidate();
         frame.repaint();
     }
+
+    public void showHud(){
+        if (hud == null){
+        hud = new HudPanel(screenSize.width);
+        }
+        layeredPane.add(hud, HUD_LAYER);
+        layeredPane.revalidate();
+        layeredPane.repaint();
+    }
+
+    public HudPanel getHud() {
+    return hud;
+}
 
     public void openMenu(JPanel menu, Integer layer){
         menu.setBounds(menu.getX(), menu.getY(), menu.getWidth(), menu.getHeight());
