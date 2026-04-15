@@ -21,11 +21,17 @@ public class Npc extends GameObject{
         this.player = player;
         this.mapController = mapController;
     }
+    public String getName(){
+        return name;
+    }
     public double getX(){
         return x;
     }
     public double getY(){
         return y;
+    }
+    public int getTroops(){
+        return troops;
     }
     public void update(){
         newPath(player);
@@ -91,8 +97,10 @@ public class Npc extends GameObject{
         updateBounds();
     }
 
-    public void onCollision(Player player){
+    public void onCollision(){
         System.out.println("Spiller traff" + name);
+
+        mapController.npcFight(this.troops, this);
     }
 
 

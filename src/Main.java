@@ -1,5 +1,7 @@
 package src;
 /* for å starte spillet med JSON:
+
+WINDOWS
 javac -cp ".;lib/json-20251224.jar" *.java
 java -cp ".;lib/json-20251224.jar" .\Main.java
 NY:

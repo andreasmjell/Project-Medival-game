@@ -103,4 +103,22 @@ public class MapController {
     public UiHandler getUiHandler(){
         return uiHandler;
     }
+    public void npcDefeated(Npc npc){
+        String name = npc.getName();
+        double defeatedX = npc.getX();
+        double defeatedY = npc.getY();
+        double respawnX = deaftedX + 50;
+        double respawnY = deaftedY + 50;
+        Npc respawn = new Npc(name, respawnX, respawnY, player, this);
+        this.npc.remove(npc);
+
+    }
+    public void npcFight(int troops, Npc npc){
+        //Sender inn NPC troops som negativ
+        if (player.getTroops() > troops){
+            player.updateTroops(troops*-1);
+            npcDefeated(npc)
+        }
+        System.out.println(player.getTroops());
+    }
 }

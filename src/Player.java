@@ -36,6 +36,12 @@ public class Player {
     public Rectangle getBounds(){
         return bounds;
     }
+    public void updateTroops(int troops){
+        this.troops += troops;
+    }
+    public int getTroops(){
+        return troops;
+    }
 
     private void updateBounds(){
         bounds.setLocation((int)x, (int)y);
