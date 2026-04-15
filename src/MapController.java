@@ -2,6 +2,7 @@ package src;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class MapController {
     Player player = new Player(2000, 1500, 69);
@@ -17,6 +18,8 @@ public class MapController {
     CollisionManager collisionManager= new CollisionManager();
     ArrayList<Settlement> settlement = save.getSettlement("NewGameFile.json", this);
     ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
+    HashSet<Npc> deleteNpc = new HashSet<>();
+    HashSet<Npc> respawnNpc = new HashSet<>();
 
     ArrayList<GameObject> gameObjects = new ArrayList<>();
 
@@ -49,13 +52,19 @@ public class MapController {
     public void update(){
         inputManager.update();
         player.updatePos();
-        for (Npc x : npc){
-            x.update();
-        }
         gamePanel.update();
         gamePanel.repaint();
         collisionManager.checkCollision(player, gameObjects);
+        npcUpdate();
+    }
 
+    public void npcUpdate(){
+        for (Npc x : npc){
+            x.update();
+        }
+        npc.removeAll(deleteNpc);
+        npc.addAll(respawnNpc);
+        gameObjects.addAll(respawnNpc);
     }
 
 
@@ -109,16 +118,14 @@ public class MapController {
         String name = npc.getName();
         double defeatedX = npc.getX();
         double defeatedY = npc.getY();
-        double respawnX = defeatedX + 50;
-        double respawnY = defeatedY + 50;
+        double respawnX = defeatedX + 500;
+        double respawnY = defeatedY + 500;
         Npc respawn = new Npc(name, respawnX, respawnY, 10, player, this);
-        this.npc.add(respawn);
-        gameObjects.add(respawn);
-        this.npc.remove(npc);
-
+        this.deleteNpc.add(npc);
+        this.respawnNpc.add(respawn);
     }
     public void npcFight(int troops, Npc npc){
-        //Sender inn NPC troops som negativ
+        //Sender inn NPC troops og gjør om til negativ
         if (player.getTroops() > troops){
             player.updateTroops(troops*-1);
             npcDefeated(npc);

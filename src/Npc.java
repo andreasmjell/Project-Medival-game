@@ -5,7 +5,7 @@ public class Npc extends GameObject{
     String name;
     double x;
     double y;
-    int speed = 2;
+    int speed = 1;
     int troops;
     Player player;
     MapController mapController;
