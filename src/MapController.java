@@ -59,12 +59,15 @@ public class MapController {
     }
 
     public void npcUpdate(){
+        npc.removeAll(deleteNpc);
+        gameObjects.removeAll(deleteNpc);
+        deleteNpc.clear();
         for (Npc x : npc){
             x.update();
         }
-        npc.removeAll(deleteNpc);
         npc.addAll(respawnNpc);
         gameObjects.addAll(respawnNpc);
+        respawnNpc.clear();
     }
 
 
@@ -118,18 +121,14 @@ public class MapController {
         String name = npc.getName();
         double defeatedX = npc.getX();
         double defeatedY = npc.getY();
-        double respawnX = defeatedX + 500;
-        double respawnY = defeatedY + 500;
+        double respawnX = defeatedX + 200;
+        double respawnY = defeatedY + 200;
         Npc respawn = new Npc(name, respawnX, respawnY, 10, player, this);
         this.deleteNpc.add(npc);
         this.respawnNpc.add(respawn);
     }
     public void npcFight(int troops, Npc npc){
-        //Sender inn NPC troops og gjør om til negativ
-        if (player.getTroops() > troops){
-            player.updateTroops(troops*-1);
             npcDefeated(npc);
-        }
         System.out.println(player.getTroops());
     }
     public Player getPlayer(){
