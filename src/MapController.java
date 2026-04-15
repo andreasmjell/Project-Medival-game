@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class MapController {
-    Player player = new Player(2000, 1500, 69);
+    Player player = new Player(2000, 1500, 8000);
     Save save = new Save();
     Ui ui = new Ui(this);
     UiHandler uiHandler = new UiHandler(ui, this);
@@ -27,6 +27,7 @@ public class MapController {
 
 
     public MapController(){
+
         ui.setUiHandler(uiHandler);
     }
 

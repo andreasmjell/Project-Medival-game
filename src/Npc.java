@@ -45,7 +45,7 @@ public class Npc extends GameObject{
     public boolean chase(Player player){
         double diffX = this.x - player.getX();
         double diffY = this.y - player.getY();
-        if(Math.abs(diffX) < 200 && Math.abs(diffY) < 200){
+        if(Math.abs(diffX) < 2000 && Math.abs(diffY) < 2000){
             return true;
         }
         return false;
