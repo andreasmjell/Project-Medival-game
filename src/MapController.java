@@ -68,6 +68,7 @@ public class MapController {
         return settlement;
     }
 
+
     public ArrayList<Npc> getNpcs(){
         return npc;
     }
@@ -102,5 +103,9 @@ public class MapController {
 
     public UiHandler getUiHandler(){
         return uiHandler;
+    }
+
+    public Player getPlayer(){
+        return player;
     }
 }
