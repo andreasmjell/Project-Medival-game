@@ -23,8 +23,9 @@ public class MapController {
     HashSet<Npc> deleteNpc = new HashSet<>();
     HashSet<Npc> respawnNpc = new HashSet<>();
 
-
     ArrayList<GameObject> gameObjects = new ArrayList<>();
+
+    private Timer timer;
 
 
     public MapController(){
@@ -48,7 +49,7 @@ public class MapController {
         hud = uiHandler.getHud();
         createGameObject();
 
-        Timer timer = new Timer(16, e -> {
+        timer = new Timer(16, e -> {
             update();
         });
         timer.start();
@@ -62,6 +63,14 @@ public class MapController {
         collisionManager.checkCollision(player, gameObjects);
         npcUpdate();
         hud.updatePlayerTroops(player.getTroops());
+    }
+
+    public void timerStop(){
+        timer.stop();
+    }
+
+    public void timerStart(){
+        timer.start();
     }
 
     public void npcUpdate(){
