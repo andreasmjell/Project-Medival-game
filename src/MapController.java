@@ -19,7 +19,7 @@ public class MapController {
     CollisionManager collisionManager= new CollisionManager();
     ArrayList<Settlement> settlement = save.getSettlement("NewGameFile.json", this);
     ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
-    BlockedCords blockedCords = new Blockedcords();
+    BlockedCords blockedCords = new BlockedCords();
 
     HashSet<Npc> deleteNpc = new HashSet<>();
     HashSet<Npc> respawnNpc = new HashSet<>();
@@ -113,7 +113,7 @@ public class MapController {
         }
         else{
             new Thread (() -> {
-            ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y);
+            ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y, blockedCords);
 
             player.setPath(new Path(points));
             }).start();
@@ -122,7 +122,7 @@ public class MapController {
 
     public void newNpcPath(int x, int y, Npc npc){
         new Thread (() -> {
-            ArrayList<Point> points = pathfinder.findPath(npc.x, npc.y, x, y);    
+            ArrayList<Point> points = pathfinder.findPath(npc.x, npc.y, x, y, blockedCords);    
             npc.setPath(new Path(points));
         }).start();
     }
