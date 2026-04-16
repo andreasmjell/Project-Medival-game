@@ -2,6 +2,8 @@ package src;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 public class GamePanel extends JPanel {
     Player player;
@@ -88,27 +90,12 @@ public class GamePanel extends JPanel {
                 null
         );
 
+        ArrayList<Drawable> drawable = mapController.getDrawable();
 
-        int px = (int)(playerX - cameraX - 40); // Player X
-        int py = (int)(playerY - cameraY -40); // Player Y
-        
-        for (Settlement s: mapController.getSettlement()){
-            int sx = (int)(s.getX() - cameraX - 50); //Settlement X
-            int sy = (int)(s.getY() - cameraY - 50); //Settlement Y
+        drawable.sort(Comparator.comparingDouble(Drawable::getY));
 
-            g.drawImage(settlementImage, sx, sy, 100, 100, null);
+        for (Drawable d : drawable) {
+            d.draw(g, cameraX, cameraY);
         }
-
-        for (Npc s: mapController.getNpcs()){
-            int sx = (int)(s.getX() - cameraX - 50); //Npc X
-            int sy = (int)(s.getY() - cameraY - 50); //Npc Y
-
-            
-
-            g.drawImage(npcImage, sx, sy, 80, 80, null);
-        }
-
-        //Bilde av player icon
-        g.drawImage(playerImage, px, py, 80, 80, null);
     }
 }
