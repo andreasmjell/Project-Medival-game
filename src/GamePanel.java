@@ -103,6 +103,8 @@ public class GamePanel extends JPanel {
             int sx = (int)(s.getX() - cameraX - 50); //Npc X
             int sy = (int)(s.getY() - cameraY - 50); //Npc Y
 
+            
+
             g.drawImage(npcImage, sx, sy, 80, 80, null);
         }
 
