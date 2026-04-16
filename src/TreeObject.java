@@ -7,11 +7,12 @@ public class TreeObject implements Drawable{
     Image sprite;
     double x;
     double y;
-    Image treeImage = new ImageIcon(getClass().getResource("assets/tree1.png")).getImage();
+    Image img;
 
-    public TreeObject(double x, double y){
+    public TreeObject(double x, double y, Image img){
         this.x = x;
         this.y = y;
+        this.img = img;
     }
     public double getX(){
         return x;
@@ -28,6 +29,6 @@ public class TreeObject implements Drawable{
         int px = (int)(x - cameraX - 40);
         int py = (int)(y - cameraY -40);
 
-        g.drawImage(treeImage, px, py, 80, 80, null);
+        g.drawImage(img, px, py, 80, 80, null);
     }
 }

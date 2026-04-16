@@ -1,9 +1,12 @@
 package src;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.awt.*;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class MapPixelReader {
 
@@ -12,9 +15,25 @@ public class MapPixelReader {
     private int height;
     MapController mapController;
     int teller = 0;
+    ArrayList<Image> trees = new ArrayList<>();
+    Random rand = new Random();
 
     public MapPixelReader (MapController mapController){
         this.mapController = mapController;
+        Image treeImage1 = new ImageIcon(getClass().getResource("assets/tree1.png")).getImage();
+        Image treeImage2 = new ImageIcon(getClass().getResource("assets/tree2.png")).getImage();
+        Image treeImage3 = new ImageIcon(getClass().getResource("assets/tree3.png")).getImage();
+        Image treeImage4 = new ImageIcon(getClass().getResource("assets/tree4.png")).getImage();
+        Image treeImage5 = new ImageIcon(getClass().getResource("assets/tree5.png")).getImage();
+        Image treeImage6 = new ImageIcon(getClass().getResource("assets/tree6.png")).getImage();
+        Image treeImage7 = new ImageIcon(getClass().getResource("assets/tree7.png")).getImage();
+        trees.add(treeImage1);
+        trees.add(treeImage2);
+        trees.add(treeImage3);
+        trees.add(treeImage4);
+        trees.add(treeImage5);
+        trees.add(treeImage6);
+        trees.add(treeImage7);
     }
 
     public void loadBlockedMap() {
@@ -36,8 +55,10 @@ public class MapPixelReader {
                         blocked[x][y] = true;
                     }
                     else if (img.getRGB(x, y) == treeColor){
-                        if (Math.random() > 0.99){
-                            TreeObject tree = new TreeObject(x,y);
+                        if (Math.random() > 0.999){
+                            int randomtree = rand.nextInt(trees.size());
+                            Image treeImagePaint = trees.get(randomtree);
+                            TreeObject tree = new TreeObject(x,y, treeImagePaint);
                             mapController.addDrawable(tree);
                             teller++;
 
