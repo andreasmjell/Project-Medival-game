@@ -21,6 +21,8 @@ public abstract class GameObject{
         return id;
     } 
 
+    public abstract Drawable getThis();
+
     public abstract void onCollision(Player player);
 
 

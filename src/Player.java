@@ -1,8 +1,11 @@
 package src;
-import java.awt.Rectangle;
 import java.util.HashSet;
 
-public class Player {
+import javax.swing.ImageIcon;
+
+import java.awt.*;
+
+public class Player implements Drawable{
     //stats
     int troops;
     double speed;
@@ -18,6 +21,8 @@ public class Player {
     Path path;
     boolean addToPath = false;
 
+    // Image
+    Image playerImage = new ImageIcon(getClass().getResource("assets/playericon.png")).getImage();
     
     
     public Player(int x, int y, int troops){
@@ -33,6 +38,16 @@ public class Player {
     }
     public double getY(){
         return y;
+    }
+    public Drawable getThis(){
+        return this;
+    }
+    
+    public void draw(Graphics g, double cameraX, double cameraY){
+        int px = (int)(x - cameraX - 40); // Player X
+        int py = (int)(y - cameraY -40);
+
+        g.drawImage(playerImage, px, py, 80, 80, null);
     }
     public Rectangle getBounds(){
         return bounds;

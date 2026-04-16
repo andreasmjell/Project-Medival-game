@@ -1,7 +1,9 @@
 package src;
-import java.awt.Rectangle;
+import java.awt.*;
 
-public class Npc extends GameObject{
+import javax.swing.ImageIcon;
+
+public class Npc extends GameObject implements Drawable{
     String name;
     double x;
     double y;
@@ -9,6 +11,7 @@ public class Npc extends GameObject{
     int troops;
     Player player;
     MapController mapController;
+    Image npcImage = new ImageIcon(getClass().getResource("assets/npc.png")).getImage();
 
     Path path;
 
@@ -25,11 +28,21 @@ public class Npc extends GameObject{
     public String getName(){
         return name;
     }
+
+    public Drawable getThis(){
+        return this;
+    }
     public double getX(){
         return x;
     }
     public double getY(){
         return y;
+    }
+    public void draw(Graphics g, double cameraX, double cameraY){
+        int sx = (int)(x - cameraX - 50); //Npc X
+        int sy = (int)(y - cameraY - 50); //Npc Y
+        
+        g.drawImage(npcImage, sx, sy, 80, 80, null);
     }
     public int getTroops(){
         return troops;
