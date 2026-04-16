@@ -45,6 +45,7 @@ public class UiHandler {
     }
 
     public void setGamePanel(GamePanel panel){
+        gamePanel = panel;
         frame.setContentPane(layeredPane);
 
         layeredPane.removeAll();
