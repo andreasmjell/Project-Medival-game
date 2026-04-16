@@ -20,6 +20,7 @@ public class UiHandler {
     public static final Integer MENU_LAYER = 200;
 
     public UiHandler(Ui ui, MapController mapController){
+        this.mapController = mapController;
         this.ui = ui;
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         createWindow();
