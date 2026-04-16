@@ -19,7 +19,7 @@ public class BlockedCords {
 
             blocked = new boolean[width][height];
 
-            int blockedColor = Color.RED.getRGB();
+            int blockedColor = new Color(237, 28, 36).getRGB();
 
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
