@@ -22,7 +22,7 @@ public class Pathfinder {
         double prex = targetX;
         double prey = targetY;
 
-        while(x != targetX && y != targetY){
+        while(Math.sqrt(Math.pow(targetX - x, 2) + Math.pow(targetY - y, 2)) > 1.0){
             if (dist <= 5) {
                 x = targetX;
                 y = targetY;
@@ -32,6 +32,7 @@ public class Pathfinder {
             x += dirX;
             y += dirY;
 
+            
             if (blocked.isBlocked((int)x, (int)y)){
                 targetX = prex;
                 targetY = prey;
