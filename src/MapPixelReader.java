@@ -3,12 +3,18 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class MapPixelReader {
 
     private boolean[][] blocked;
     private int width;
     private int height;
+    MapController mapController;
+
+    public MapPixelReader (MapController mapcontroller){
+        this.mapController = mapController;
+    }
 
     public void loadBlockedMap() {
         try {
@@ -29,8 +35,10 @@ public class MapPixelReader {
                         blocked[x][y] = true;
                     }
                     else if (img.getRGB(x, y) == treeColor){
-                        if (Math.random() > 0.6){
+                        if (Math.random() > 0){
                             TreeObject tree = new TreeObject(x,y);
+                            mapController.addDrawable(tree);
+
                         }
                     }
                     else{

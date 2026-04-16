@@ -19,7 +19,7 @@ public class MapController {
     CollisionManager collisionManager= new CollisionManager();
     ArrayList<Settlement> settlement = save.getSettlement("NewGameFile.json", this);
     ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
-    MapPixelReader mapPixelReader = new MapPixelReader();
+    MapPixelReader mapPixelReader = new MapPixelReader(this);
 
     HashSet<Npc> deleteNpc = new HashSet<>();
     HashSet<Npc> respawnNpc = new HashSet<>();
@@ -78,6 +78,7 @@ public class MapController {
 
     public void npcUpdate(){
         npc.removeAll(deleteNpc);
+        drawable.removeAll(deleteNpc);
         gameObjects.removeAll(deleteNpc);
         deleteNpc.clear();
         for (Npc x : npc){
@@ -85,6 +86,7 @@ public class MapController {
         }
         npc.addAll(respawnNpc);
         gameObjects.addAll(respawnNpc);
+        drawable.addAll(respawnNpc);
         respawnNpc.clear();
     }
 
