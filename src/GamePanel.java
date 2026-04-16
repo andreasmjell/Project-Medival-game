@@ -1,5 +1,7 @@
 package src;
 import javax.swing.*;
+
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -74,6 +76,13 @@ public class GamePanel extends JPanel {
         cameraY = camera.getY();
     }
 
+    public boolean isVisible(Drawable obj, Camera camera){
+    return obj.getX() >= camera.getX() &&
+           obj.getX() <= camera.getX() + camera.width &&
+           obj.getY() >= camera.getY() &&
+           obj.getY() <= camera.getY() + camera.height;
+}
+
 
     //Viser oppdatert bilde av map basert på kamera posisjon og player icon
         @Override
@@ -95,7 +104,9 @@ public class GamePanel extends JPanel {
         drawable.sort(Comparator.comparingDouble(Drawable::getY));
 
         for (Drawable d : drawable) {
-            d.draw(g, cameraX, cameraY);
+            if (isVisible(d, camera)){
+                d.draw(g, cameraX, cameraY);
+            }
         }
     }
 }
