@@ -1,5 +1,4 @@
 package src;
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.*;
 import java.io.File;
@@ -47,6 +46,7 @@ public class MapPixelReader {
 
             int blockedColor = new Color(237, 28, 36).getRGB();
             int treeColor = new Color(34, 177, 76).getRGB();
+            int roadColor = new Color(127,127,127).getRGB();
 
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
@@ -61,8 +61,10 @@ public class MapPixelReader {
                             TreeObject tree = new TreeObject(x,y, treeImagePaint);
                             mapController.addDrawable(tree);
                             teller++;
-
                         }
+                    else if (img.getRGB(x,y) == roadColor){
+                        
+                    }
                     }
                     else{
                         blocked[x][y] = false;
