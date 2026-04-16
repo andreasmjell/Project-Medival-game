@@ -20,7 +20,6 @@ public class MapController {
     ArrayList<Settlement> settlement = save.getSettlement("NewGameFile.json", this);
     ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
     BlockedCords blockedCords = new Blockedcords();
-    blockedCords.loadBlockedMap();
 
     HashSet<Npc> deleteNpc = new HashSet<>();
     HashSet<Npc> respawnNpc = new HashSet<>();
@@ -44,6 +43,7 @@ public class MapController {
 
     //Starter det faktiske spillet
     public void startGame(){
+        blockedCords.loadBlockedMap();
         System.out.println("Spillet Starter!!!");
         gamePanel = new GamePanel(player, camera, this);
         uiHandler.setGamePanel(gamePanel);
@@ -97,7 +97,6 @@ public class MapController {
     public ArrayList<Settlement> getSettlement(){
         return settlement;
     }
-    public 
 
 
     public ArrayList<Npc> getNpcs(){
