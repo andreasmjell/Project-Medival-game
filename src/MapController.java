@@ -99,6 +99,10 @@ public class MapController {
         drawable.add(player);
     }
 
+    public ArrayList<Drawable> getDrawable(){
+        return drawable;
+    }
+
 
     public ArrayList<Settlement> getSettlement(){
         return settlement;
