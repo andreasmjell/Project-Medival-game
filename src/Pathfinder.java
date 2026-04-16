@@ -10,7 +10,7 @@ public class Pathfinder {
         double targetY = targetYin;
 
         double x = startX;
-        double y = startX;
+        double y = startY;
 
         double dx = targetX - startX;
         double dy = targetY - startY;
