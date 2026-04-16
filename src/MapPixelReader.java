@@ -24,7 +24,7 @@ public class MapPixelReader {
             blocked = new boolean[width][height];
 
             int blockedColor = new Color(237, 28, 36).getRGB();
-            int treeColor = new Color(0, 254, 0).getRGB();
+            int treeColor = new Color(34, 177, 76).getRGB();
 
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
@@ -33,7 +33,9 @@ public class MapPixelReader {
                         blocked[x][y] = true;
                     }
                     else if (img.getRG(x,y) == treeColor){
-
+                        if (Match.random() > 0.6){
+                            TreeObjekt tree = new TreeObjekt(x,y);
+                        }
                     }
                     else{
                         blocked[x][y] = false;
