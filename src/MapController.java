@@ -19,6 +19,8 @@ public class MapController {
     CollisionManager collisionManager= new CollisionManager();
     ArrayList<Settlement> settlement = save.getSettlement("NewGameFile.json", this);
     ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
+    BlockedCords blockedCords = new Blockedcords();
+    blockedCords.loadBlockedMap();
 
     HashSet<Npc> deleteNpc = new HashSet<>();
     HashSet<Npc> respawnNpc = new HashSet<>();
@@ -86,6 +88,7 @@ public class MapController {
     public ArrayList<Settlement> getSettlement(){
         return settlement;
     }
+    public 
 
 
     public ArrayList<Npc> getNpcs(){
@@ -95,7 +98,7 @@ public class MapController {
     public void newPlayerPath(int x, int y){
         if(player.addToPath()){
             new Thread (() -> {
-            ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y);
+            ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y, blockedCords);
 
             player.getPath().addPoints(points);
             }).start();
@@ -132,8 +135,8 @@ public class MapController {
         double defeatedX = npc.getX();
         double defeatedY = npc.getY();
         int defeatedTroops = npc.getTroops();
-        double respawnX = defeatedX + (Math.random() * 300 -300);
-        double respawnY = defeatedY + (Math.random() * 300 -300);
+        double respawnX = defeatedX + (Math.random() * 600 -300);
+        double respawnY = defeatedY + (Math.random() * 600 -300);
         Npc respawn = new Npc(name, respawnX, respawnY, defeatedTroops, player, this);
         this.deleteNpc.add(npc);
         this.respawnNpc.add(respawn);
