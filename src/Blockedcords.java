@@ -1,3 +1,4 @@
+package src;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,7 +12,7 @@ public class BlockedCords {
 
     public void loadBlockedMap() {
         try {
-            BufferedImage img = ImageIO.read(new File("mapBlocked.png"));
+            BufferedImage img = ImageIO.read(this.getClass().getResourceAsStream("assets/mapBlocked.png"));
 
             width = img.getWidth();
             height = img.getHeight();
@@ -26,6 +27,9 @@ public class BlockedCords {
                     if (img.getRGB(x, y) == blockedColor) {
                         blocked[x][y] = true;
                     }
+                    else{
+                        blocked[x][y] = false;
+                    }
                 }
             }
 
@@ -37,9 +41,9 @@ public class BlockedCords {
     }
 
     public boolean isBlocked(int x, int y) {
-        if (x < 0 || y < 0 || x >= width || y >= height) {
-            return true;
-        }
-        return blocked[x][y];
+    if (x < 0 || x >= width || y < 0 || y >= height) {
+        return true; // Treat "out of bounds" as blocked
+    }
+    return blocked[x][y];
     }
 }
