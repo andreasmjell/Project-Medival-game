@@ -10,10 +10,6 @@ public class MapPixelReader {
     private int width;
     private int height;
 
-    public MapPixelReader {
-        
-    }
-
     public void loadBlockedMap() {
         try {
             BufferedImage img = ImageIO.read(this.getClass().getResourceAsStream("assets/mapBlocked.png"));
@@ -32,8 +28,8 @@ public class MapPixelReader {
                     if (img.getRGB(x, y) == blockedColor) {
                         blocked[x][y] = true;
                     }
-                    else if (img.getRG(x,y) == treeColor){
-                        if (Match.random() > 0.6){
+                    else if (img.getRGB(x, y) == treeColor){
+                        if (Math.random() > 0.6){
                             TreeObject tree = new TreeObject(x,y);
                         }
                     }

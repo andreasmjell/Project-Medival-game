@@ -13,9 +13,6 @@ public class TreeObject implements Drawable{
         this.x = x;
         this.y = y;
     }
-    public Image randomImage(){
-        Image playerImage = new ImageIcon(getClass().getResource("assets/playericon.png")).getImage();
-    }
 
     public double getX(){
         return x;
