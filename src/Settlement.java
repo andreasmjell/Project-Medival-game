@@ -18,6 +18,7 @@ public class Settlement extends GameObject{
         this.timer = timer;
         this.mapController = mapController;
     }
+    
 
     public int getX(){
         return x;

@@ -127,9 +127,10 @@ public class MapController {
         String name = npc.getName();
         double defeatedX = npc.getX();
         double defeatedY = npc.getY();
+        int defeatedTroops = npc.getTroops();
         double respawnX = defeatedX + (Math.random() * 300 -300);
         double respawnY = defeatedY + (Math.random() * 300 -300);
-        Npc respawn = new Npc(name, respawnX, respawnY, 10, player, this);
+        Npc respawn = new Npc(name, respawnX, respawnY, defeatedTroops, player, this);
         this.deleteNpc.add(npc);
         this.respawnNpc.add(respawn);
     }

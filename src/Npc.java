@@ -5,7 +5,7 @@ public class Npc extends GameObject{
     String name;
     double x;
     double y;
-    int speed = 1;
+    double speed;
     int troops;
     Player player;
     MapController mapController;
@@ -20,6 +20,7 @@ public class Npc extends GameObject{
         this.troops = troops;
         this.player = player;
         this.mapController = mapController;
+        this.speed = 1 - ((double)this.troops*0.001);
     }
     public String getName(){
         return name;

@@ -5,7 +5,7 @@ import java.util.HashSet;
 public class Player {
     //stats
     int troops;
-    int speed = 3;
+    double speed;
 
     //Position
     double x;
@@ -24,6 +24,7 @@ public class Player {
         this.x = x;
         this.y = y;
         this.troops = troops;
+        this.speed = 3;
         bounds = new Rectangle((int)x, (int)y, 80, 80);
     }
 

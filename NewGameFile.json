@@ -12,7 +12,7 @@
     "navn": "Hooker Town",
     "x": 1130,
     "y": 1062,
-    "troops" : 15,
+    "troops" : 200,
     "timer" : 10
   },
 
@@ -29,7 +29,7 @@
     "navn": "Tore",
     "x": 1500,
     "y": 1700,
-    "troops" : 10
+    "troops" : 100
   },
   {
     "type": "Npc",
