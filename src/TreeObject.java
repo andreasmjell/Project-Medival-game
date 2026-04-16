@@ -29,6 +29,6 @@ public class TreeObject implements Drawable{
         int px = (int)(x - cameraX - 400);
         int py = (int)(y - cameraY -400);
 
-        g.drawImage(treeImage, px, py, 800, 800, null);
+        g.drawImage(img, px, py, 800, 800, null);
     }
 }
