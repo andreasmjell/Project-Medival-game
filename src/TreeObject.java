@@ -13,10 +13,6 @@ public class TreeObject implements Drawable{
         this.x = x;
         this.y = y;
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 975fa49a3b241f71a7109030dbe725f197aa9519
     public double getX(){
         return x;
     }

@@ -103,6 +103,10 @@ public class MapController {
         return drawable;
     }
 
+    public void addDrawable(Drawable object){
+        drawable.add(object);
+    }
+
 
     public ArrayList<Settlement> getSettlement(){
         return settlement;
