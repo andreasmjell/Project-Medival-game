@@ -55,7 +55,7 @@ public class MapPixelReader {
                         blocked[x][y] = true;
                     }
                     else if (img.getRGB(x, y) == treeColor){
-                        if (Math.random() > 0.9999){
+                        if (Math.random() > 0.999){
                             int randomtree = rand.nextInt(trees.size());
                             Image treeImagePaint = trees.get(randomtree);
                             TreeObject tree = new TreeObject(x,y, treeImagePaint);
