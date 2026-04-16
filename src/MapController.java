@@ -19,7 +19,7 @@ public class MapController {
     CollisionManager collisionManager= new CollisionManager();
     ArrayList<Settlement> settlement = save.getSettlement("NewGameFile.json", this);
     ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
-    BlockedCords blockedCords = new BlockedCords();
+    MapPixelReader mapPixelReader = new MapPixelReader();
 
     HashSet<Npc> deleteNpc = new HashSet<>();
     HashSet<Npc> respawnNpc = new HashSet<>();
@@ -44,7 +44,7 @@ public class MapController {
 
     //Starter det faktiske spillet
     public void startGame(){
-        blockedCords.loadBlockedMap();
+        mapPixelReader.loadBlockedMap();
         System.out.println("Spillet Starter!!!");
         gamePanel = new GamePanel(player, camera, this);
         uiHandler.setGamePanel(gamePanel);
@@ -112,14 +112,14 @@ public class MapController {
     public void newPlayerPath(int x, int y){
         if(player.addToPath()){
             new Thread (() -> {
-            ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y, blockedCords);
+            ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y, mapPixelReader);
 
             player.getPath().addPoints(points);
             }).start();
         }
         else{
             new Thread (() -> {
-            ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y, blockedCords);
+            ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y, mapPixelReader);
 
             player.setPath(new Path(points));
             }).start();
@@ -128,7 +128,7 @@ public class MapController {
 
     public void newNpcPath(int x, int y, Npc npc){
         new Thread (() -> {
-            ArrayList<Point> points = pathfinder.findPath(npc.x, npc.y, x, y, blockedCords);    
+            ArrayList<Point> points = pathfinder.findPath(npc.x, npc.y, x, y, mapPixelReader);    
             npc.setPath(new Path(points));
         }).start();
     }
