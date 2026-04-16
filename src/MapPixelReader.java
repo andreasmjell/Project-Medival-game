@@ -4,11 +4,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-public class BlockedCords {
+public class MapPixelReader {
 
     private boolean[][] blocked;
     private int width;
     private int height;
+
+    public MapPixelReader {
+        
+    }
 
     public void loadBlockedMap() {
         try {
@@ -20,12 +24,16 @@ public class BlockedCords {
             blocked = new boolean[width][height];
 
             int blockedColor = new Color(237, 28, 36).getRGB();
+            int treeColor = new Color(0, 254, 0).getRGB();
 
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
 
                     if (img.getRGB(x, y) == blockedColor) {
                         blocked[x][y] = true;
+                    }
+                    else if (img.getRG(x,y) == treeColor){
+
                     }
                     else{
                         blocked[x][y] = false;

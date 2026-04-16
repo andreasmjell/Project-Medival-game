@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Pathfinder {
     
-    public ArrayList<Point> findPath(double startX, double startY, double targetXin, double targetYin, BlockedCords blocked){
+    public ArrayList<Point> findPath(double startX, double startY, double targetXin, double targetYin, MapPixelReader blocked){
         ArrayList<Point> path = new ArrayList<>();
 
         double targetX = targetXin;
