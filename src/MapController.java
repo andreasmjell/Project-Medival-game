@@ -123,6 +123,10 @@ public class MapController {
     public UiHandler getUiHandler(){
         return uiHandler;
     }
+    
+    public void openSettlementMenu(Settlement settlement){
+        uiHandler.openSettlementMenu(settlement);
+    }
     public void npcDefeated(Npc npc){
         String name = npc.getName();
         double defeatedX = npc.getX();
