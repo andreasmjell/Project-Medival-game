@@ -1,6 +1,7 @@
 package src;
 import java.awt.image.BufferedImage;
 import java.awt.*;
+import java.awt.geom.PathIterator;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -13,8 +14,10 @@ public class MapPixelReader {
     private int width;
     private int height;
     MapController mapController;
-    int teller = 0;
+    int amountTree = 0;
+    int amountPath = 0;
     ArrayList<Image> trees = new ArrayList<>();
+    ArrayList<Image> travelPath = new ArrayList<>();
     Random rand = new Random();
 
     public MapPixelReader (MapController mapController){
@@ -33,6 +36,11 @@ public class MapPixelReader {
         trees.add(treeImage5);
         trees.add(treeImage6);
         trees.add(treeImage7);
+
+        Image pathTile1 = new ImageIcon(getClass().getResource("assets/pathTile1.png")).getImage();
+        Image pathTile2 = new ImageIcon(getClass().getResource("assets/pathTile2.png")).getImage();
+        travelPath.add(pathTile1);
+        travelPath.add(pathTile2);
     }
 
     public void loadBlockedMap() {
@@ -60,20 +68,25 @@ public class MapPixelReader {
                             Image treeImagePaint = trees.get(randomtree);
                             TreeObject tree = new TreeObject(x,y, treeImagePaint);
                             mapController.addDrawable(tree);
-                            teller++;
+                            amountTree++;
                         }
+                    }/*
                     else if (img.getRGB(x,y) == roadColor){
-                        
-                    }
-                    }
-                    else{
+                        int randomPathTile = rand.nextInt(travelPath.size());
+                        Image pathImagePaint = travelPath.get(randomPathTile);
+                        PathTile path = new PathTile(x, y, pathImagePaint);
+                        mapController.addDrawable(path);
+                        amountPath++;
+                    }*/
+                    else {
                         blocked[x][y] = false;
                     }
                 }
             }
 
             System.out.println("Blocked map lastet!");
-            System.out.println("Antall trær" + teller);
+            System.out.println("Antall trær" + amountTree);
+            System.out.println("Antall stier" + amountPath);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,0 +1,34 @@
+package src;
+import java.awt.*;
+
+import javax.swing.ImageIcon;
+
+public class PathTile implements Drawable{
+    Image sprite;
+    double x;
+    double y;
+    Image img;
+
+    public PathTile(double x, double y, Image img){
+        this.x = x;
+        this.y = y;
+        this.img = img;
+    }
+    public double getX(){
+        return x;
+    }
+    public double getY(){
+        return y;
+    }
+
+    public Image getSprite(){
+        return sprite;
+    }
+
+    public void draw(Graphics g, double cameraX, double cameraY){
+        int px = (int)(x - cameraX - 5);
+        int py = (int)(y - cameraY -5);
+
+        g.drawImage(img, px, py, 600, 600, null);
+    }
+}
