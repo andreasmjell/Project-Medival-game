@@ -34,7 +34,7 @@ public class MapPixelReader {
                     }
                     else if (img.getRG(x,y) == treeColor){
                         if (Match.random() > 0.6){
-                            TreeObjekt tree = new TreeObjekt(x,y);
+                            TreeObject tree = new TreeObject(x,y);
                         }
                     }
                     else{
