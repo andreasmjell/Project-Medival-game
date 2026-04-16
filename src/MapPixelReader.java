@@ -11,8 +11,9 @@ public class MapPixelReader {
     private int width;
     private int height;
     MapController mapController;
+    int teller = 0;
 
-    public MapPixelReader (MapController mapcontroller){
+    public MapPixelReader (MapController mapController){
         this.mapController = mapController;
     }
 
@@ -35,9 +36,10 @@ public class MapPixelReader {
                         blocked[x][y] = true;
                     }
                     else if (img.getRGB(x, y) == treeColor){
-                        if (Math.random() > 0){
+                        if (Math.random() > 0.99){
                             TreeObject tree = new TreeObject(x,y);
                             mapController.addDrawable(tree);
+                            teller++;
 
                         }
                     }
@@ -48,6 +50,7 @@ public class MapPixelReader {
             }
 
             System.out.println("Blocked map lastet!");
+            System.out.println("Antall trær" + teller);
 
         } catch (Exception e) {
             e.printStackTrace();
