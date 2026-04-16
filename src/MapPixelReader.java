@@ -37,7 +37,7 @@ public class MapPixelReader {
         trees.add(treeImage6);
         trees.add(treeImage7);
 
-        Image pathTile1 = new ImageIcon(getClass().getResource("assets/pathTile1.png")).getImage();
+        Image pathTile1 = new ImageIcon(getClass().getResource("assets/pathTile.png")).getImage();
         Image pathTile2 = new ImageIcon(getClass().getResource("assets/pathTile2.png")).getImage();
         travelPath.add(pathTile1);
         travelPath.add(pathTile2);
@@ -63,6 +63,7 @@ public class MapPixelReader {
                         blocked[x][y] = true;
                     }
                     else if (img.getRGB(x, y) == treeColor){
+                        blocked[x][y] = false;
                         if (Math.random() > 0.999){
                             int randomtree = rand.nextInt(trees.size());
                             Image treeImagePaint = trees.get(randomtree);
@@ -70,14 +71,15 @@ public class MapPixelReader {
                             mapController.addDrawable(tree);
                             amountTree++;
                         }
-                    }/*
+                    }
                     else if (img.getRGB(x,y) == roadColor){
                         int randomPathTile = rand.nextInt(travelPath.size());
                         Image pathImagePaint = travelPath.get(randomPathTile);
                         PathTile path = new PathTile(x, y, pathImagePaint);
                         mapController.addDrawable(path);
                         amountPath++;
-                    }*/
+                        blocked[x][y] = false;
+                    }
                     else {
                         blocked[x][y] = false;
                     }

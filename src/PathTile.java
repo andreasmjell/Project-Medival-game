@@ -26,9 +26,9 @@ public class PathTile implements Drawable{
     }
 
     public void draw(Graphics g, double cameraX, double cameraY){
-        int px = (int)(x - cameraX - 5);
-        int py = (int)(y - cameraY -5);
+        int px = (int)(x - cameraX - 2);
+        int py = (int)(y - cameraY -2);
 
-        g.drawImage(img, px, py, 600, 600, null);
+        g.drawImage(img, px, py, 5, 5, null);
     }
 }
