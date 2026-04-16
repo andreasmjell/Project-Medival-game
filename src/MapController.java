@@ -25,6 +25,7 @@ public class MapController {
     HashSet<Npc> respawnNpc = new HashSet<>();
 
     ArrayList<GameObject> gameObjects = new ArrayList<>();
+    ArrayList<Drawable> drawable = new ArrayList<>();
 
     private Timer timer;
 
@@ -91,6 +92,11 @@ public class MapController {
     private void createGameObject(){
         gameObjects.addAll(settlement);
         gameObjects.addAll(npc);
+        for (GameObject object : gameObjects){
+            Drawable d = object.getThis();
+            drawable.add(d);
+        }
+        drawable.add(player);
     }
 
 
