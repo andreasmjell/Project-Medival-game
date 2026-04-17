@@ -4,12 +4,16 @@ import java.io.File;
 
 public class AudioManager {
     Clip music;
+    FloatControl gain;
+
 
 
     public void play() throws Exception {
         AudioInputStream audio = AudioSystem.getAudioInputStream(new File("src/assets/musikk.wav"));
         music = AudioSystem.getClip();
         music.open(audio);
+        gain = (FloatControl) music.getControl(FloatControl.Type.MASTER_GAIN);
+
         music.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
@@ -19,6 +23,18 @@ public class AudioManager {
 
     public void start(){
         music.start();
+    }
+
+    public void volumeDown(){
+    float current = gain.getValue();
+    float min = gain.getMinimum();
+    gain.setValue(Math.max(current - 2.0f, min));
+    }
+
+    public void volumeUp(){
+        float current = gain.getValue();
+        float max = gain.getMaximum();
+        gain.setValue(Math.min(current + 2.0f, max));
     }
 
 }
