@@ -23,7 +23,7 @@ public class MapPixelReader {
 
     public MapPixelReader (MapController mapController){
         this.mapController = mapController;
-        Image treeImage1 = new ImageIcon(getClass().getResource("assets/aboveTree1.png")).getImage();
+        Image treeImage1 = new ImageIcon(getClass().getResource("assets/tree1.png")).getImage();
         /*Image treeImage2 = new ImageIcon(getClass().getResource("assets/tree2.png")).getImage();
         Image treeImage3 = new ImageIcon(getClass().getResource("assets/tree3.png")).getImage();
         Image treeImage4 = new ImageIcon(getClass().getResource("assets/tree4.png")).getImage();
