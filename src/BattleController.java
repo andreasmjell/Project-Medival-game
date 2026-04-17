@@ -30,6 +30,7 @@ public class BattleController {
     }
 
     public void start(){
+        System.out.println("Starting Battle!");
         BattlePanel battlePanel = new BattlePanel(npc, battlePlayer, mapController ,this);
         uiHandler.openBattlePanel(battlePanel);
 
@@ -38,10 +39,11 @@ public class BattleController {
 
             update();
         });
+
+        timer.start();
     }
 
     public void update(){
-        System.out.println("UPDATE!");
     }
 
     public void stopBattle(){
