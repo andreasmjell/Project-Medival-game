@@ -29,5 +29,22 @@ public class BattleController {
         battleCamera = new Camera((int)battlePlayer.getX(), (int)battlePlayer.getY(), (int)size.getWidth(), (int)size.getHeight(), battlePlayer);
     }
 
-    
+    public void start(){
+        BattlePanel battlePanel = new BattlePanel(npc, battlePlayer, mapController ,this);
+        uiHandler.openBattlePanel(battlePanel);
+
+
+        timer = new Timer(12, e -> {
+
+            update();
+        });
+    }
+
+    public void update(){
+        System.out.println("UPDATE!");
+    }
+
+    public void stopBattle(){
+        mapController.closeBattle(battlePlayer);
+    }
 }

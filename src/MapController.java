@@ -198,14 +198,14 @@ public class MapController {
     }
 
     public void openBattle(Npc npc) {
-    BattlePanel battlePanel = new BattlePanel(npc, player, this);
     BattleController battleController = new BattleController(this, npc, player, uiHandler);
     timer.stop();
-    uiHandler.openBattlePanel(battlePanel);
+    battleController.start();
     }
 
-    public void closeBattle() {
+    public void closeBattle(BattlePlayer battlePlayer) {
         uiHandler.closeBattlePanel();
+        player.setTroops(battlePlayer.getTroops());
         timer.start();
     }
 

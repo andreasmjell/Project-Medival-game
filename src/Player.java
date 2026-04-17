@@ -55,6 +55,9 @@ public class Player implements Drawable{
     public void updateTroops(int troops){
         this.troops += troops;
     }
+    public void setTroops(int troops){
+        this.troops = troops;
+    }
     public int getTroops(){
         return troops;
     }

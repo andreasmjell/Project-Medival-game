@@ -9,10 +9,15 @@ import java.util.ArrayList;
 import java.util.Comparator;
 public class BattlePanel extends JPanel{
     Npc npc;
-    Player player;
+    BattlePlayer player;
     MapController mapController;
+    BattleController battleController;
 
-    public BattlePanel(Npc npc, Player player, MapController mapController){
+    public BattlePanel(Npc npc, BattlePlayer player, MapController mapController, BattleController battleController){
+        this.npc = npc;
+        this.player = player;
+        this.mapController = mapController;
+        this.battleController = battleController;
     }
 
     public void update(){
