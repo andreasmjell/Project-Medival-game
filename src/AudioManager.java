@@ -4,13 +4,9 @@ import java.io.File;
 
 public class AudioManager {
     Clip music;
-<<<<<<< HEAD
     Clip battleSound;
     Clip enemyDefeated;
-=======
     FloatControl gain;
-
->>>>>>> fee8932d02e72bab9491e85c96b55d75e60f9336
 
 
     public void play() throws Exception {
