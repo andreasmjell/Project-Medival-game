@@ -178,9 +178,15 @@ public class MapController {
         this.respawnNpc.add(respawn);
     }
     public void npcFight(int troops, Npc npc){
+        try{
+        audioManager.startBattleSound();
+        }catch(Exception e){System.out.println("MUSIKK STARTER IKKE!");}
         if (player.getTroops() > troops){
             player.updateTroops(troops*-1);
             npcDefeated(npc);
+            try {
+            audioManager.enemyDefeated();
+            } catch(Exception e){}
         }
         System.out.println(player.getTroops());
     }
