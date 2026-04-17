@@ -165,6 +165,9 @@ public class MapController {
     public void openSettlementMenu(Settlement settlement){
         uiHandler.openSettlementMenu(settlement);
     }
+    public void openPauseMenu(){
+        uiHandler.openPauseMenu();
+    }
     public void npcDefeated(Npc npc){
         String name = npc.getName();
         double defeatedX = npc.getX();
@@ -181,12 +184,28 @@ public class MapController {
         this.respawnNpc.add(respawn);
     }
     public void npcFight(int troops, Npc npc){
+        try{
+        audioManager.startBattleSound();
+        }catch(Exception e){System.out.println("MUSIKK STARTER IKKE!");}
         if (player.getTroops() > troops){
             player.updateTroops(troops*-1);
             npcDefeated(npc);
+            try {
+            audioManager.enemyDefeated();
+            } catch(Exception e){}
         }
         System.out.println(player.getTroops());
     }
+
+    public void openBattle(Npc npc) {
+    BattlePanel battlePanel = new BattlePanel(npc, player, this);
+    uiHandler.openBattlePanel(battlePanel);
+    }
+    
+    public void closeBattle() {
+        uiHandler.closeBattlePanel();
+    }
+
     public Player getPlayer(){
         return player;
     }

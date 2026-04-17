@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class Save {
+public class Save { //SAVE MÅ GJØRES OM FOR Å SKILLE TYPER SETTLEMENTS FRA HVERADNRE!!!!!!!!
     ArrayList<Settlement> settlement = new ArrayList<>();
     ArrayList<Npc> npc = new ArrayList<>();
     String filename;
@@ -23,7 +23,7 @@ public class Save {
                 int y = obj.getInt("y");
                 int troops = obj.getInt("troops");
                 int timer = obj.getInt("timer");
-                settlement.add(new Settlement(navn, x, y, troops, timer, mapController));
+                settlement.add(new Town(navn, x, y, troops, timer, mapController));
             }
         }
         }catch (IOException e){

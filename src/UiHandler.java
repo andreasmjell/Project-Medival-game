@@ -1,6 +1,7 @@
 package src;
 
 import src.menu.SettlementMenu;
+import src.menu.PauseMenu;
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,6 +10,8 @@ public class UiHandler {
     private JLayeredPane layeredPane;
 
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+    private JPanel activeMainPanel;
 
     private GamePanel gamePanel;
     private Ui ui;
@@ -44,21 +47,37 @@ public class UiHandler {
         ui.mainMenu();
     }
 
+    public void setMainPanel(JPanel panel){
+        if (activeMainPanel != null) {
+        layeredPane.remove(activeMainPanel);
+        }
+        activeMainPanel = panel;
+
+        panel.setBounds(0, 0, screenSize.width, screenSize.height);
+        layeredPane.add(panel, MAP_LAYER);
+
+        layeredPane.revalidate();
+        layeredPane.repaint();
+
+        panel.setFocusable(true);
+        panel.requestFocusInWindow();
+    }
+
     public void setGamePanel(GamePanel panel){
         gamePanel = panel;
         frame.setContentPane(layeredPane);
 
         layeredPane.removeAll();
+        
+        setMainPanel(panel);
+    }
 
-        panel.setBounds(0, 0, screenSize.width, screenSize.height);
-        layeredPane.add(panel, Integer.valueOf(0));
-        
-        
-        panel.setFocusable(true);
-        panel.requestFocusInWindow();
-        
-        frame.revalidate();
-        frame.repaint();
+    public void openBattlePanel(BattlePanel battlePanel){
+        setMainPanel(battlePanel);
+    }
+
+    public void closeBattlePanel(){
+        setMainPanel(gamePanel);
     }
 
     public void showHud(){
@@ -101,6 +120,10 @@ public class UiHandler {
     public void openSettlementMenu(Settlement settlement){
         SettlementMenu settlementMenu = new SettlementMenu(settlement, mapController); 
         openMenu(settlementMenu, MENU_LAYER);
+    }
+    public void openPauseMenu(){
+        PauseMenu pauseMenu = new PauseMenu(mapController);
+        openMenu(pauseMenu, MENU_LAYER);
     }
 
 }
