@@ -47,7 +47,7 @@ public class Player implements Drawable{
         int px = (int)(x - cameraX - 40); // Player X
         int py = (int)(y - cameraY -40);
 
-        g.drawImage(playerImage, px, py, 80, 80, null);
+        g.drawImage(playerImage, px, py, 50, 80, null);
     }
     public Rectangle getBounds(){
         return bounds;

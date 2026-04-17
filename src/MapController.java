@@ -39,13 +39,13 @@ public class MapController {
 
     //Første oppstart, åpner main menu.
     public void start(){
+        startMusic();
 
         uiHandler.start();
     }
 
     //Starter det faktiske spillet
     public void startGame(){
-        startMusic();
         mapPixelReader.loadBlockedMap();
         System.out.println("Spillet Starter!!!");
         gamePanel = new GamePanel(player, camera, this);
@@ -81,7 +81,10 @@ public class MapController {
     public void startMusic(){
         try{
         audioManager.play();
-        }catch(Exception e){System.out.println("MUSIKK STARTER IKKE!");}
+        }catch(Exception e){
+            System.out.println("MUSIKK STARTER IKKE!!!");
+            e.printStackTrace();
+        }
     }
 
     public void npcUpdate(){
@@ -172,18 +175,32 @@ public class MapController {
         int defeatedTroops = npc.getTroops();
         double respawnX = defeatedX + (Math.random() * 600 -300);
         double respawnY = defeatedY + (Math.random() * 600 -300);
+        while (mapPixelReader.isBlocked((int)respawnX, (int)respawnY)){
+            respawnX = defeatedX + (Math.random() * 600 -300);
+            respawnY = defeatedY + (Math.random() * 600 -300);
+        }
         Npc respawn = new Npc(name, respawnX, respawnY, defeatedTroops, player, this);
         this.deleteNpc.add(npc);
         this.respawnNpc.add(respawn);
     }
     public void npcFight(int troops, Npc npc){
+        try{
+        audioManager.startBattleSound();
+        }catch(Exception e){System.out.println("MUSIKK STARTER IKKE!");}
         if (player.getTroops() > troops){
             player.updateTroops(troops*-1);
             npcDefeated(npc);
+            try {
+            audioManager.enemyDefeated();
+            } catch(Exception e){}
         }
         System.out.println(player.getTroops());
     }
     public Player getPlayer(){
         return player;
+    }
+
+    public AudioManager getAudioManager(){
+        return audioManager;
     }
 }

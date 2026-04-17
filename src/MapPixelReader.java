@@ -53,9 +53,9 @@ public class MapPixelReader {
 
             blocked = new boolean[width][height];
 
-            int blockedColor = new Color(237, 28, 36).getRGB();
-            int treeColor = new Color(34, 177, 76).getRGB();
-            int roadColor = new Color(127,127,127).getRGB();
+            int blockedColor = new Color(63, 72, 204).getRGB(); //Paint blå
+            int treeColor = new Color(34, 177, 76).getRGB(); //Paint grønn
+            int roadColor = new Color(127,127,127).getRGB(); //Paint grå
 
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
