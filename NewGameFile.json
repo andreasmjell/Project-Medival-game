@@ -10,8 +10,8 @@
   {
     "type": "Settlement",
     "navn": "Hooker Town",
-    "x": 1130,
-    "y": 1062,
+    "x": 810,
+    "y": 388,
     "troops" : 200,
     "timer" : 10
   },

@@ -20,6 +20,7 @@ public class MapController {
     ArrayList<Settlement> settlement = save.getSettlement("NewGameFile.json", this);
     ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
     MapPixelReader mapPixelReader = new MapPixelReader(this);
+    AudioManager audioManager = new AudioManager();
 
     HashSet<Npc> deleteNpc = new HashSet<>();
     HashSet<Npc> respawnNpc = new HashSet<>();
@@ -44,6 +45,7 @@ public class MapController {
 
     //Starter det faktiske spillet
     public void startGame(){
+        startMusic();
         mapPixelReader.loadBlockedMap();
         System.out.println("Spillet Starter!!!");
         gamePanel = new GamePanel(player, camera, this);
@@ -74,6 +76,12 @@ public class MapController {
 
     public void timerStart(){
         timer.start();
+    }
+
+    public void startMusic(){
+        try{
+        audioManager.play();
+        }catch(Exception e){System.out.println("MUSIKK STARTER IKKE!");}
     }
 
     public void npcUpdate(){
