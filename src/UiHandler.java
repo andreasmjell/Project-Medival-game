@@ -1,6 +1,7 @@
 package src;
 
 import src.menu.SettlementMenu;
+import src.menu.PauseMenu;
 import javax.swing.*;
 import java.awt.*;
 
@@ -101,6 +102,10 @@ public class UiHandler {
     public void openSettlementMenu(Settlement settlement){
         SettlementMenu settlementMenu = new SettlementMenu(settlement, mapController); 
         openMenu(settlementMenu, MENU_LAYER);
+    }
+    public void openPauseMenu(){
+        PauseMenu pauseMenu = new PauseMenu(mapController);
+        openMenu(pauseMenu, MENU_LAYER);
     }
 
 }

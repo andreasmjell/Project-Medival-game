@@ -162,6 +162,9 @@ public class MapController {
     public void openSettlementMenu(Settlement settlement){
         uiHandler.openSettlementMenu(settlement);
     }
+    public void openPauseMenu(){
+        uiHandler.openPauseMenu();
+    }
     public void npcDefeated(Npc npc){
         String name = npc.getName();
         double defeatedX = npc.getX();
