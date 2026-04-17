@@ -196,6 +196,16 @@ public class MapController {
         }
         System.out.println(player.getTroops());
     }
+
+    public void openBattle(Npc npc) {
+    BattlePanel battlePanel = new BattlePanel(npc, player, this);
+    uiHandler.openBattlePanel(battlePanel);
+    }
+    
+    public void closeBattle() {
+        uiHandler.closeBattlePanel();
+    }
+
     public Player getPlayer(){
         return player;
     }

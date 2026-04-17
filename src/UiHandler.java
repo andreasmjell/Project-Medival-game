@@ -11,6 +11,8 @@ public class UiHandler {
 
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
+    private JPanel activeMainPanel;
+
     private GamePanel gamePanel;
     private Ui ui;
     private HudPanel hud;
@@ -45,21 +47,37 @@ public class UiHandler {
         ui.mainMenu();
     }
 
+    public void setMainPanel(JPanel panel){
+        if (activeMainPanel != null) {
+        layeredPane.remove(activeMainPanel);
+        }
+        activeMainPanel = panel;
+
+        panel.setBounds(0, 0, screenSize.width, screenSize.height);
+        layeredPane.add(panel, MAP_LAYER);
+
+        layeredPane.revalidate();
+        layeredPane.repaint();
+
+        panel.setFocusable(true);
+        panel.requestFocusInWindow();
+    }
+
     public void setGamePanel(GamePanel panel){
         gamePanel = panel;
         frame.setContentPane(layeredPane);
 
         layeredPane.removeAll();
+        
+        setMainPanel(panel);
+    }
 
-        panel.setBounds(0, 0, screenSize.width, screenSize.height);
-        layeredPane.add(panel, Integer.valueOf(0));
-        
-        
-        panel.setFocusable(true);
-        panel.requestFocusInWindow();
-        
-        frame.revalidate();
-        frame.repaint();
+    public void openBattlePanel(BattlePanel battlePanel){
+        setMainPanel(battlePanel);
+    }
+
+    public void closeBattlePanel(){
+        setMainPanel(gamePanel);
     }
 
     public void showHud(){
