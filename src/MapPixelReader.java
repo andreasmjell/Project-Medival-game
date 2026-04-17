@@ -19,23 +19,24 @@ public class MapPixelReader {
     ArrayList<Image> trees = new ArrayList<>();
     ArrayList<Image> travelPath = new ArrayList<>();
     Random rand = new Random();
+    int oga = 0;
 
     public MapPixelReader (MapController mapController){
         this.mapController = mapController;
         Image treeImage1 = new ImageIcon(getClass().getResource("assets/tree1.png")).getImage();
         Image treeImage2 = new ImageIcon(getClass().getResource("assets/tree2.png")).getImage();
         Image treeImage3 = new ImageIcon(getClass().getResource("assets/tree3.png")).getImage();
-        Image treeImage4 = new ImageIcon(getClass().getResource("assets/tree4.png")).getImage();
+        /*Image treeImage4 = new ImageIcon(getClass().getResource("assets/tree4.png")).getImage();
         Image treeImage5 = new ImageIcon(getClass().getResource("assets/tree5.png")).getImage();
         Image treeImage6 = new ImageIcon(getClass().getResource("assets/tree6.png")).getImage();
         Image treeImage7 = new ImageIcon(getClass().getResource("assets/tree7.png")).getImage();
-        trees.add(treeImage1);
+        */trees.add(treeImage1);
         trees.add(treeImage2);
         trees.add(treeImage3);
-        trees.add(treeImage4);
+        /*trees.add(treeImage4);
         trees.add(treeImage5);
         trees.add(treeImage6);
-        trees.add(treeImage7);
+        trees.add(treeImage7);*/
 
         Image pathTile1 = new ImageIcon(getClass().getResource("assets/pathTile.png")).getImage();
         Image pathTile2 = new ImageIcon(getClass().getResource("assets/pathTile2.png")).getImage();
@@ -72,7 +73,7 @@ public class MapPixelReader {
                             amountTree++;
                         }
                     }
-                    else if (img.getRGB(x,y) == roadColor){
+                    else if (img.getRGB(x,y) == oga){
                         int randomPathTile = rand.nextInt(travelPath.size());
                         Image pathImagePaint = travelPath.get(randomPathTile);
                         PathTile path = new PathTile(x, y, pathImagePaint);
