@@ -16,9 +16,6 @@ public class GamePanel extends JPanel {
 
     //Map and Player icon
      Image mapImage = new ImageIcon(getClass().getResource("assets/map.png")).getImage();
-     Image playerImage = new ImageIcon(getClass().getResource("assets/playericon.png")).getImage();
-     Image settlementImage = new ImageIcon(getClass().getResource("assets/by.png")).getImage();
-     Image npcImage = new ImageIcon(getClass().getResource("assets/npc.png")).getImage();
      Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
 
