@@ -83,12 +83,7 @@ public class InputManager{
     public void bindDefault(){
 
         //esc
-<<<<<<< HEAD
         this.bindKey(27, () -> mapController.openPauseMenu()); //Åpner main menu. !! Må byttes til pause overlay. Starter flere game loops!
-=======
-        this.bindKey(27, () -> mapController.start()); //Åpner main menu. !! Må byttes til pause overlay. Starter flere game loops!
->>>>>>> bcc7947264cefb2a78a2364abd5fe8142a0990ea
-
         //Movement----------------------
         //pil opp
         this.bindKey(38, () -> camera.y -= 15);
