@@ -50,6 +50,22 @@ public class Ui {
     exit.setBounds(600, 400, 320, 80); // Endret Y fra 600 til 400 for synlighet
     exit.addActionListener(e -> System.exit(0));
 
+    // AUDIO KNAPPER
+    AudioManager audioManager = mapController.getAudioManager();
+    MenuButton audioPlus = new MenuButton("+"); 
+    audioPlus.addActionListener(e -> {
+        audioManager.volumeUp();
+    });
+    MenuButton audioMinus = new MenuButton("-");
+    audioMinus.addActionListener(e -> {
+        audioManager.volumeDown();
+    });
+    MenuButton audio = new MenuButton("audio");
+    audioPlus.setBounds(380, 200, 40, 40);
+    audioMinus.setBounds(100, 200, 40, 40);
+    audio.setBounds(140, 200, 240, 40);
+    
+
     // 2. Lag bakgrunnen
     JLabel bg = new JLabel(new ImageIcon(getClass().getResource("assets/Mainmenu.png")));
     bg.setBounds(0, 0, size.width, size.height);
@@ -58,7 +74,11 @@ public class Ui {
     // Eller bruk setComponentZOrder
     root.add(startGame);
     root.add(exit);
+    root.add(audioPlus); 
+    root.add(audioMinus); 
+    root.add(audio); 
     root.add(bg); 
+    
 
     // Fortell UiHandler at dette er den aktive menyen
     uiHandler.getFrame().setContentPane(root);

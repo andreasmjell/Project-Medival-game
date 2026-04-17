@@ -39,13 +39,13 @@ public class MapController {
 
     //Første oppstart, åpner main menu.
     public void start(){
+        startMusic();
 
         uiHandler.start();
     }
 
     //Starter det faktiske spillet
     public void startGame(){
-        startMusic();
         mapPixelReader.loadBlockedMap();
         System.out.println("Spillet Starter!!!");
         gamePanel = new GamePanel(player, camera, this);
@@ -81,7 +81,10 @@ public class MapController {
     public void startMusic(){
         try{
         audioManager.play();
-        }catch(Exception e){System.out.println("MUSIKK STARTER IKKE!");}
+        }catch(Exception e){
+            System.out.println("MUSIKK STARTER IKKE!!!");
+            e.printStackTrace();
+        }
     }
 
     public void npcUpdate(){
@@ -192,5 +195,9 @@ public class MapController {
     }
     public Player getPlayer(){
         return player;
+    }
+
+    public AudioManager getAudioManager(){
+        return audioManager;
     }
 }
