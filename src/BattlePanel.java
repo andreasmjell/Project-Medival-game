@@ -20,11 +20,6 @@ public class BattlePanel extends JPanel{
     }
 
 
-
-
-
-
-
             @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

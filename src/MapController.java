@@ -199,11 +199,14 @@ public class MapController {
 
     public void openBattle(Npc npc) {
     BattlePanel battlePanel = new BattlePanel(npc, player, this);
+    BattleController battleController = new BattleController(this, npc, player, uiHandler);
+    timer.stop();
     uiHandler.openBattlePanel(battlePanel);
     }
-    
+
     public void closeBattle() {
         uiHandler.closeBattlePanel();
+        timer.start();
     }
 
     public Player getPlayer(){
