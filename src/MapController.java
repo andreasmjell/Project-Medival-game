@@ -161,6 +161,10 @@ public class MapController {
         int defeatedTroops = npc.getTroops();
         double respawnX = defeatedX + (Math.random() * 600 -300);
         double respawnY = defeatedY + (Math.random() * 600 -300);
+        while (mapPixelReader.isBlocked((int)respawnX, (int)respawnY)){
+            respawnX = defeatedX + (Math.random() * 600 -300);
+            respawnY = defeatedY + (Math.random() * 600 -300);
+        }
         Npc respawn = new Npc(name, respawnX, respawnY, defeatedTroops, player, this);
         this.deleteNpc.add(npc);
         this.respawnNpc.add(respawn);

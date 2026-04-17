@@ -23,7 +23,7 @@ public class MapPixelReader {
 
     public MapPixelReader (MapController mapController){
         this.mapController = mapController;
-        Image treeImage1 = new ImageIcon(getClass().getResource("assets/tree1.png")).getImage();
+        Image treeImage1 = new ImageIcon(getClass().getResource("assets/aboveTree1.png")).getImage();
         /*Image treeImage2 = new ImageIcon(getClass().getResource("assets/tree2.png")).getImage();
         Image treeImage3 = new ImageIcon(getClass().getResource("assets/tree3.png")).getImage();
         Image treeImage4 = new ImageIcon(getClass().getResource("assets/tree4.png")).getImage();
@@ -53,9 +53,9 @@ public class MapPixelReader {
 
             blocked = new boolean[width][height];
 
-            int blockedColor = new Color(237, 28, 36).getRGB();
-            int treeColor = new Color(34, 177, 76).getRGB();
-            int roadColor = new Color(127,127,127).getRGB();
+            int blockedColor = new Color(63, 72, 204).getRGB(); //Paint blå
+            int treeColor = new Color(34, 177, 76).getRGB(); //Paint grønn
+            int roadColor = new Color(127,127,127).getRGB(); //Paint grå
 
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
