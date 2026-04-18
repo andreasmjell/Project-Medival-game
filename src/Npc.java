@@ -1,9 +1,11 @@
 package src;
 import java.awt.*;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
 public class Npc extends GameObject implements Drawable{
+    String faction;
     String name;
     double x;
     double y;
@@ -11,12 +13,14 @@ public class Npc extends GameObject implements Drawable{
     int troops;
     Player player;
     MapController mapController;
+    ArrayList<Npc> enemyList = new ArrayList<>();
     Image npcImage = new ImageIcon(getClass().getResource("assets/npc.png")).getImage();
 
     Path path;
 
-    public Npc(String name, double x, double y, int troops, Player player, MapController mapController){
+    public Npc(String name, double x, double y, int troops, Player player, MapController mapController, String faction){
         super((int)x, (int)y, 80, 80);
+        this.faction = faction;
         this.name = name;
         this.x = x;
         this.y = y;
@@ -28,6 +32,9 @@ public class Npc extends GameObject implements Drawable{
     public String getName(){
         return name;
     }
+    public String getFaction(){
+        return faction;
+    }
 
     public Drawable getThis(){
         return this;
@@ -38,36 +45,31 @@ public class Npc extends GameObject implements Drawable{
     public double getY(){
         return y;
     }
+    public int getTroops(){
+        return troops;
+    }
+
     public void draw(Graphics g, double cameraX, double cameraY){
         int sx = (int)(x - cameraX - 50); //Npc X
         int sy = (int)(y - cameraY - 50); //Npc Y
         
         g.drawImage(npcImage, sx, sy, 80, 80, null);
     }
-    public int getTroops(){
-        return troops;
-    }
+
     public void update(){
         newPath(player);
         updatePos();
     }
 
-    private void updateBounds(){
-        Rectangle bounds = super.getBounds();
-        bounds.setLocation((int)x, (int)y);
-    }
-    public boolean chase(Player player){
-        double diffX = this.x - player.getX();
-        double diffY = this.y - player.getY();
-        double distance = Math.sqrt(diffX * diffX + diffY * diffY);
-        if(distance < 200){
-            return true;
-        }
-        return false;
-    }
     public void newPath(Player player){
         if (chase(player)){
             this.newRoute(player.getX(), player.getY());
+            return;
+        }
+        Npc target = chaseOther();
+        if (target != null){
+            this.newRoute(target.getX(), target.getY());
+            return;
         }
         else {
             if (path == null || path.isDone()){
@@ -77,10 +79,28 @@ public class Npc extends GameObject implements Drawable{
             }
         }
     }
-    public void setPath(Path newPath) {
-        this.path = newPath;
-        //System.out.println(path);
+
+    public boolean chase(Player player){
+        double diffX = this.x - player.getX();
+        double diffY = this.y - player.getY();
+        double distance = Math.sqrt(diffX * diffX + diffY * diffY);
+        if(distance < 200){
+            return true;
+        }
+        return false;
     }
+    public Npc chaseOther(){
+        for (Npc chase : enemyList){
+            double diffX = this.x - chase.getX();
+            double diffY = this.y - chase.getY();
+            double distance = Math.sqrt(diffX * diffX + diffY * diffY);
+            if(distance < 500){
+                return chase;
+            }
+        }
+        return null;
+    }
+
     public void updatePos(){
         if (path == null || path.isDone())return;
         
@@ -110,6 +130,15 @@ public class Npc extends GameObject implements Drawable{
 
         updateBounds();
     }
+    private void updateBounds(){
+        Rectangle bounds = super.getBounds();
+        bounds.setLocation((int)x, (int)y);
+    }
+
+    public void setPath(Path newPath) {
+        this.path = newPath;
+        //System.out.println(path);
+    }
 
     public void onCollision(Player player){
         System.out.println("Spiller traff" + name);
@@ -120,5 +149,8 @@ public class Npc extends GameObject implements Drawable{
 
     public void newRoute(double x, double y){
         mapController.newNpcPath((int)x, (int)y, this);
+    }
+    public void addEnemy(Npc newEnemy){
+        enemyList.add(newEnemy);
     }
 }
