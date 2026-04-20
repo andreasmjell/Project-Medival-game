@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class GamePanel extends JPanel {
-    Player player;
-    Camera camera;
-    MapController mapController;
+        GameContext gameContext;
+        Player player;
+        Camera camera;
+        MapController mapController;
 
     Double cameraX, cameraY, playerX, playerY;
 
@@ -19,7 +20,7 @@ public class GamePanel extends JPanel {
      Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 
 
-    public GamePanel(Player player, Camera camera, MapController mapController){
+    public GamePanel(GameContext gameContext, Player player, Camera camera, MapController mapController){
 
         setFocusable(true);
 
@@ -56,6 +57,7 @@ public class GamePanel extends JPanel {
         this.player = player;
         this.camera = camera;
         this.mapController = mapController;
+        this.gameContext = gameContext;
 
         playerX = player.getX();
         playerY = player.getY();

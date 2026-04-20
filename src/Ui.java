@@ -3,7 +3,6 @@ import src.menu.MenuButton;
 import src.menu.MenuSlider;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Ui {
     GameContext gameContext;
@@ -22,11 +21,10 @@ public class Ui {
 
     public void mainMenu() {
     System.out.println("MAINMENU!!!!");
-    Dimension size = gameContext.uiHandler.getScreenSize();
 
     // Bruk en vanlig JPanel, men pass på rekkefølgen
     JPanel root = new JPanel(null);
-    root.setBounds(0, 0, size.width, size.height);
+    root.setBounds(0, 0, gameContext.size.width, gameContext.size.height);
 
     // 1. Lag knappene først
     MenuButton startGame = new MenuButton("Start Game");
@@ -55,7 +53,7 @@ public class Ui {
 
     // 2. Lag bakgrunnen
     JLabel bg = new JLabel(new ImageIcon(getClass().getResource("assets/Mainmenu.png")));
-    bg.setBounds(0, 0, size.width, size.height);
+    bg.setBounds(0, 0, gameContext.size.width, gameContext.size.height);
 
     // 3. VIKTIG: Legg til knapper FØRST, bakgrunn SIST (i null-layout)
     // Eller bruk setComponentZOrder

@@ -1,5 +1,4 @@
 package src;
-import javax.swing.*;
 import java.awt.*;
 /* for å starte spillet med JSON:
 
@@ -20,12 +19,8 @@ javac -cp ".:lib/json-20251224.jar" src/*.java src/menu/*.java
 
 */
 
-import java.util.ArrayList;
-import java.util.HashSet;
 
 public class Main {
-    private GameContext gameContext;
-
     public static void main(String[] args) {
 
     GameContext gameContext = new GameContext();
@@ -36,9 +31,9 @@ public class Main {
     UiHandler uiHandler = new UiHandler(gameContext);
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
     HudPanel hud = uiHandler.getHud(); // TEMP
-    Camera camera = new Camera(500, 500, (int)size.getWidth(), (int)size.getHeight(), player);
-    GamePanel gamePanel = new GamePanel(player, camera, mapController);
-    InputManager inputManager = new InputManager(uiHandler, mapController, camera, player);
+    Camera camera = new Camera(gameContext, 500, 500, (int)size.getWidth(), (int)size.getHeight());
+    GamePanel gamePanel = new GamePanel(gameContext, player, camera, mapController);
+    InputManager inputManager = new InputManager(gameContext);
     Pathfinder pathfinder = new Pathfinder();
     CollisionManager collisionManager= new CollisionManager();
     MapPixelReader mapPixelReader = new MapPixelReader(mapController);
