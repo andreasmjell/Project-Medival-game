@@ -129,35 +129,6 @@ public class MapController {
     public void openPauseMenu(){
         gameContext.uiHandler.openPauseMenu();
     }
-    public void npcDefeated(Npc npc){
-        String faction = npc.getFaction();
-        String name = npc.getName();
-        double defeatedX = npc.getX();
-        double defeatedY = npc.getY();
-        int defeatedTroops = npc.getTroops();
-        double respawnX = defeatedX + (Math.random() * 600 -300);
-        double respawnY = defeatedY + (Math.random() * 600 -300);
-        while (gameContext.mapPixelReader.isBlocked((int)respawnX, (int)respawnY)){
-            respawnX = defeatedX + (Math.random() * 600 -300);
-            respawnY = defeatedY + (Math.random() * 600 -300);
-        }
-        Npc respawn = new Bandit(name, respawnX, respawnY, defeatedTroops, gameContext.player, this, faction);
-        this.deleteNpc.add(npc);
-        this.respawnNpc.add(respawn);
-    }
-    public void npcFight(int troops, Npc npc){
-        try{
-        gameContext.audioManager.startBattleSound();
-        }catch(Exception e){System.out.println("MUSIKK STARTER IKKE!");}
-        if (gameContext.player.getTroops() > troops){
-            gameContext.player.updateTroops(troops*-1);
-            npcDefeated(npc);
-            try {
-            gameContext.audioManager.enemyDefeated();
-            } catch(Exception e){}
-        }
-        System.out.println(gameContext.player.getTroops());
-    }
 
     public void openBattle(Npc npc) {
     BattleController battleController = new BattleController(this, npc, gameContext.player, gameContext.uiHandler);
