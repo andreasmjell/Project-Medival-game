@@ -1,3 +1,5 @@
+/*
+
 package src;
 
 import javax.swing.*;
@@ -39,6 +41,8 @@ public class BattlePanel extends JPanel{
                 (int)(mapImage.getHeight(null)),
                 null
         );*/
+        /*
     }
 }
 
+*/

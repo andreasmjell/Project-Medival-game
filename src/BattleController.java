@@ -1,3 +1,6 @@
+
+/*
+
 package src;
 import javax.swing.*;
 import java.awt.*;
@@ -19,8 +22,8 @@ public class BattleController {
     
 
 
-    public BattleController(MapController mapController, Npc npc, Player player, UiHandler uiHandler){
-        this.mapController = mapController;
+    public BattleController(GameContext gameContext, Npc npc, Player player, UiHandler uiHandler){
+        this.gameContext = gameContext;
         this.npc = npc;
         this.player = player;
         this.uiHandler = uiHandler;
@@ -50,3 +53,4 @@ public class BattleController {
         mapController.closeBattle(battlePlayer);
     }
 }
+*/

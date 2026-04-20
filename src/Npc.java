@@ -101,6 +101,7 @@ public abstract class Npc extends GameObject implements Drawable{
         return false;
     }
     public abstract ArrayList<Npc> getEnemyList();
+
     public Npc chaseOther(){
         for (Npc chase : getEnemyList()){
             double diffX = this.x - chase.getX();
@@ -125,11 +126,11 @@ public abstract class Npc extends GameObject implements Drawable{
     public void onCollision(Player player){
         System.out.println("Spiller traff" + name);
 
-        gameContext.NpcManager.npcFight(this.troops, this);
+        gameContext.npcManager.npcFight(this.troops, this);
     }
 
 
     public void newRoute(double x, double y){
-        mapController.newNpcPath((int)x, (int)y, this);
+        gameContext.npcManager.newNpcPath((int)x, (int)y, this);
     }
 }

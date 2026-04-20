@@ -20,7 +20,7 @@ public class Bandit extends Npc{
         }
     }
     public void removeEnemy(String faction){
-        for (Npc x : npcList){
+        for (Npc x : gameContext.mapController.npcList){
             if (x.getFaction().equals(faction)){
                 enemyList.remove(x);
             }

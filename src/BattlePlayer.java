@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class BattlePlayer extends Player implements Drawable{
 
-    public BattlePlayer(int x, int y, int troops){
-        super(x, y, troops);
+    public BattlePlayer(GameContext gameContext, int x, int y, int troops){
+        super(gameContext, x, y, troops);
     }
 }

@@ -125,11 +125,13 @@ public class MapController {
         gameContext.uiHandler.openPauseMenu();
     }
 
+    /*
     public void openBattle(Npc npc) {
     BattleController battleController = new BattleController(this, npc, gameContext.player, gameContext.uiHandler);
     timer.stop();
     battleController.start();
     }
+    */
 
     public void closeBattle(BattlePlayer battlePlayer) {
         gameContext.uiHandler.closeBattlePanel();

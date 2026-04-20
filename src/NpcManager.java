@@ -17,7 +17,7 @@ public class NpcManager {
         gameContext.mapController.drawable.removeAll(deleteNpc);
         gameContext.mapController.gameObjects.removeAll(deleteNpc);
         deleteNpc.clear();
-        for (Npc x : gameContet.mapController.npcList){
+        for (Npc x : gameContext.mapController.npcList){
             x.update();
         }
         gameContext.mapController.npcList.addAll(respawnNpc);
@@ -43,7 +43,7 @@ public class NpcManager {
             respawnX = defeatedX + (Math.random() * 600 -300);
             respawnY = defeatedY + (Math.random() * 600 -300);
         }
-        Npc respawn = new Bandit(name, respawnX, respawnY, defeatedTroops, gameContext.player, this, faction);
+        Npc respawn = new Bandit(gameContext, faction, name, respawnX, respawnY, defeatedTroops);
         this.deleteNpc.add(npc);
         this.respawnNpc.add(respawn);
     }
