@@ -1,6 +1,7 @@
 package src;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import javax.swing.ImageIcon;
 
@@ -14,6 +15,8 @@ public abstract class Npc extends GameObject implements Drawable{
     int troops;
     Image npcImage = new ImageIcon(getClass().getResource("assets/npc.png")).getImage();
     Path path;
+
+    HashSet<Integer> insideObjects = new HashSet<>();
 
     public Npc(GameContext gameContext, String faction, String name, double x, double y, int troops){
         super((int)x, (int)y, 80, 80);

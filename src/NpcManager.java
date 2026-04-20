@@ -99,7 +99,7 @@ public class NpcManager {
     }
     public void npcManagerUpdate(){
         for (Npc x : gameContext.mapController.npcList){
-            checkCollisionNpc(x, gameContext.mapController.npcList);
+            gameContext.collisionManager.checkCollisionNpc(x, gameContext.mapController.npcList);
         }
     }
 }
