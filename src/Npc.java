@@ -23,6 +23,7 @@ public abstract class Npc extends GameObject implements Drawable{
         this.y = y;
         this.troops = troops;
         this.speed = 1 - ((double)this.troops*0.001);
+        this.gameContext = gameContext;
     }
 
     public String getName(){return name;}
