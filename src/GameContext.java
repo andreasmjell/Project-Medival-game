@@ -17,9 +17,26 @@ public class GameContext {
     public CollisionManager collisionManager;
     public MapPixelReader mapPixelReader;
     public AudioManager audioManager;
+    public Npc npc;
 
-    public void setReferences(MapController mapController, Player player, Save save, Ui ui, UiHandler uiHandler, HudPanel hud, Dimension size, GamePanel gamePanel, Camera camera,
-        InputManager inputManager, Pathfinder pathfinder, CollisionManager collisionManager, MapPixelReader mapPixelReader, AudioManager audioManager){
+    public void setReferences(
+        MapController mapController,
+        Player player,
+        Save save,
+        Ui ui,
+        UiHandler uiHandler,
+        HudPanel hud,
+        Dimension size,
+        GamePanel gamePanel,
+        Camera camera,
+        InputManager inputManager,
+        Pathfinder pathfinder,
+        CollisionManager collisionManager,
+        MapPixelReader mapPixelReader,
+        AudioManager audioManager,
+        Npc npc,
+        Settlement settlement
+    ){
             this.mapController = mapController;
             this.player = player;
             this.save = save;
@@ -34,5 +51,7 @@ public class GameContext {
             this.collisionManager = collisionManager;
             this.mapPixelReader = mapPixelReader;
             this.audioManager = audioManager;
+            this.npc =  npc;
+            this.settlement = settlement;
     }
 }

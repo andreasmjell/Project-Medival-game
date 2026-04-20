@@ -44,7 +44,25 @@ public class Main {
     MapPixelReader mapPixelReader = new MapPixelReader(mapController);
     AudioManager audioManager = new AudioManager();
     Npc npc = new npc();
-    gameContext.setReferences(mapController, player, save, ui, uiHandler, hud, size, gamePanel, camera, inputManager, pathfinder, collisionManager, mapPixelReader, audioManager);
+    Settlement settlement = new Settlement();
+    gameContext.setReferences(
+        mapController,
+        player,
+        save,
+        ui,
+        uiHandler,
+        hud,
+        size,
+        gamePanel,
+        camera,
+        inputManager,
+        pathfinder,
+        collisionManager,
+        mapPixelReader,
+        audioManager,
+        npc,
+        settlement
+    ); //Alle klasser som opprettes må opprettes her og sendes til setReferences!!
 
     gameContext.mapController.start();
     }
