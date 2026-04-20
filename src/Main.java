@@ -62,7 +62,7 @@ public class Main {
         collisionManager,
         mapPixelReader,
         audioManager,
-        npcManager,
+        npcManager
     );
 
     gameContext.mapController.start();
