@@ -4,6 +4,7 @@ public class Town extends Settlement {
 
     public Town(String name, int x, int y, int troops, int timer, MapController mapController) {
         super(name, x, y, troops, timer, mapController, "assets/by.png");
+        super.addToSettlementList(this);
     }
 
     @Override
