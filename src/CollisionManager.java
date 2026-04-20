@@ -26,7 +26,7 @@ public class CollisionManager{
         HashSet<Integer> insideObjects = new HashSet<>();
 
         for (Npc target: npcList){
-            if (npc.getBounds().intersects(target.getBounds())){
+            if (npc.getBounds().intersects(target.getBounds()) && npc != target){
                 insideObjects.add(target.getId());
 
                 if(!npc.insideObjects.contains(target.getId())){
