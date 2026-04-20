@@ -9,14 +9,10 @@ public class MapController {
 
     ArrayList<GameObject> gameObjects = new ArrayList<>();
     ArrayList<Drawable> drawable = new ArrayList<>();
-    ArrayList<Settlement> settlementList = new ArrayList<>();
-    ArrayList<Npc> npc = new ArryaList<>();
 
-<<<<<<< HEAD
-    ArrayList<Settlement> settlement;
-    ArrayList<Npc> npc;
-=======
->>>>>>> a68c2680565d83d4508eba9faaa087e0c2741c43
+    ArrayList<Settlement> settlementList = new ArrayList<>();
+    ArrayList<Npc> npc = new ArrayList<>();
+
     private Timer timer;
 
 
