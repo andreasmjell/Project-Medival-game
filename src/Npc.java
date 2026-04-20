@@ -98,6 +98,26 @@ public abstract class Npc extends GameObject implements Drawable{
             }
         }
     }
+    public boolean chase(Player player){
+        double diffX = this.x - player.getX();
+        double diffY = this.y - player.getY();
+        double distance = Math.sqrt(diffX * diffX + diffY * diffY);
+        if(distance < 200){
+            return true;
+        }
+        return false;
+    }
+    public Npc chaseOther(){
+        for (Npc chase : enemyList){
+            double diffX = this.x - chase.getX();
+            double diffY = this.y - chase.getY();
+            double distance = Math.sqrt(diffX * diffX + diffY * diffY);
+            if(distance < 500){
+                return chase;
+            }
+        }
+        return null;
+    }
     private void updateBounds(){
         Rectangle bounds = super.getBounds();
         bounds.setLocation((int)x, (int)y);
@@ -111,7 +131,7 @@ public abstract class Npc extends GameObject implements Drawable{
     public void onCollision(Player player){
         System.out.println("Spiller traff" + name);
 
-        mapController.npcFight(this.troops, this);
+        gameContext.NpcManager.npcFight(this.troops, this);
     }
 
 

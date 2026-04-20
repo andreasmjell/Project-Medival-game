@@ -25,27 +25,6 @@ public class NpcManager {
         gameContext.mapController.drawable.addAll(respawnNpc);
         respawnNpc.clear();
     }
-
-    public boolean chase(Player player){
-        double diffX = this.x - player.getX();
-        double diffY = this.y - player.getY();
-        double distance = Math.sqrt(diffX * diffX + diffY * diffY);
-        if(distance < 200){
-            return true;
-        }
-        return false;
-    }
-    public Npc chaseOther(){
-        for (Npc chase : enemyList){
-            double diffX = this.x - chase.getX();
-            double diffY = this.y - chase.getY();
-            double distance = Math.sqrt(diffX * diffX + diffY * diffY);
-            if(distance < 500){
-                return chase;
-            }
-        }
-        return null;
-    }
     public void npcDefeated(Npc npc){
         String faction = npc.getFaction();
         String name = npc.getName();
