@@ -9,17 +9,14 @@ public class PauseMenu extends GameMenu{
     UiHandler uiHandler;
     
 
-    public PauseMenu(MapController mapController){
-        mapController.timerStop();
-        uiHandler = mapController.getUiHandler();
+    public PauseMenu(GameContext gameContext){
+        gameContext.mapController.timerStop();
 
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+        int menuWidth = (int)(gameContext.size.getWidth() * 0.2);
+        int menuHeight = (int)(gameContext.size.getHeight() * 0.6);
 
-        int menuWidth = (int)(size.getWidth() * 0.2);
-        int menuHeight = (int)(size.getHeight() * 0.6);
-
-        int x = ((int)size.getWidth() - menuWidth) / 2;
-        int y = ((int)size.getHeight() - menuHeight) / 2;
+        int x = ((int)gameContext.size.getWidth() - menuWidth) / 2;
+        int y = ((int)gameContext.size.getHeight() - menuHeight) / 2;
 
         super(x, y, menuWidth, menuHeight);
 
@@ -37,7 +34,7 @@ public class PauseMenu extends GameMenu{
         closeBtn.setBounds(btnX, btnY, btnWidth, btnHeight);
 
         closeBtn.addActionListener(e -> {
-            mapController.timerStart();
+            gameContext.mapController.timerStart();
             uiHandler.closeMenu(this);
         });
 
