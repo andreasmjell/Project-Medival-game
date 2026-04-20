@@ -17,6 +17,7 @@ public class GameContext {
     public MapPixelReader mapPixelReader;
     public AudioManager audioManager;
     public NpcManager npcManager;
+    
 
     public void setReferences(
         MapController mapController,
@@ -33,7 +34,7 @@ public class GameContext {
         CollisionManager collisionManager,
         MapPixelReader mapPixelReader,
         AudioManager audioManager,
-        NpcManager npcManager,
+        NpcManager npcManager
     ){
             this.mapController = mapController;
             this.player = player;
@@ -49,8 +50,6 @@ public class GameContext {
             this.collisionManager = collisionManager;
             this.mapPixelReader = mapPixelReader;
             this.audioManager = audioManager;
-            this.npc =  npc;
-            this.settlement = settlement;
             this.npcManager = npcManager;
     }
 }
