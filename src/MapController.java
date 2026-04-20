@@ -39,6 +39,8 @@ public class MapController {
         npcList = gameContext.save.readNpc("NewGameFile.json", this, gameContext.player);
 
         gameContext.mapPixelReader.loadBlockedMap();
+
+
         System.out.println("Spillet Starter!!!");
         gameContext.gamePanel = new GamePanel(gameContext.player, gameContext.camera, this); // FJERNES! OPPRETTES I MAIN
         gameContext.uiHandler.setGamePanel(gameContext.gamePanel);
@@ -79,6 +81,8 @@ public class MapController {
         }
     }
 
+<<<<<<< HEAD
+=======
     public void npcUpdate(){
         npcList.removeAll(deleteNpc);
         drawable.removeAll(deleteNpc);
@@ -94,6 +98,7 @@ public class MapController {
     }
 
 
+>>>>>>> 8d85da36434d9b3e38374f9ecfb5d44d061f698c
     private void createGameObject(){
         gameObjects.addAll(settlementList);
         gameObjects.addAll(npcList);
@@ -127,13 +132,6 @@ public class MapController {
             gameContext.player.setPath(new Path(points));
             }).start();
         }
-    }
-
-    public void newNpcPath(int x, int y, Npc npc){
-        new Thread (() -> {
-            ArrayList<Point> points = gameContext.pathfinder.findPath(npc.x, npc.y, x, y, gameContext.mapPixelReader);    
-            npc.setPath(new Path(points));
-        }).start();
     }
 
     public void keyPressed(int keycode, boolean pressed){
