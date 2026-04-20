@@ -43,9 +43,9 @@ public class Main {
     CollisionManager collisionManager= new CollisionManager();
     MapPixelReader mapPixelReader = new MapPixelReader(mapController);
     AudioManager audioManager = new AudioManager();
-    NpcManager npcManager = new NpcManager();
+    NpcManager npcManager = new NpcManager(gameContext);
 
-    
+
     //Alle klasser som opprettes må opprettes her og sendes til setReferences!!
     gameContext.setReferences(
         mapController,
