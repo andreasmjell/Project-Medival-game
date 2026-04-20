@@ -133,9 +133,12 @@ public class MapController {
     }
     */
 
+
+    /*
     public void closeBattle(BattlePlayer battlePlayer) {
         gameContext.uiHandler.closeBattlePanel();
         gameContext.player.setTroops(battlePlayer.getTroops());
         timer.start();
     }
+        */
 }
