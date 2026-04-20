@@ -33,10 +33,11 @@ public class MapController {
     //Starter det faktiske spillet
     public void startGame(){
 
-        settlement = gameContext.save.readSettlement("NewGameFile.json", this);
+        settlementList.addAll(gameContext.save.readSettlement("NewGameFile.json", this));
         npc = gameContext.save.readNpc("NewGameFile.json", this, gameContext.player);
-
         gameContext.mapPixelReader.loadBlockedMap();
+
+
         System.out.println("Spillet Starter!!!");
         gameContext.gamePanel = new GamePanel(gameContext.player, gameContext.camera, this); // FJERNES! OPPRETTES I MAIN
         gameContext.uiHandler.setGamePanel(gameContext.gamePanel);
@@ -77,21 +78,6 @@ public class MapController {
         }
     }
 
-    public void npcUpdate(){
-        npc.removeAll(deleteNpc);
-        drawable.removeAll(deleteNpc);
-        gameObjects.removeAll(deleteNpc);
-        deleteNpc.clear();
-        for (Npc x : npc){
-            x.update();
-        }
-        npc.addAll(respawnNpc);
-        gameObjects.addAll(respawnNpc);
-        drawable.addAll(respawnNpc);
-        respawnNpc.clear();
-    }
-
-
     private void createGameObject(){
         gameObjects.addAll(gameContext.settlement.getSettlementList());
         gameObjects.addAll(npc);
@@ -125,13 +111,6 @@ public class MapController {
             gameContext.player.setPath(new Path(points));
             }).start();
         }
-    }
-
-    public void newNpcPath(int x, int y, Npc npc){
-        new Thread (() -> {
-            ArrayList<Point> points = gameContext.pathfinder.findPath(npc.x, npc.y, x, y, gameContext.mapPixelReader);    
-            npc.setPath(new Path(points));
-        }).start();
     }
 
     public void keyPressed(int keycode, boolean pressed){

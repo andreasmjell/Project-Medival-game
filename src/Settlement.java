@@ -11,7 +11,6 @@ public abstract class Settlement extends GameObject implements Drawable {
     protected int troops;
     protected int timer;
     protected Image settlementImage;
-    private static ArrayList<Settlement> settlementList = new ArrayList<>();
 
     public Settlement(String name, int x, int y, int troops, int timer, String imagePath) {
         super(x, y, 50, 50);
@@ -22,13 +21,6 @@ public abstract class Settlement extends GameObject implements Drawable {
         this.timer = timer;
         this.mapController = mapController;
         this.settlementImage = new ImageIcon(getClass().getResource(imagePath)).getImage();
-    }
-
-    public void addToSettlementList(Settlement set){
-        settlementList.add(set);
-    }
-    public ArrayList<Settlement> getSettlementList(){
-        return settlementList;
     }
 
     public double getX() { return x; }
