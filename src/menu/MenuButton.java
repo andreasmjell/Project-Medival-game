@@ -123,7 +123,6 @@ try {
         int textWidth = fm.stringWidth(text);
         int x = (w - textWidth) / 2;
         int y = (h + fm.getAscent()) / 2 - 6;
-        y += (int)(Math.random() * 2);
 
 
         g2.setColor(new Color(0, 0, 0, 180));
