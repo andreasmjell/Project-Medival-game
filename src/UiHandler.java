@@ -20,7 +20,11 @@ public class UiHandler {
     public static final Integer HUD_LAYER = 100;
     public static final Integer MENU_LAYER = 200;
 
+    Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+
     public UiHandler(GameContext gameContext){
+        this.gameContext = gameContext;
+        
         createWindow();
     }
 
@@ -28,11 +32,11 @@ public class UiHandler {
         frame = new JFrame("Medieval Game");
         frame.setBackground(Color.BLACK);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(gameContext.size);
+        frame.setSize(size);
         frame.setLayout(null);
 
         layeredPane = new JLayeredPane();
-        layeredPane.setBounds(0, 0, gameContext.size.width, gameContext.size.height);
+        layeredPane.setBounds(0, 0, size.width, size.height);
 
         frame.setContentPane(layeredPane);
         frame.setVisible(true);
@@ -48,7 +52,7 @@ public class UiHandler {
         }
         activeMainPanel = panel;
 
-        panel.setBounds(0, 0, gameContext.size.width, gameContext.size.height);
+        panel.setBounds(0, 0, size.width, size.height);
         layeredPane.add(panel, MAP_LAYER);
 
         layeredPane.revalidate();
@@ -77,11 +81,11 @@ public class UiHandler {
 
     public void showHud(){
         if (hud == null){
-        hud = new HudPanel(gameContext.size.width);
+        hud = new HudPanel(size.width);
         }
         layeredPane.add(hud, HUD_LAYER);
         layeredPane.revalidate();
-        layeredPane.repaint();
+        layeredPane.repaint();  
     }
 
     public HudPanel getHud() {
