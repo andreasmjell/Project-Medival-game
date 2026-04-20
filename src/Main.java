@@ -30,7 +30,7 @@ public class Main {
 
     GameContext gameContext = new GameContext();
     MapController mapController = new MapController(gameContext);
-    Player player = new Player(2000, 1500, 80000);
+    Player player = new Player(gameContext, 2000, 1500, 80000);
     Save save = new Save();
     Ui ui = new Ui(mapController);
     UiHandler uiHandler = new UiHandler(ui, mapController);
@@ -43,8 +43,6 @@ public class Main {
     CollisionManager collisionManager= new CollisionManager();
     MapPixelReader mapPixelReader = new MapPixelReader(mapController);
     AudioManager audioManager = new AudioManager();
-    Npc npc = new npc();
-    Settlement settlement = new Settlement();
     gameContext.setReferences(
         mapController,
         player,

@@ -7,9 +7,17 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Save {
-    String filename;
+    private GameContext gameContext;
 
-    public ArrayList<Settlement> readSettlement(String filename, MapController mapController){
+    String filename;
+    ArrayList<Settlement> settlementList = new ArrayList<>();
+    ArrayList<Npc> npcList = new ArrayList<>();
+
+    public Save(GameContext gameContext){
+        this.gameContext = gameContext;
+    }
+
+    public ArrayList<Settlement> readSettlement(String filename){
         try {
         String innhold = new String(Files.readAllBytes(Paths.get(filename)));
         JSONArray jsonArray = new JSONArray(innhold);
@@ -21,13 +29,13 @@ public class Save {
                 int y = obj.getInt("y");
                 int troops = obj.getInt("troops");
                 int timer = obj.getInt("timer");
-                settlement.add(new Town(navn, x, y, troops, timer, mapController));
+                settlementList.add(new Town(navn, x, y, troops, timer, gameContext.mapController));
             }
         }
         }catch (IOException e){
             e.printStackTrace();
         }
-        return settlement;
+        return settlementList;
     }
     public ArrayList<Npc> readNpc(String filename, MapController mapController, Player player){
         try {
@@ -37,11 +45,11 @@ public class Save {
             JSONObject obj = jsonArray.getJSONObject(i);
             if (obj.getString("type").equals("Npc")){
                 String faction = obj.getString("faction");
-                String navn = obj.getString("navn");
+                String name = obj.getString("navn");
                 double x = obj.getDouble("x");
                 double y = obj.getDouble("y");
                 int troops = obj.getInt("troops");
-                npc.add(new Npc(navn, x, y, troops, player, mapController, faction));
+                npcList.add(new Bandit(gameContext,faction, name, x, y, troops));
             }
         }
     } catch (IOException e){

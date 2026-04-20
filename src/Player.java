@@ -6,6 +6,8 @@ import javax.swing.ImageIcon;
 import java.awt.*;
 
 public class Player implements Drawable{
+    private GameContext gameContext;
+
     //stats
     int troops;
     double speed;
@@ -25,7 +27,7 @@ public class Player implements Drawable{
     Image playerImage = new ImageIcon(getClass().getResource("assets/playericon.png")).getImage();
     
     
-    public Player(int x, int y, int troops){
+    public Player(GameContext gameContext, int x, int y, int troops){
         this.x = x;
         this.y = y;
         this.troops = troops;
