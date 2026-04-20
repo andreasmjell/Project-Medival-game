@@ -37,7 +37,6 @@ public class MapController {
 
         settlementList = gameContext.save.readSettlement("NewGameFile.json", this);
         npcList = gameContext.save.readNpc("NewGameFile.json", this, gameContext.player);
-
         gameContext.mapPixelReader.loadBlockedMap();
 
 
@@ -81,24 +80,6 @@ public class MapController {
         }
     }
 
-<<<<<<< HEAD
-=======
-    public void npcUpdate(){
-        npcList.removeAll(deleteNpc);
-        drawable.removeAll(deleteNpc);
-        gameObjects.removeAll(deleteNpc);
-        deleteNpc.clear();
-        for (Npc x : npcList){
-            x.update();
-        }
-        npcList.addAll(respawnNpc);
-        gameObjects.addAll(respawnNpc);
-        drawable.addAll(respawnNpc);
-        respawnNpc.clear();
-    }
-
-
->>>>>>> 8d85da36434d9b3e38374f9ecfb5d44d061f698c
     private void createGameObject(){
         gameObjects.addAll(settlementList);
         gameObjects.addAll(npcList);
