@@ -59,7 +59,7 @@ public class MapController {
         gameContext.gamePanel.update();
         gameContext.gamePanel.repaint();
         gameContext.collisionManager.checkCollision(gameContext.player, gameObjects);
-        npcUpdate();
+        gameContext.npcManager.npcUpdate();
         gameContext.hud.updatePlayerTroops(gameContext.player.getTroops());
     }
 

@@ -133,7 +133,4 @@ public abstract class Npc extends GameObject implements Drawable{
     public void newRoute(double x, double y){
         mapController.newNpcPath((int)x, (int)y, this);
     }
-    public void addEnemy(Npc newEnemy){
-        enemyList.add(newEnemy);
-    }
 }
