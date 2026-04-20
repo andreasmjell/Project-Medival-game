@@ -6,9 +6,7 @@ import java.nio.file.Paths;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class Save { //SAVE MÅ GJØRES OM FOR Å SKILLE TYPER SETTLEMENTS FRA HVERADNRE!!!!!!!!
-    ArrayList<Settlement> settlement = new ArrayList<>();
-    ArrayList<Npc> npc = new ArrayList<>();
+public class Save {
     String filename;
 
     public ArrayList<Settlement> getSettlement(String filename, MapController mapController){

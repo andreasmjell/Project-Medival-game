@@ -9,10 +9,10 @@ public abstract class Settlement extends GameObject implements Drawable {
     protected int y;
     protected int troops;
     protected int timer;
-    protected MapController mapController;
     protected Image settlementImage;
+    private static ArrayList<Settlement> settlementList = new ArrayList<>();
 
-    public Settlement(String name, int x, int y, int troops, int timer, MapController mapController, String imagePath) {
+    public Settlement(String name, int x, int y, int troops, int timer, String imagePath) {
         super(x, y, 50, 50);
         this.name = name;
         this.x = x;
@@ -21,6 +21,13 @@ public abstract class Settlement extends GameObject implements Drawable {
         this.timer = timer;
         this.mapController = mapController;
         this.settlementImage = new ImageIcon(getClass().getResource(imagePath)).getImage();
+    }
+
+    private addToSettlementList(Settlement set){
+        settlementList.add(set);
+    }
+    private ArrayList<Settlement> getSettlementList(){
+        return settlementList;
     }
 
     public double getX() { return x; }
