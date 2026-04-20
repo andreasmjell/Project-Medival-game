@@ -1,8 +1,6 @@
 package src;
 import java.awt.image.BufferedImage;
 import java.awt.*;
-import java.awt.geom.PathIterator;
-import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
@@ -55,7 +53,7 @@ public class MapPixelReader {
 
             int blockedColor = new Color(63, 72, 204).getRGB(); //Paint blå
             int treeColor = new Color(34, 177, 76).getRGB(); //Paint grønn
-            int roadColor = new Color(127,127,127).getRGB(); //Paint grå
+            //int roadColor = new Color(127,127,127).getRGB(); //Paint grå
 
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {

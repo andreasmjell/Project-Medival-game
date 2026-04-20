@@ -1,7 +1,6 @@
 package src;
 import java.awt.*;
 
-import javax.swing.ImageIcon;
 
 public class TreeObject implements Drawable{
     Image sprite;

@@ -1,7 +1,6 @@
 package src;
 import java.awt.*;
 
-import javax.swing.ImageIcon;
 
 public class PathTile implements Drawable{
     Image sprite;

@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 import java.awt.*;
 
 public class Player implements Drawable{
-    private GameContext gameContext;
 
     //stats
     int troops;
