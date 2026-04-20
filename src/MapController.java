@@ -11,8 +11,10 @@ public class MapController {
     ArrayList<Drawable> drawable = new ArrayList<>();
 
     ArrayList<Settlement> settlementList = new ArrayList<>();
-    ArrayList<Npc> npc = new ArrayList<>();
+    ArrayList<Npc> npcList = new ArrayList<>();
 
+    HashSet<Npc> deleteNpc = new HashSet<>();
+    HashSet<Npc> respawnNpc = new HashSet<>();
     private Timer timer;
 
 
@@ -33,8 +35,8 @@ public class MapController {
     //Starter det faktiske spillet
     public void startGame(){
 
-        settlement = gameContext.save.readSettlement("NewGameFile.json", this);
-        npc = gameContext.save.readNpc("NewGameFile.json", this, gameContext.player);
+        settlementList = gameContext.save.readSettlement("NewGameFile.json", this);
+        npcList = gameContext.save.readNpc("NewGameFile.json", this, gameContext.player);
 
         gameContext.mapPixelReader.loadBlockedMap();
         System.out.println("Spillet Starter!!!");
@@ -78,14 +80,14 @@ public class MapController {
     }
 
     public void npcUpdate(){
-        npc.removeAll(deleteNpc);
+        npcList.removeAll(deleteNpc);
         drawable.removeAll(deleteNpc);
         gameObjects.removeAll(deleteNpc);
         deleteNpc.clear();
-        for (Npc x : npc){
+        for (Npc x : npcList){
             x.update();
         }
-        npc.addAll(respawnNpc);
+        npcList.addAll(respawnNpc);
         gameObjects.addAll(respawnNpc);
         drawable.addAll(respawnNpc);
         respawnNpc.clear();
@@ -93,8 +95,8 @@ public class MapController {
 
 
     private void createGameObject(){
-        gameObjects.addAll(gameContext.settlement.getSettlementList());
-        gameObjects.addAll(npc);
+        gameObjects.addAll(settlementList);
+        gameObjects.addAll(npcList);
         for (GameObject object : gameObjects){
             Drawable d = object.getThis();
             drawable.add(d);
@@ -149,8 +151,6 @@ public class MapController {
         gameContext.uiHandler.openPauseMenu();
     }
     public void npcDefeated(Npc npc){
-        HashSet<Npc> deleteNpc = new HashSet<>();
-        HashSet<Npc> respawnNpc = new HashSet<>();
         String faction = npc.getFaction();
         String name = npc.getName();
         double defeatedX = npc.getX();
@@ -162,7 +162,7 @@ public class MapController {
             respawnX = defeatedX + (Math.random() * 600 -300);
             respawnY = defeatedY + (Math.random() * 600 -300);
         }
-        Npc respawn = new Npc(name, respawnX, respawnY, defeatedTroops, gameContext.player, this, faction);
+        Npc respawn = new Bandit(name, respawnX, respawnY, defeatedTroops, gameContext.player, this, faction);
         this.deleteNpc.add(npc);
         this.respawnNpc.add(respawn);
     }
