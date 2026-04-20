@@ -36,12 +36,10 @@ public class MapController {
 
     //Starter det faktiske spillet
     public void startGame(){
-<<<<<<< HEAD
+
         settlement = gameContext.save.readSettlement("NewGameFile.json", this);
         npc = gameContext.save.readNpc("NewGameFile.json", this, gameContext.player);
-=======
-        npc = gameContext.save.getNpc("NewGameFile.json", this, gameContext.player);
->>>>>>> a68c2680565d83d4508eba9faaa087e0c2741c43
+
         gameContext.mapPixelReader.loadBlockedMap();
         System.out.println("Spillet Starter!!!");
         gameContext.gamePanel = new GamePanel(gameContext.player, gameContext.camera, this); // FJERNES! OPPRETTES I MAIN
