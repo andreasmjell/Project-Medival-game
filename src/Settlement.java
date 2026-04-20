@@ -23,10 +23,10 @@ public abstract class Settlement extends GameObject implements Drawable {
         this.settlementImage = new ImageIcon(getClass().getResource(imagePath)).getImage();
     }
 
-    private addToSettlementList(Settlement set){
+    public addToSettlementList(Settlement set){
         settlementList.add(set);
     }
-    private ArrayList<Settlement> getSettlementList(){
+    public ArrayList<Settlement> getSettlementList(){
         return settlementList;
     }
 
