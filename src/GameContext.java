@@ -18,6 +18,7 @@ public class GameContext {
     public MapPixelReader mapPixelReader;
     public AudioManager audioManager;
     public Npc npc;
+    public Settlement settlement;
 
     public void setReferences(
         MapController mapController,
