@@ -48,7 +48,7 @@ public class MapController {
     public void startGame(){
         mapPixelReader.loadBlockedMap();
         System.out.println("Spillet Starter!!!");
-        gamePanel = new GamePanel(player, camera, this);
+        gamePanel = new GamePanel(player, camera, this); // FJERNES! OPPRETTES I MAIN
         uiHandler.setGamePanel(gamePanel);
         uiHandler.showHud();
         hud = uiHandler.getHud();
