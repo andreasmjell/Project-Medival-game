@@ -29,7 +29,7 @@ public class Main {
     public static void main(String[] args) {
 
     GameContext gameContext = new GameContext();
-    MapController mapController = new MapController();
+    MapController mapController = new MapController(gameContext);
     Player player = new Player(2000, 1500, 80000);
     Save save = new Save();
     Ui ui = new Ui(mapController);
