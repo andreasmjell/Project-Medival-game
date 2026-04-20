@@ -20,8 +20,6 @@ public class MapController {
 
     public MapController(GameContext gameContext){
         this.gameContext = gameContext;
-        
-        gameContext.ui.setUiHandler(gameContext.uiHandler);
     }
 
 
@@ -35,13 +33,12 @@ public class MapController {
     //Starter det faktiske spillet
     public void startGame(){
 
-        settlementList = gameContext.save.readSettlement("NewGameFile.json", this);
-        npcList = gameContext.save.readNpc("NewGameFile.json", this, gameContext.player);
+        settlementList = gameContext.save.readSettlement("NewGameFile.json");
+        npcList = gameContext.save.readNpc("NewGameFile.json");
         gameContext.mapPixelReader.loadBlockedMap();
 
 
         System.out.println("Spillet Starter!!!");
-        gameContext.gamePanel = new GamePanel(gameContext.player, gameContext.camera, this); // FJERNES! OPPRETTES I MAIN
         gameContext.uiHandler.setGamePanel(gameContext.gamePanel);
         gameContext.uiHandler.showHud();
         gameContext.hud = gameContext.uiHandler.getHud();
