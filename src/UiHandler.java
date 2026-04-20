@@ -67,13 +67,13 @@ public class UiHandler {
         setMainPanel(panel);
     }
 
-    public void openBattlePanel(BattlePanel battlePanel){
+    /*public void openBattlePanel(BattlePanel battlePanel){
         setMainPanel(battlePanel);
     }
 
     public void closeBattlePanel(){
         setMainPanel(gamePanel);
-    }
+    }*/
 
     public void showHud(){
         if (hud == null){
