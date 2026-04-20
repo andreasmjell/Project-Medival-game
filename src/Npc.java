@@ -40,7 +40,7 @@ public abstract class Npc extends GameObject implements Drawable{
     }
 
     public void update(){
-        newPath(player);
+        newPath(gameContext.player);
         updatePos();
     }
 
