@@ -5,22 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class MapController {
-    Player player = new Player(2000, 1500, 80000);
-    Save save = new Save();
-    Ui ui = new Ui(this);
-    UiHandler uiHandler = new UiHandler(ui, this);
-    HudPanel hud;
-
-    Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-    GamePanel gamePanel;
-    Camera camera = new Camera(500, 500, (int)size.getWidth(), (int)size.getHeight(), player);
-    InputManager inputManager = new InputManager(uiHandler, this, camera, player);
-    Pathfinder pathfinder = new Pathfinder();
-    CollisionManager collisionManager= new CollisionManager();
-    ArrayList<Settlement> settlement = save.getSettlement("NewGameFile.json", this);
-    ArrayList<Npc> npc = save.getNpc("NewGameFile.json", this, player);
-    MapPixelReader mapPixelReader = new MapPixelReader(this);
-    AudioManager audioManager = new AudioManager();
+    GameContext gameContext;
 
     HashSet<Npc> deleteNpc = new HashSet<>();
     HashSet<Npc> respawnNpc = new HashSet<>();
@@ -31,9 +16,9 @@ public class MapController {
     private Timer timer;
 
 
-    public MapController(){
-
-        ui.setUiHandler(uiHandler);
+    public MapController(GameContext gameContext){
+        this.gameContext = gameContext;
+        gameContext.ui.setUiHandler(gameContext.uiHandler);
     }
 
 
@@ -41,17 +26,17 @@ public class MapController {
     public void start(){
         startMusic();
 
-        uiHandler.start();
+        gameContext.uiHandler.start();
     }
 
     //Starter det faktiske spillet
     public void startGame(){
-        mapPixelReader.loadBlockedMap();
+        gameContext.mapPixelReader.loadBlockedMap();
         System.out.println("Spillet Starter!!!");
-        gamePanel = new GamePanel(player, camera, this); // FJERNES! OPPRETTES I MAIN
-        uiHandler.setGamePanel(gamePanel);
-        uiHandler.showHud();
-        hud = uiHandler.getHud();
+        gameContext.gamePanel = new GamePanel(gameContext.player, gameContext.camera, this); // FJERNES! OPPRETTES I MAIN
+        gameContext.uiHandler.setGamePanel(gameContext.gamePanel);
+        gameContext.uiHandler.showHud();
+        gameContext.hud = gameContext.uiHandler.getHud();
         createGameObject();
 
         timer = new Timer(16, e -> {
@@ -61,13 +46,13 @@ public class MapController {
     }
 
     public void update(){
-        inputManager.update();
-        player.updatePos();
-        gamePanel.update();
-        gamePanel.repaint();
-        collisionManager.checkCollision(player, gameObjects);
+        gameContext.inputManager.update();
+        gameContext.player.updatePos();
+        gameContext.gamePanel.update();
+        gameContext.gamePanel.repaint();
+        gameContext.collisionManager.checkCollision(gameContext.player, gameObjects);
         npcUpdate();
-        hud.updatePlayerTroops(player.getTroops());
+        gameContext.hud.updatePlayerTroops(gameContext.player.getTroops());
     }
 
     public void timerStop(){
@@ -80,7 +65,7 @@ public class MapController {
 
     public void startMusic(){
         try{
-        audioManager.play();
+        gameContext.audioManager.play();
         }catch(Exception e){
             System.out.println("MUSIKK STARTER IKKE!!!");
             e.printStackTrace();
@@ -88,14 +73,14 @@ public class MapController {
     }
 
     public void npcUpdate(){
-        npc.removeAll(deleteNpc);
+        gameContext.npc.removeAll(deleteNpc);
         drawable.removeAll(deleteNpc);
         gameObjects.removeAll(deleteNpc);
         deleteNpc.clear();
-        for (Npc x : npc){
+        for (Npc x : gameContext.npc){
             x.update();
         }
-        npc.addAll(respawnNpc);
+        gameContext.npc.addAll(respawnNpc);
         gameObjects.addAll(respawnNpc);
         drawable.addAll(respawnNpc);
         respawnNpc.clear();
@@ -103,13 +88,13 @@ public class MapController {
 
 
     private void createGameObject(){
-        gameObjects.addAll(settlement);
-        gameObjects.addAll(npc);
+        gameObjects.addAll(gameContext.settlement);
+        gameObjects.addAll(gameContext.npc);
         for (GameObject object : gameObjects){
             Drawable d = object.getThis();
             drawable.add(d);
         }
-        drawable.add(player);
+        drawable.add(gameContext.player);
     }
 
     public ArrayList<Drawable> getDrawable(){
@@ -122,51 +107,51 @@ public class MapController {
 
 
     public ArrayList<Settlement> getSettlement(){
-        return settlement;
+        return gameContext.settlement;
     }
 
 
     public ArrayList<Npc> getNpcs(){
-        return npc;
+        return gameContext.npc;
     }
 
     public void newPlayerPath(int x, int y){
-        if(player.addToPath()){
+        if(gameContext.player.addToPath()){
             new Thread (() -> {
-            ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y, mapPixelReader);
+            ArrayList<Point> points = gameContext.pathfinder.findPath(gameContext.player.x, gameContext.player.y, x, y, gameContext.mapPixelReader);
 
-            player.getPath().addPoints(points);
+            gameContext.player.getPath().addPoints(points);
             }).start();
         }
         else{
             new Thread (() -> {
-            ArrayList<Point> points = pathfinder.findPath(player.x, player.y, x, y, mapPixelReader);
+            ArrayList<Point> points = gameContext.pathfinder.findPath(gameContext.player.x, gameContext.player.y, x, y, gameContext.mapPixelReader);
 
-            player.setPath(new Path(points));
+            gameContext.player.setPath(new Path(points));
             }).start();
         }
     }
 
     public void newNpcPath(int x, int y, Npc npc){
         new Thread (() -> {
-            ArrayList<Point> points = pathfinder.findPath(npc.x, npc.y, x, y, mapPixelReader);    
+            ArrayList<Point> points = gameContext.pathfinder.findPath(npc.x, npc.y, x, y, gameContext.mapPixelReader);    
             npc.setPath(new Path(points));
         }).start();
     }
 
     public void keyPressed(int keycode, boolean pressed){
-        inputManager.keyPressed(keycode, pressed);
+        gameContext.inputManager.keyPressed(keycode, pressed);
     }
 
     public UiHandler getUiHandler(){
-        return uiHandler;
+        return gameContext.uiHandler;
     }
     
     public void openSettlementMenu(Settlement settlement){
-        uiHandler.openSettlementMenu(settlement);
+        gameContext.uiHandler.openSettlementMenu(settlement);
     }
     public void openPauseMenu(){
-        uiHandler.openPauseMenu();
+        gameContext.uiHandler.openPauseMenu();
     }
     public void npcDefeated(Npc npc){
         String faction = npc.getFaction();
@@ -176,45 +161,45 @@ public class MapController {
         int defeatedTroops = npc.getTroops();
         double respawnX = defeatedX + (Math.random() * 600 -300);
         double respawnY = defeatedY + (Math.random() * 600 -300);
-        while (mapPixelReader.isBlocked((int)respawnX, (int)respawnY)){
+        while (gameContext.mapPixelReader.isBlocked((int)respawnX, (int)respawnY)){
             respawnX = defeatedX + (Math.random() * 600 -300);
             respawnY = defeatedY + (Math.random() * 600 -300);
         }
-        Npc respawn = new Npc(name, respawnX, respawnY, defeatedTroops, player, this, faction);
+        Npc respawn = new Npc(name, respawnX, respawnY, defeatedTroops, gameContext.player, this, faction);
         this.deleteNpc.add(npc);
         this.respawnNpc.add(respawn);
     }
     public void npcFight(int troops, Npc npc){
         try{
-        audioManager.startBattleSound();
+        gameContext.audioManager.startBattleSound();
         }catch(Exception e){System.out.println("MUSIKK STARTER IKKE!");}
-        if (player.getTroops() > troops){
-            player.updateTroops(troops*-1);
+        if (gameContext.player.getTroops() > troops){
+            gameContext.player.updateTroops(troops*-1);
             npcDefeated(npc);
             try {
-            audioManager.enemyDefeated();
+            gameContext.audioManager.enemyDefeated();
             } catch(Exception e){}
         }
-        System.out.println(player.getTroops());
+        System.out.println(gameContext.player.getTroops());
     }
 
     public void openBattle(Npc npc) {
-    BattleController battleController = new BattleController(this, npc, player, uiHandler);
+    BattleController battleController = new BattleController(this, npc, gameContext.player, gameContext.uiHandler);
     timer.stop();
     battleController.start();
     }
 
     public void closeBattle(BattlePlayer battlePlayer) {
-        uiHandler.closeBattlePanel();
-        player.setTroops(battlePlayer.getTroops());
+        gameContext.uiHandler.closeBattlePanel();
+        gameContext.player.setTroops(battlePlayer.getTroops());
         timer.start();
     }
 
     public Player getPlayer(){
-        return player;
+        return gameContext.player;
     }
 
     public AudioManager getAudioManager(){
-        return audioManager;
+        return gameContext.audioManager;
     }
 }
