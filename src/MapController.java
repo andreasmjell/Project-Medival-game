@@ -13,6 +13,8 @@ public class MapController {
     ArrayList<GameObject> gameObjects = new ArrayList<>();
     ArrayList<Drawable> drawable = new ArrayList<>();
 
+    //ArrayList<Settlement> settlement = gameContext.save.getSettlement("NewGameFile.json", this); //TEMP!!!
+    ArrayList<Npc> npc = gameContext.save.getNpc("NewGameFile.json", this, gameContext.player); //TEMP!
     private Timer timer;
 
 
@@ -73,14 +75,14 @@ public class MapController {
     }
 
     public void npcUpdate(){
-        gameContext.npc.removeAll(deleteNpc);
+        npc.removeAll(deleteNpc);
         drawable.removeAll(deleteNpc);
         gameObjects.removeAll(deleteNpc);
         deleteNpc.clear();
-        for (Npc x : gameContext.npc){
+        for (Npc x : npc){
             x.update();
         }
-        gameContext.npc.addAll(respawnNpc);
+        npc.addAll(respawnNpc);
         gameObjects.addAll(respawnNpc);
         drawable.addAll(respawnNpc);
         respawnNpc.clear();
@@ -88,8 +90,8 @@ public class MapController {
 
 
     private void createGameObject(){
-        gameObjects.addAll(gameContext.settlement);
-        gameObjects.addAll(gameContext.npc);
+        gameObjects.addAll(gameContext.settlement.getSettlementList());
+        gameObjects.addAll(npc);
         for (GameObject object : gameObjects){
             Drawable d = object.getThis();
             drawable.add(d);
@@ -103,16 +105,6 @@ public class MapController {
 
     public void addDrawable(Drawable object){
         drawable.add(object);
-    }
-
-
-    public ArrayList<Settlement> getSettlement(){
-        return gameContext.settlement;
-    }
-
-
-    public ArrayList<Npc> getNpcs(){
-        return gameContext.npc;
     }
 
     public void newPlayerPath(int x, int y){

@@ -8,7 +8,7 @@ public class GameContext {
     public Save save;
     public Ui ui;
     public UiHandler uiHandler;
-    public HudPanel hud;
+    public HudPanel hud; 
     public Dimension size;
     public GamePanel gamePanel;
     public Camera camera;
