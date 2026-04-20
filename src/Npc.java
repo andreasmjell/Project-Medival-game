@@ -44,46 +44,6 @@ public abstract class Npc extends GameObject implements Drawable{
         updatePos();
     }
 
-    public void newPath(Player player){
-        if (chase(player)){
-            this.newRoute(player.getX(), player.getY());
-            return;
-        }
-        Npc target = chaseOther();
-        if (target != null){
-            this.newRoute(target.getX(), target.getY());
-            return;
-        }
-        else {
-            if (path == null || path.isDone()){
-                double newX = Math.random() * 1000 - 500;
-                double newY = Math.random() * 1000 - 500;
-                this.newRoute((int)(x + newX), (int)(y + newY));
-            }
-        }
-    }
-
-    public boolean chase(Player player){
-        double diffX = this.x - player.getX();
-        double diffY = this.y - player.getY();
-        double distance = Math.sqrt(diffX * diffX + diffY * diffY);
-        if(distance < 200){
-            return true;
-        }
-        return false;
-    }
-    public Npc chaseOther(){
-        for (Npc chase : enemyList){
-            double diffX = this.x - chase.getX();
-            double diffY = this.y - chase.getY();
-            double distance = Math.sqrt(diffX * diffX + diffY * diffY);
-            if(distance < 500){
-                return chase;
-            }
-        }
-        return null;
-    }
-
     public void updatePos(){
         if (path == null || path.isDone())return;
         
