@@ -38,16 +38,15 @@ public class AudioManager {
         enemyDefeated.start();
     }
 
-    public void volumeDown(){
-    float current = gain.getValue();
-    float min = gain.getMinimum();
-    gain.setValue(Math.max(current - 2.0f, min));
-    }
+    public void setVolume(int sliderValue) {
+        if (music == null || !music.isOpen()) return;
 
-    public void volumeUp(){
-        float current = gain.getValue();
-        float max = gain.getMaximum();
-        gain.setValue(Math.min(current + 2.0f, max));
+        float min = gain.getMinimum();   // typically around -80dB
+        float max = gain.getMaximum();   // typically around +6dB
+
+        // Map 0-100 linearly across the control's actual dB range
+        float dB = min + (sliderValue / 100f) * (max - min);
+        gain.setValue(dB);
     }
 
 }

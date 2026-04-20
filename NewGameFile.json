@@ -19,149 +19,18 @@
 
   {
     "type": "Npc",
-    "navn": "Bandits",
-    "x": 2500,
+    "faction": "Viking",
+    "navn": "Gunnar den store",
+    "x": 1700,
     "y": 1600,
     "troops" : 10
   },
   {
     "type": "Npc",
-    "navn": "Tore",
+    "faction": "Bandit",
+    "navn": "Bandit",
     "x": 1500,
     "y": 1700,
     "troops" : 100
-  },
-  {
-    "type": "Npc",
-    "navn": "KNUT!!!",
-    "x": 2400,
-    "y": 1400,
-    "troops" : 10
-  },
-  {
-    "type": "Npc",
-    "navn": "Bandits",
-    "x": 2500,
-    "y": 1600,
-    "troops" : 10
-  },
-  {
-    "type": "Npc",
-    "navn": "Tore",
-    "x": 1500,
-    "y": 1700,
-    "troops" : 100
-  },
-  {
-    "type": "Npc",
-    "navn": "KNUT!!!",
-    "x": 2400,
-    "y": 1400,
-    "troops" : 10
-  },
-  {
-    "type": "Npc",
-    "navn": "Bandits",
-    "x": 2500,
-    "y": 1600,
-    "troops" : 10
-  },
-  {
-    "type": "Npc",
-    "navn": "Tore",
-    "x": 1500,
-    "y": 1700,
-    "troops" : 100
-  },
-  {
-    "type": "Npc",
-    "navn": "KNUT!!!",
-    "x": 2400,
-    "y": 1400,
-    "troops" : 10
-  },
-  {
-    "type": "Npc",
-    "navn": "Bandits",
-    "x": 2500,
-    "y": 1600,
-    "troops" : 10
-  },
-  {
-    "type": "Npc",
-    "navn": "Tore",
-    "x": 1500,
-    "y": 1700,
-    "troops" : 100
-  },
-  {
-    "type": "Npc",
-    "navn": "KNUT!!!",
-    "x": 2400,
-    "y": 1400,
-    "troops" : 10
-  },
-  {
-    "type": "Npc",
-    "navn": "Bandits",
-    "x": 2500,
-    "y": 1600,
-    "troops" : 10
-  },
-  {
-    "type": "Npc",
-    "navn": "Tore",
-    "x": 1500,
-    "y": 1700,
-    "troops" : 100
-  },
-  {
-    "type": "Npc",
-    "navn": "KNUT!!!",
-    "x": 2400,
-    "y": 1400,
-    "troops" : 10
-  },
-  {
-    "type": "Npc",
-    "navn": "Bandits",
-    "x": 2500,
-    "y": 1600,
-    "troops" : 10
-  },
-  {
-    "type": "Npc",
-    "navn": "Tore",
-    "x": 1500,
-    "y": 1700,
-    "troops" : 100
-  },
-  {
-    "type": "Npc",
-    "navn": "KNUT!!!",
-    "x": 2400,
-    "y": 1400,
-    "troops" : 10
-  },
-  {
-    "type": "Npc",
-    "navn": "Bandits",
-    "x": 2500,
-    "y": 1600,
-    "troops" : 10
-  },
-  {
-    "type": "Npc",
-    "navn": "Tore",
-    "x": 1500,
-    "y": 1700,
-    "troops" : 100
-  },
-  {
-    "type": "Npc",
-    "navn": "KNUT!!!",
-    "x": 2400,
-    "y": 1400,
-    "troops" : 10
   }
 ]

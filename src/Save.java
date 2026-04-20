@@ -38,16 +38,26 @@ public class Save { //SAVE MÅ GJØRES OM FOR Å SKILLE TYPER SETTLEMENTS FRA HV
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
             if (obj.getString("type").equals("Npc")){
+                String faction = obj.getString("faction");
                 String navn = obj.getString("navn");
                 double x = obj.getDouble("x");
                 double y = obj.getDouble("y");
                 int troops = obj.getInt("troops");
-                npc.add(new Npc(navn, x, y, troops, player, mapController));
+                npc.add(new Npc(navn, x, y, troops, player, mapController, faction));
             }
         }
     } catch (IOException e){
         e.printStackTrace();
     }
-        return npc;
+    /*for (Npc target : npc){
+        if (!(target.getFaction().equals("Bandit"))){
+            for (Npc newEnemy : npc){
+                if (newEnemy.getFaction().equals("Bandit")){
+                    target.addEnemy(newEnemy);
+                }
+            }
+        }
+    }*/
+    return npc;
     }
 }

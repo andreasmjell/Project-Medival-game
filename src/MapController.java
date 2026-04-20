@@ -169,6 +169,7 @@ public class MapController {
         uiHandler.openPauseMenu();
     }
     public void npcDefeated(Npc npc){
+        String faction = npc.getFaction();
         String name = npc.getName();
         double defeatedX = npc.getX();
         double defeatedY = npc.getY();
@@ -179,7 +180,7 @@ public class MapController {
             respawnX = defeatedX + (Math.random() * 600 -300);
             respawnY = defeatedY + (Math.random() * 600 -300);
         }
-        Npc respawn = new Npc(name, respawnX, respawnY, defeatedTroops, player, this);
+        Npc respawn = new Npc(name, respawnX, respawnY, defeatedTroops, player, this, faction);
         this.deleteNpc.add(npc);
         this.respawnNpc.add(respawn);
     }
@@ -198,12 +199,15 @@ public class MapController {
     }
 
     public void openBattle(Npc npc) {
-    BattlePanel battlePanel = new BattlePanel(npc, player, this);
-    uiHandler.openBattlePanel(battlePanel);
+    BattleController battleController = new BattleController(this, npc, player, uiHandler);
+    timer.stop();
+    battleController.start();
     }
-    
-    public void closeBattle() {
+
+    public void closeBattle(BattlePlayer battlePlayer) {
         uiHandler.closeBattlePanel();
+        player.setTroops(battlePlayer.getTroops());
+        timer.start();
     }
 
     public Player getPlayer(){

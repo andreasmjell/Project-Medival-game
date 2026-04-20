@@ -1,5 +1,7 @@
 package src;
 import src.menu.MenuButton;
+import src.menu.MenuSlider;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -52,17 +54,13 @@ public class Ui {
 
     // AUDIO KNAPPER
     AudioManager audioManager = mapController.getAudioManager();
-    MenuButton audioPlus = new MenuButton("+"); 
-    audioPlus.addActionListener(e -> {
-        audioManager.volumeUp();
+    
+    
+    MenuSlider audio = new MenuSlider("Audio", 0, 100, 50);
+    audio.addChangeListener(e -> {
+        audioManager.setVolume(audio.getValue());
     });
-    MenuButton audioMinus = new MenuButton("-");
-    audioMinus.addActionListener(e -> {
-        audioManager.volumeDown();
-    });
-    MenuButton audio = new MenuButton("audio");
-    audioPlus.setBounds(380, 200, 40, 40);
-    audioMinus.setBounds(100, 200, 40, 40);
+    
     audio.setBounds(140, 200, 240, 40);
     
 
@@ -73,9 +71,7 @@ public class Ui {
     // 3. VIKTIG: Legg til knapper FØRST, bakgrunn SIST (i null-layout)
     // Eller bruk setComponentZOrder
     root.add(startGame);
-    root.add(exit);
-    root.add(audioPlus); 
-    root.add(audioMinus); 
+    root.add(exit); 
     root.add(audio); 
     root.add(bg); 
     
