@@ -13,13 +13,14 @@ public class MapController {
     ArrayList<GameObject> gameObjects = new ArrayList<>();
     ArrayList<Drawable> drawable = new ArrayList<>();
 
-    //ArrayList<Settlement> settlement = gameContext.save.getSettlement("NewGameFile.json", this); //TEMP!!!
-    ArrayList<Npc> npc = gameContext.save.getNpc("NewGameFile.json", this, gameContext.player); //TEMP!
+    ArrayList<Settlement> settlement;
+    ArrayList<Npc> npc;
     private Timer timer;
 
 
     public MapController(GameContext gameContext){
         this.gameContext = gameContext;
+        
         gameContext.ui.setUiHandler(gameContext.uiHandler);
     }
 
@@ -33,6 +34,8 @@ public class MapController {
 
     //Starter det faktiske spillet
     public void startGame(){
+        settlement = gameContext.save.readSettlement("NewGameFile.json", this);
+        npc = gameContext.save.readNpc("NewGameFile.json", this, gameContext.player);
         gameContext.mapPixelReader.loadBlockedMap();
         System.out.println("Spillet Starter!!!");
         gameContext.gamePanel = new GamePanel(gameContext.player, gameContext.camera, this); // FJERNES! OPPRETTES I MAIN
