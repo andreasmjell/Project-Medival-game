@@ -64,6 +64,6 @@ public class Save {
             }
         }
     }*/
-    return npc;
+    return npcList;
     }
 }

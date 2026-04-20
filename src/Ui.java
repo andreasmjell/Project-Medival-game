@@ -4,25 +4,14 @@ import src.menu.MenuSlider;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Ui {
-    MapController mapController;
-    Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-    private UiHandler uiHandler;
+    GameContext gameContext;
 
-    public Ui(MapController mapController){
-        this.mapController = mapController;
-        this.uiHandler = mapController.getUiHandler();
-
+    public Ui(GameContext gameContext){
+        this.gameContext = gameContext;
     }
     
-    public void setUiHandler(UiHandler uiHandler){
-        this.uiHandler = uiHandler;
-    }
     public void start(){
         //createWindow();
         mainMenu();
@@ -33,7 +22,7 @@ public class Ui {
 
     public void mainMenu() {
     System.out.println("MAINMENU!!!!");
-    Dimension size = uiHandler.getScreenSize();
+    Dimension size = gameContext.uiHandler.getScreenSize();
 
     // Bruk en vanlig JPanel, men pass på rekkefølgen
     JPanel root = new JPanel(null);
@@ -45,7 +34,7 @@ public class Ui {
 
     startGame.addActionListener(e -> {
         System.out.println("START GAME trykket");
-        mapController.startGame();
+        gameContext.mapController.startGame();
     });
 
     MenuButton exit = new MenuButton("Save and Exit");
@@ -53,7 +42,7 @@ public class Ui {
     exit.addActionListener(e -> System.exit(0));
 
     // AUDIO KNAPPER
-    AudioManager audioManager = mapController.getAudioManager();
+    AudioManager audioManager = gameContext.audioManager;
     
     
     MenuSlider audio = new MenuSlider("Audio", 0, 100, 50);
@@ -77,7 +66,7 @@ public class Ui {
     
 
     // Fortell UiHandler at dette er den aktive menyen
-    uiHandler.getFrame().setContentPane(root);
-    uiHandler.getFrame().revalidate();
-    uiHandler.getFrame().repaint();
+    gameContext.uiHandler.getFrame().setContentPane(root);
+    gameContext.uiHandler.getFrame().revalidate();
+    gameContext.uiHandler.getFrame().repaint();
 }}

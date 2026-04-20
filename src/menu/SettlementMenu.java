@@ -5,19 +5,17 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SettlementMenu extends GameMenu{
-
-    UiHandler uiHandler;
+    GameContext gameContext;
+    
     
 
-    public SettlementMenu(Settlement settlement, MapController mapController){
-        mapController.timerStop();
-        uiHandler = mapController.getUiHandler();
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        int menuWidth = (int) (size.getWidth() * 0.8);
-        int menuHeight = (int) (size.getHeight() * 0.8);
+    public SettlementMenu(Settlement settlement, GameContext gameContext){
+        gameContext.mapController.timerStop();
+        int menuWidth = (int) (gameContext.size.getWidth() * 0.8);
+        int menuHeight = (int) (gameContext.size.getHeight() * 0.8);
 
-        int x = ((int)size.getWidth() - menuWidth) / 2;
-        int y = ((int)size.getHeight() - menuHeight) / 2;
+        int x = ((int)gameContext.size.getWidth() - menuWidth) / 2;
+        int y = ((int)gameContext.size.getHeight() - menuHeight) / 2;
 
         super(x,y,menuWidth,menuHeight);
 
@@ -31,8 +29,8 @@ public class SettlementMenu extends GameMenu{
         MenuButton closeBtn = new MenuButton("Forlat byen");
         closeBtn.setBounds((menuWidth - 250) / 2, menuHeight - 80, 250, 60);
         closeBtn.addActionListener(e -> {
-            mapController.timerStart();
-            uiHandler.closeMenu(this);
+            gameContext.mapController.timerStart();
+            gameContext.uiHandler.closeMenu(this);
         });
         add(closeBtn);
     }

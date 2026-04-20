@@ -31,9 +31,9 @@ public class Main {
     GameContext gameContext = new GameContext();
     MapController mapController = new MapController(gameContext);
     Player player = new Player(gameContext, 2000, 1500, 80000);
-    Save save = new Save();
-    Ui ui = new Ui(mapController);
-    UiHandler uiHandler = new UiHandler(ui, mapController);
+    Save save = new Save(gameContext);
+    Ui ui = new Ui(gameContext);
+    UiHandler uiHandler = new UiHandler(gameContext);
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
     HudPanel hud = uiHandler.getHud(); // TEMP
     Camera camera = new Camera(500, 500, (int)size.getWidth(), (int)size.getHeight(), player);

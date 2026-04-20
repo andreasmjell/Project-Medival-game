@@ -9,23 +9,18 @@ public class UiHandler {
     private JFrame frame;
     private JLayeredPane layeredPane;
 
-    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
     private JPanel activeMainPanel;
 
+    private GameContext gameContext;
+
     private GamePanel gamePanel;
-    private Ui ui;
     private HudPanel hud;
-    private MapController mapController;
 
     public static final Integer MAP_LAYER = 0;
     public static final Integer HUD_LAYER = 100;
     public static final Integer MENU_LAYER = 200;
 
-    public UiHandler(Ui ui, MapController mapController){
-        this.mapController = mapController;
-        this.ui = ui;
-        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    public UiHandler(GameContext gameContext){
         createWindow();
     }
 
@@ -33,18 +28,18 @@ public class UiHandler {
         frame = new JFrame("Medieval Game");
         frame.setBackground(Color.BLACK);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(screenSize);
+        frame.setSize(gameContext.size);
         frame.setLayout(null);
 
         layeredPane = new JLayeredPane();
-        layeredPane.setBounds(0, 0, screenSize.width, screenSize.height);
+        layeredPane.setBounds(0, 0, gameContext.size.width, gameContext.size.height);
 
         frame.setContentPane(layeredPane);
         frame.setVisible(true);
     }
 
     public void start(){
-        ui.mainMenu();
+        gameContext.ui.mainMenu();
     }
 
     public void setMainPanel(JPanel panel){
@@ -53,7 +48,7 @@ public class UiHandler {
         }
         activeMainPanel = panel;
 
-        panel.setBounds(0, 0, screenSize.width, screenSize.height);
+        panel.setBounds(0, 0, gameContext.size.width, gameContext.size.height);
         layeredPane.add(panel, MAP_LAYER);
 
         layeredPane.revalidate();
@@ -82,7 +77,7 @@ public class UiHandler {
 
     public void showHud(){
         if (hud == null){
-        hud = new HudPanel(screenSize.width);
+        hud = new HudPanel(gameContext.size.width);
         }
         layeredPane.add(hud, HUD_LAYER);
         layeredPane.revalidate();
@@ -113,16 +108,13 @@ public class UiHandler {
     public JFrame getFrame(){
         return frame;
     }
-    public Dimension getScreenSize() {
-        return screenSize;
-    }
 
     public void openSettlementMenu(Settlement settlement){
-        SettlementMenu settlementMenu = new SettlementMenu(settlement, mapController); 
+        SettlementMenu settlementMenu = new SettlementMenu(settlement, gameContext); 
         openMenu(settlementMenu, MENU_LAYER);
     }
     public void openPauseMenu(){
-        PauseMenu pauseMenu = new PauseMenu(mapController);
+        PauseMenu pauseMenu = new PauseMenu(gameContext);
         openMenu(pauseMenu, MENU_LAYER);
     }
 
