@@ -23,11 +23,11 @@ public class CollisionManager{
     }
     public void checkCollisionNpc(Npc npc, ArrayList<Npc> npcList){
 
-        HashSet<Integer> insideGameObjects = new HashSet<>();
+        HashSet<Integer> insideObjects = new HashSet<>();
 
         for (Npc target: npcList){
             if (npc.getBounds().intersects(target.getBounds())){
-                insideGameObjects.add(target.getId());
+                insideObjects.add(target.getId());
 
                 if(!npc.insideObjects.contains(target.getId())){
                     target.onCollisionNpc(npc, target);
@@ -35,6 +35,6 @@ public class CollisionManager{
                 }
             }
         }
-        player.insideObjects = insideGameObjects;
+        npc.insideObjects = insideObjects;
     }
 }
