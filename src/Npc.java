@@ -73,13 +73,6 @@ public abstract class Npc extends GameObject implements Drawable{
 
         updateBounds();
     }
-    public void newNpcPath(int x, int y, Npc npc){
-        new Thread (() -> {
-            ArrayList<Point> points = gameContext.pathfinder.findPath(npc.x, npc.y, x, y, gameContext.mapPixelReader);    //MÅ FIKSES
-            npc.setPath(new Path(points));
-        }).start();
-    }
-
     public void newPath(Player player){
         if (chase(player)){
             this.newRoute(player.getX(), player.getY());
@@ -107,8 +100,9 @@ public abstract class Npc extends GameObject implements Drawable{
         }
         return false;
     }
+    public abstract ArrayList<Npc> getEnemyList();
     public Npc chaseOther(){
-        for (Npc chase : enemyList){
+        for (Npc chase : getEnemyList()){
             double diffX = this.x - chase.getX();
             double diffY = this.y - chase.getY();
             double distance = Math.sqrt(diffX * diffX + diffY * diffY);

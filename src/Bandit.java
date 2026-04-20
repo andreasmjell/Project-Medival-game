@@ -33,4 +33,7 @@ public class Bandit extends Npc{
         playerEnemy = false;
 
     }
+    public ArrayList<Npc> getEnemyList(){
+        return enemyList;
+    }
 }

@@ -25,6 +25,12 @@ public class NpcManager {
         gameContext.mapController.drawable.addAll(respawnNpc);
         respawnNpc.clear();
     }
+    public void newNpcPath(int x, int y, Npc npc){
+        new Thread (() -> {
+            ArrayList<Point> points = gameContext.pathfinder.findPath(npc.x, npc.y, x, y, gameContext.mapPixelReader);    //MÅ FIKSES
+            npc.setPath(new Path(points));
+        }).start();
+    }
     public void npcDefeated(Npc npc){
         String faction = npc.getFaction();
         String name = npc.getName();
