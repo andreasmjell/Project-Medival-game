@@ -45,6 +45,8 @@ public class MapController {
             update();
         });
         timer.start();
+        gameContext.npcManager.npcTimer();
+        gameContext.npcManager.npcTimerStart();
     }
 
     public void update(){
@@ -59,10 +61,12 @@ public class MapController {
 
     public void timerStop(){
         timer.stop();
+        gameContext.npcManager.npcTimerStop();
     }
 
     public void timerStart(){
         timer.start();
+        gameContext.npcManager.npcTimerStart();
     }
 
     public void startMusic(){

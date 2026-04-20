@@ -55,15 +55,15 @@ public class Save {
     } catch (IOException e){
         e.printStackTrace();
     }
-    /*for (Npc target : npc){
+    for (Npc target : npcList){
         if (!(target.getFaction().equals("Bandit"))){
-            for (Npc newEnemy : npc){
+            for (Npc newEnemy : npcList){
                 if (newEnemy.getFaction().equals("Bandit")){
-                    target.addEnemy(newEnemy);
+                    target.addEnemy("Bandit");
                 }
             }
         }
-    }*/
+    }
     return npcList;
     }
 }

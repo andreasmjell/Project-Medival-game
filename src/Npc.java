@@ -129,9 +129,18 @@ public abstract class Npc extends GameObject implements Drawable{
 
         gameContext.npcManager.npcFight(this.troops, this);
     }
+    public void onCollisionNpc(Npc npc, Npc target){
+        System.out.println("NPC traff" + name);
+
+        gameContext.npcManager.npcFightNpc(npc, target);
+    }
 
 
     public void newRoute(double x, double y){
         gameContext.npcManager.newNpcPath((int)x, (int)y, this);
     }
+    public abstract void addEnemy(String faction);
+    public abstract void removeEnemy(String faction);
+    public abstract void addEnemyPlayer();
+    public abstract void removeEnemyPlayer();
 }

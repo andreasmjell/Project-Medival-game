@@ -12,8 +12,8 @@ public class Bandit extends Npc{
         super(gameContext, faction, name, x, y, troops);
     }
 
-    public void addEnemy(ArrayList<Npc> npcList, String faction){
-        for (Npc x : npcList){
+    public void addEnemy(String faction){
+        for (Npc x : gameContext.mapController.npcList){
             if (x.getFaction().equals(faction)){
                 enemyList.add(x);
             }
