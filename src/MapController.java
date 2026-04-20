@@ -7,14 +7,11 @@ import java.util.HashSet;
 public class MapController {
     GameContext gameContext;
 
-    HashSet<Npc> deleteNpc = new HashSet<>();
-    HashSet<Npc> respawnNpc = new HashSet<>();
-
     ArrayList<GameObject> gameObjects = new ArrayList<>();
     ArrayList<Drawable> drawable = new ArrayList<>();
+    ArrayList<Settlement> settlementList = new ArrayList<>();
+    ArrayList<Npc> npc = new ArryaList<>();
 
-    //ArrayList<Settlement> settlement = gameContext.save.getSettlement("NewGameFile.json", this); //TEMP!!!
-    ArrayList<Npc> npc = gameContext.save.getNpc("NewGameFile.json", this, gameContext.player); //TEMP!
     private Timer timer;
 
 
@@ -33,6 +30,7 @@ public class MapController {
 
     //Starter det faktiske spillet
     public void startGame(){
+        npc = gameContext.save.getNpc("NewGameFile.json", this, gameContext.player);
         gameContext.mapPixelReader.loadBlockedMap();
         System.out.println("Spillet Starter!!!");
         gameContext.gamePanel = new GamePanel(gameContext.player, gameContext.camera, this); // FJERNES! OPPRETTES I MAIN
@@ -146,6 +144,8 @@ public class MapController {
         gameContext.uiHandler.openPauseMenu();
     }
     public void npcDefeated(Npc npc){
+        HashSet<Npc> deleteNpc = new HashSet<>();
+        HashSet<Npc> respawnNpc = new HashSet<>();
         String faction = npc.getFaction();
         String name = npc.getName();
         double defeatedX = npc.getX();
