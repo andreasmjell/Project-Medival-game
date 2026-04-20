@@ -2,6 +2,7 @@ package src;
 
 import java.awt.*;
 import javax.swing.ImageIcon;
+import java.util.ArrayList;
 
 public abstract class Settlement extends GameObject implements Drawable {
     protected String name;
@@ -23,7 +24,7 @@ public abstract class Settlement extends GameObject implements Drawable {
         this.settlementImage = new ImageIcon(getClass().getResource(imagePath)).getImage();
     }
 
-    public addToSettlementList(Settlement set){
+    public void addToSettlementList(Settlement set){
         settlementList.add(set);
     }
     public ArrayList<Settlement> getSettlementList(){
