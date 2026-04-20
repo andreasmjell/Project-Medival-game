@@ -30,10 +30,9 @@ public class MapController {
 
     //Starter det faktiske spillet
     public void startGame(){
-
+        gameContext.mapPixelReader.loadBlockedMap();
         settlementList = gameContext.save.readSettlement("NewGameFile.json");
         npcList = gameContext.save.readNpc("NewGameFile.json");
-        gameContext.mapPixelReader.loadBlockedMap();
 
 
         System.out.println("Spillet Starter!!!");
