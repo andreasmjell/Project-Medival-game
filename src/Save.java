@@ -29,7 +29,7 @@ public class Save {
                 int y = obj.getInt("y");
                 int troops = obj.getInt("troops");
                 int timer = obj.getInt("timer");
-                settlementList.add(new Town(navn, x, y, troops, timer));
+                settlementList.add(new Town(gameContext, navn, x, y, troops, timer));
             }
         }
         }catch (IOException e){

@@ -1,16 +1,17 @@
 package src;
 
 public class Town extends Settlement {
+    private GameContext gameContext;
 
-    public Town(String name, int x, int y, int troops, int timer, MapController mapController) {
-        super(name, x, y, troops, timer, mapController, "assets/by.png");
-        super.addToSettlementList(this);
+    public Town(GameContext gameContext, String name, int x, int y, int troops, int timer) {
+        super(name, x, y, troops, timer, "assets/by.png");
+        this.gameContext = gameContext;
     }
 
     @Override
     public void onCollision(Player player) {
         System.out.println("Player gikk inn i byen: " + name);
-        mapController.getPlayer().updateTroops(troops);
-        mapController.openSettlementMenu(this);
+        gameContext.player.updateTroops(troops);
+        gameContext.mapController.openSettlementMenu(this);
     }
 }
