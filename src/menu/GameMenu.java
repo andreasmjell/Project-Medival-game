@@ -1,5 +1,4 @@
 package src.menu;
-import src.*;
 
 import javax.swing.*;
 import java.awt.*;
