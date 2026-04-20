@@ -9,7 +9,7 @@ import org.json.JSONObject;
 public class Save {
     String filename;
 
-    public ArrayList<Settlement> getSettlement(String filename, MapController mapController){
+    public ArrayList<Settlement> readSettlement(String filename, MapController mapController){
         try {
         String innhold = new String(Files.readAllBytes(Paths.get(filename)));
         JSONArray jsonArray = new JSONArray(innhold);
@@ -29,7 +29,7 @@ public class Save {
         }
         return settlement;
     }
-    public ArrayList<Npc> getNpc(String filename, MapController mapController, Player player){
+    public ArrayList<Npc> readNpc(String filename, MapController mapController, Player player){
         try {
         String innhold = new String(Files.readAllBytes(Paths.get(filename)));
         JSONArray jsonArray = new JSONArray(innhold);

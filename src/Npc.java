@@ -4,50 +4,33 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-public class Npc extends GameObject implements Drawable{
+public abstract class Npc extends GameObject implements Drawable{
+    GameContext gameContext;
     String faction;
     String name;
     double x;
     double y;
     double speed;
     int troops;
-    Player player;
-    MapController mapController;
-    ArrayList<Npc> enemyList = new ArrayList<>();
     Image npcImage = new ImageIcon(getClass().getResource("assets/npc.png")).getImage();
-
     Path path;
 
-    public Npc(String name, double x, double y, int troops, Player player, MapController mapController, String faction){
+    public Npc(GameContext gameContext, String faction, String name, double x, double y, int troops){
         super((int)x, (int)y, 80, 80);
         this.faction = faction;
         this.name = name;
         this.x = x;
         this.y = y;
         this.troops = troops;
-        this.player = player;
-        this.mapController = mapController;
         this.speed = 1 - ((double)this.troops*0.001);
     }
-    public String getName(){
-        return name;
-    }
-    public String getFaction(){
-        return faction;
-    }
 
-    public Drawable getThis(){
-        return this;
-    }
-    public double getX(){
-        return x;
-    }
-    public double getY(){
-        return y;
-    }
-    public int getTroops(){
-        return troops;
-    }
+    public String getName(){return name;}
+    public String getFaction(){return faction;}
+    public Drawable getThis(){return this;}
+    public double getX(){return x;}
+    public double getY(){return y;}
+    public int getTroops(){return troops;}
 
     public void draw(Graphics g, double cameraX, double cameraY){
         int sx = (int)(x - cameraX - 50); //Npc X
