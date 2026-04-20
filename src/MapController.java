@@ -13,8 +13,6 @@ public class MapController {
     ArrayList<Settlement> settlementList = new ArrayList<>();
     ArrayList<Npc> npcList = new ArrayList<>();
 
-    HashSet<Npc> deleteNpc = new HashSet<>();
-    HashSet<Npc> respawnNpc = new HashSet<>();
     private Timer timer;
 
 
@@ -140,13 +138,5 @@ public class MapController {
         gameContext.uiHandler.closeBattlePanel();
         gameContext.player.setTroops(battlePlayer.getTroops());
         timer.start();
-    }
-
-    public Player getPlayer(){
-        return gameContext.player;
-    }
-
-    public AudioManager getAudioManager(){
-        return gameContext.audioManager;
     }
 }

@@ -73,6 +73,31 @@ public abstract class Npc extends GameObject implements Drawable{
 
         updateBounds();
     }
+    public void newNpcPath(int x, int y, Npc npc){
+        new Thread (() -> {
+            ArrayList<Point> points = gameContext.pathfinder.findPath(npc.x, npc.y, x, y, gameContext.mapPixelReader);    //MÅ FIKSES
+            npc.setPath(new Path(points));
+        }).start();
+    }
+
+    public void newPath(Player player){
+        if (chase(player)){
+            this.newRoute(player.getX(), player.getY());
+            return;
+        }
+        Npc target = chaseOther();
+        if (target != null){
+            this.newRoute(target.getX(), target.getY());
+            return;
+        }
+        else {
+            if (path == null || path.isDone()){
+                double newX = Math.random() * 1000 - 500;
+                double newY = Math.random() * 1000 - 500;
+                this.newRoute((int)(x + newX), (int)(y + newY));
+            }
+        }
+    }
     private void updateBounds(){
         Rectangle bounds = super.getBounds();
         bounds.setLocation((int)x, (int)y);

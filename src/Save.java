@@ -29,7 +29,7 @@ public class Save {
                 int y = obj.getInt("y");
                 int troops = obj.getInt("troops");
                 int timer = obj.getInt("timer");
-                settlementList.add(new Town(navn, x, y, troops, timer, gameContext.mapController));
+                settlementList.add(new Town(navn, x, y, troops, timer));
             }
         }
         }catch (IOException e){
@@ -37,7 +37,7 @@ public class Save {
         }
         return settlementList;
     }
-    public ArrayList<Npc> readNpc(String filename, MapController mapController, Player player){
+    public ArrayList<Npc> readNpc(String filename){
         try {
         String innhold = new String(Files.readAllBytes(Paths.get(filename)));
         JSONArray jsonArray = new JSONArray(innhold);

@@ -1,50 +1,29 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class NpcManager {
     GameContext gameContext;
+    HashSet<Npc> deleteNpc = new HashSet<>();
+    HashSet<Npc> respawnNpc = new HashSet<>();
 
     public NpcManager(GameContext gameContext){
         this.gameContext = gameContext;
     }
-    
-        public void newNpcPath(int x, int y, Npc npc){
-        new Thread (() -> {
-            ArrayList<Point> points = gameContext.pathfinder.findPath(npc.x, npc.y, x, y, gameContext.mapPixelReader);    
-            npc.setPath(new Path(points));
-        }).start();
-    }
+    //npcUpdate blir kjørt hver tick av mapController
     public void npcUpdate(){
-        npc.removeAll(deleteNpc);
-        drawable.removeAll(deleteNpc);
-        gameObjects.removeAll(deleteNpc);
+        gameContext.mapController.npcList.removeAll(deleteNpc);
+        gameContext.mapController.drawable.removeAll(deleteNpc);
+        gameContext.mapController.gameObjects.removeAll(deleteNpc);
         deleteNpc.clear();
-        for (Npc x : npc){
+        for (Npc x : gameContet.mapController.npcList){
             x.update();
         }
-        npc.addAll(respawnNpc);
-        gameObjects.addAll(respawnNpc);
-        drawable.addAll(respawnNpc);
+        gameContext.mapController.npcList.addAll(respawnNpc);
+        gameContext.mapController.gameObjects.addAll(respawnNpc);
+        gameContext.mapController.drawable.addAll(respawnNpc);
         respawnNpc.clear();
-    }
-    public void newPath(Player player){
-        if (chase(player)){
-            this.newRoute(player.getX(), player.getY());
-            return;
-        }
-        Npc target = chaseOther();
-        if (target != null){
-            this.newRoute(target.getX(), target.getY());
-            return;
-        }
-        else {
-            if (path == null || path.isDone()){
-                double newX = Math.random() * 1000 - 500;
-                double newY = Math.random() * 1000 - 500;
-                this.newRoute((int)(x + newX), (int)(y + newY));
-            }
-        }
     }
 
     public boolean chase(Player player){
