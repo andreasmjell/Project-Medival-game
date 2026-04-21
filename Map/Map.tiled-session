@@ -1,0 +1,43 @@
+{
+    "activeFile": "Kart.tmx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 0.5
+        },
+        "#ForestPack": {
+            "scaleInEditor": 1
+        },
+        "#FreePack": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 1
+        },
+        "Kart.tmx": {
+            "scale": 0.1675,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 889.5522388059699,
+                "y": 5710.447761194029
+            }
+        },
+        "Kart.tmx#FreePack": {
+            "scaleInDock": 0.5
+        },
+        "Kart.tmx#ground": {
+            "scaleInDock": 0.5
+        }
+    },
+    "last.imagePath": "/Users/havard/Documents/Privat/Java/Project-Medieval-game/Map",
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+        "Kart.tmx"
+    ],
+    "project": "Map.tiled-project",
+    "recentFiles": [
+        "Kart.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.transparentColor": "#808080",
+    "tileset.useTransparentColor": true
+}

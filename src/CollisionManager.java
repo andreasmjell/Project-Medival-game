@@ -24,13 +24,16 @@ public class CollisionManager{
     public void checkCollisionNpc(Npc npc, ArrayList<Npc> npcList){
 
         HashSet<Integer> insideObjects = new HashSet<>();
+        ArrayList<Npc> tempList = npcList;
 
-        for (Npc target: npcList){
-            if (npc.getBounds().intersects(target.getBounds())){
+        for (Npc target: tempList){
+            if (npc.getBounds().intersects(target.getBounds()) && npc != target){
                 insideObjects.add(target.getId());
+                tempList.remove(target);
 
                 if(!npc.insideObjects.contains(target.getId())){
                     target.onCollisionNpc(npc, target);
+            
                     System.out.println("player går inn for første gang");
                 }
             }
