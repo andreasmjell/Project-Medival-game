@@ -36,7 +36,7 @@ public abstract class Npc extends GameObject implements Drawable{
     public double getY(){return y;}
     public int getTroops(){return troops;}
     public void updateTroops(int troops){
-        this.troops + tropps;
+        this.troops += troops;
     }
 
     public void draw(Graphics g, double cameraX, double cameraY){
