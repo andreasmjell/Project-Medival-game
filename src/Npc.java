@@ -5,8 +5,9 @@ import java.util.HashSet;
 
 import javax.swing.ImageIcon;
 
-public abstract class Npc extends GameObject implements Drawable{
+public abstract class Npc extends GameObject implements Drawable, Character{
     GameContext gameContext;
+    Garrison garrison;
     String faction;
     String name;
     double x;
@@ -27,6 +28,7 @@ public abstract class Npc extends GameObject implements Drawable{
         this.troops = troops;
         this.speed = 1 - ((double)this.troops*0.001);
         this.gameContext = gameContext;
+        garrison = new Garrison(this);
     }
 
     public String getName(){return name;}

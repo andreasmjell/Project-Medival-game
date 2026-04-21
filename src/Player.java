@@ -5,9 +5,10 @@ import javax.swing.ImageIcon;
 
 import java.awt.*;
 
-public class Player implements Drawable{
+public class Player implements Drawable, Character{
 
     //stats
+    Garrison garrison;
     int troops;
     double speed;
 
@@ -32,6 +33,7 @@ public class Player implements Drawable{
         this.troops = troops;
         this.speed = 3;
         bounds = new Rectangle((int)x, (int)y, 80, 80);
+        garrison = new Garrison(this);
     }
 
     public double getX(){
